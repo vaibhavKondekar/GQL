@@ -77,6 +77,25 @@ public:
     antlrcpp::Any visitGroupByClause(GQLParser::GroupByClauseContext* ctx) override;
     antlrcpp::Any visitHavingClause(GQLParser::HavingClauseContext* ctx) override;
     
+    // Phase 6: Procedure call visitors
+    antlrcpp::Any visitCallProcedureStatement(GQLParser::CallProcedureStatementContext* ctx) override;
+    antlrcpp::Any visitProcedureCall(GQLParser::ProcedureCallContext* ctx) override;
+    antlrcpp::Any visitNestedProcedureSpecification(GQLParser::NestedProcedureSpecificationContext* ctx) override;
+    
+    // Phase 7: USE Graph clause visitors
+    antlrcpp::Any visitUseGraphClause(GQLParser::UseGraphClauseContext* ctx) override;
+    
+    // Phase 8: Expression parsing visitors
+    antlrcpp::Any visitBooleanValueExpression(GQLParser::BooleanValueExpressionContext* ctx) override;
+    antlrcpp::Any visitSearchCondition(GQLParser::SearchConditionContext* ctx) override;
+    antlrcpp::Any visitComparisonExprAlt(GQLParser::ComparisonExprAltContext* ctx) override;
+    antlrcpp::Any visitConjunctiveExprAlt(GQLParser::ConjunctiveExprAltContext* ctx) override;
+    antlrcpp::Any visitDisjunctiveExprAlt(GQLParser::DisjunctiveExprAltContext* ctx) override;
+    antlrcpp::Any visitPrimaryExprAlt(GQLParser::PrimaryExprAltContext* ctx) override;
+    antlrcpp::Any visitValueExpressionPrimary(GQLParser::ValueExpressionPrimaryContext* ctx) override;
+    antlrcpp::Any visitBindingVariableReference(GQLParser::BindingVariableReferenceContext* ctx) override;
+    antlrcpp::Any visitPropertyName(GQLParser::PropertyNameContext* ctx) override;
+    
     // Additional visitors for procedure body and statements
     antlrcpp::Any visitProcedureBody(GQLParser::ProcedureBodyContext* ctx) override;
     antlrcpp::Any visitStatementBlock(GQLParser::StatementBlockContext* ctx) override;

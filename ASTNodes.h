@@ -39,7 +39,9 @@ public:
         // Phase 5: SELECT statements
         SELECT_STATEMENT,
         GROUP_BY_CLAUSE,
-        HAVING_CLAUSE
+        HAVING_CLAUSE,
+        // Phase 7: USE Graph clause
+        USE_GRAPH
     };
     Type type;
     ASTNode(Type t) : type(t) {}
@@ -165,11 +167,15 @@ public:
 // ---------- Expression ----------
 class ExpressionNode : public ASTNode {
 public:
-    std::string type;        // "VARIABLE", "PROPERTY", "LITERAL", "BINARY_OP", etc.
-    std::string value;       // The actual value/text
-    std::string operator_;   // For binary operations: "=", ">", "<", etc.
-    std::unique_ptr<ASTNode> left;   // Left operand
-    std::unique_ptr<ASTNode> right;  // Right operand
+    std::string type;        // "VARIABLE", "PROPERTY", "LITERAL", "BINARY_OP", "FUNCTION_CALL", "PROPERTY_ACCESS", etc.
+    std::string value;       // The actual value/text (for literals, variable names, function names)
+    std::string operator_;   // For binary operations: "=", ">", "<", "AND", "OR", "+", "-", "*", "/", etc.
+    std::unique_ptr<ASTNode> left;   // Left operand (for binary ops)
+    std::unique_ptr<ASTNode> right; // Right operand (for binary ops)
+    std::unique_ptr<ASTNode> object; // Object for property access (variable.property)
+    std::string propertyName; // Property name for property access
+    std::vector<std::unique_ptr<ASTNode>> arguments; // Function call arguments
+    std::string literalType; // "INTEGER", "FLOAT", "STRING", "BOOLEAN", "NULL" for literals
     
     ExpressionNode() : ASTNode(EXPRESSION) {}
     void accept(ASTVisitor* v) override;
@@ -326,5 +332,14 @@ public:
     std::unique_ptr<ASTNode> condition;  // Search condition (expression)
     
     HavingClauseNode() : ASTNode(HAVING_CLAUSE) {}
+    void accept(ASTVisitor* v) override;
+};
+
+// ---------- USE Graph Clause ----------
+class UseGraphNode : public ASTNode {
+public:
+    std::unique_ptr<ASTNode> graphExpression;  // Graph expression (for now stored as ExpressionNode)
+    
+    UseGraphNode() : ASTNode(USE_GRAPH) {}
     void accept(ASTVisitor* v) override;
 };

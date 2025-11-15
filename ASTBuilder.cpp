@@ -1315,25 +1315,27 @@ antlrcpp::Any ASTBuilder::visitSelectGraphMatch(GQLParser::SelectGraphMatchConte
         }
         
         if (selectNode) {
-            // Temporarily set currentMatchNode to nullptr so match statement doesn't get added to root
-            MatchStatementNode* savedMatchNode = currentMatchNode;
+            // Create MatchStatementNode directly for FROM clause
+            auto matchNode = std::make_unique<MatchStatementNode>();
+            
+            // Check for OPTIONAL keyword
+            if (ctx->matchStatement()->OPTIONAL()) {
+                matchNode->optional = true;
+            }
+            
+            // Set currentMatchNode so child visitors attach to it
+            currentMatchNode = matchNode.get();
+            
+            // Visit the graph pattern binding table to populate the match node
+            if (ctx->matchStatement()->graphPatternBindingTable()) {
+                visit(ctx->matchStatement()->graphPatternBindingTable());
+            }
+            
+            // Clear currentMatchNode
             currentMatchNode = nullptr;
             
-            // Visit the match statement - it will create a MatchStatementNode and add to root
-            visit(ctx->matchStatement());
-            
-            // Restore currentMatchNode
-            currentMatchNode = savedMatchNode;
-            
-            // Find the MatchStatementNode that was just added and move it to fromMatches
-            for (auto it = root->children.rbegin(); it != root->children.rend(); ++it) {
-                if ((*it)->type == ASTNode::MATCH_STATEMENT) {
-                    std::unique_ptr<ASTNode> matchNode = std::move(*it);
-                    root->children.erase(std::next(it).base());
-                    selectNode->fromMatches.push_back(std::move(matchNode));
-                    break;
-                }
-            }
+            // Add to SelectStatementNode's fromMatches (don't add to root)
+            selectNode->fromMatches.push_back(std::move(matchNode));
         }
     }
     return nullptr;
@@ -1381,6 +1383,279 @@ antlrcpp::Any ASTBuilder::visitHavingClause(GQLParser::HavingClauseContext* ctx)
         }
     }
     
+    return nullptr;
+}
+
+// Phase 6: Procedure call visitors
+antlrcpp::Any ASTBuilder::visitCallProcedureStatement(GQLParser::CallProcedureStatementContext* ctx) {
+    auto procNode = std::make_unique<ProcedureCallNode>();
+    
+    // Check for OPTIONAL keyword
+    if (ctx->OPTIONAL()) {
+        procNode->optional = true;
+    }
+    
+    // Visit procedure call to extract name and arguments
+    if (ctx->procedureCall()) {
+        visit(ctx->procedureCall());
+        
+        // Extract procedure call info (it should have been added to root or we need to extract it)
+        // For now, set a placeholder name
+        procNode->name = "procedure_call";
+    }
+    
+    root->children.push_back(std::move(procNode));
+    return nullptr;
+}
+
+antlrcpp::Any ASTBuilder::visitProcedureCall(GQLParser::ProcedureCallContext* ctx) {
+    // Handle two forms:
+    // 1. (bindingVariableReference, ...)? nestedProcedureSpecification
+    // 2. procedureReference (valueExpression, ...)? yieldClause?
+    
+    ProcedureCallNode* procNode = nullptr;
+    
+    // Find or create ProcedureCallNode
+    for (auto it = root->children.rbegin(); it != root->children.rend(); ++it) {
+        if ((*it)->type == ASTNode::PROCEDURE_CALL) {
+            procNode = static_cast<ProcedureCallNode*>(it->get());
+            break;
+        }
+    }
+    
+    if (!procNode) {
+        // Create new one if not found
+        auto newNode = std::make_unique<ProcedureCallNode>();
+        procNode = newNode.get();
+        root->children.push_back(std::move(newNode));
+    }
+    
+    // Handle form 1: nestedProcedureSpecification
+    if (ctx->nestedProcedureSpecification()) {
+        visit(ctx->nestedProcedureSpecification());
+        // Extract binding variables if present
+        for (auto* varRef : ctx->bindingVariableReference()) {
+            auto exprNode = std::make_unique<ExpressionNode>();
+            exprNode->type = "PROC_ARG";
+            exprNode->value = varRef->getText();
+            procNode->arguments.push_back(std::move(exprNode));
+        }
+    }
+    // Handle form 2: procedureReference with arguments
+    else if (ctx->procedureReference()) {
+        procNode->name = ctx->procedureReference()->getText();
+        // Extract value expressions as arguments
+        for (auto* valueExpr : ctx->valueExpression()) {
+            auto exprNode = std::make_unique<ExpressionNode>();
+            exprNode->type = "PROC_ARG";
+            exprNode->value = valueExpr->getText();
+            procNode->arguments.push_back(std::move(exprNode));
+        }
+        // Handle yieldClause if present
+        if (ctx->yieldClause()) {
+            visit(ctx->yieldClause());
+        }
+    }
+    
+    return nullptr;
+}
+
+antlrcpp::Any ASTBuilder::visitNestedProcedureSpecification(GQLParser::NestedProcedureSpecificationContext* ctx) {
+    // Extract procedure name from nestedProcedureSpecification
+    // For now, extract as text
+    ProcedureCallNode* procNode = nullptr;
+    for (auto it = root->children.rbegin(); it != root->children.rend(); ++it) {
+        if ((*it)->type == ASTNode::PROCEDURE_CALL) {
+            procNode = static_cast<ProcedureCallNode*>(it->get());
+            break;
+        }
+    }
+    
+    if (procNode && ctx->getText().length() > 0) {
+        // Extract procedure name (simplified - would need proper parsing)
+        procNode->name = ctx->getText();
+    }
+    
+    return nullptr;
+}
+
+// Phase 7: USE Graph clause visitors
+antlrcpp::Any ASTBuilder::visitUseGraphClause(GQLParser::UseGraphClauseContext* ctx) {
+    auto useGraphNode = std::make_unique<UseGraphNode>();
+    
+    // Extract graph expression
+    if (ctx->graphExpression()) {
+        auto exprNode = std::make_unique<ExpressionNode>();
+        exprNode->type = "GRAPH_EXPRESSION";
+        exprNode->value = ctx->graphExpression()->getText();
+        useGraphNode->graphExpression = std::move(exprNode);
+    }
+    
+    root->children.push_back(std::move(useGraphNode));
+    return nullptr;
+}
+
+// Phase 8: Expression parsing visitors
+antlrcpp::Any ASTBuilder::visitSearchCondition(GQLParser::SearchConditionContext* ctx) {
+    // searchCondition is a booleanValueExpression
+    if (ctx->booleanValueExpression()) {
+        return visit(ctx->booleanValueExpression());
+    }
+    return nullptr;
+}
+
+antlrcpp::Any ASTBuilder::visitBooleanValueExpression(GQLParser::BooleanValueExpressionContext* ctx) {
+    // booleanValueExpression is just a valueExpression
+    if (ctx->valueExpression()) {
+        return visit(ctx->valueExpression());
+    }
+    return nullptr;
+}
+
+antlrcpp::Any ASTBuilder::visitComparisonExprAlt(GQLParser::ComparisonExprAltContext* ctx) {
+    // Handle comparison: valueExpression compOp valueExpression
+    auto exprNode = std::make_unique<ExpressionNode>();
+    exprNode->type = "BINARY_OP";
+    
+    if (ctx->compOp()) {
+        exprNode->operator_ = ctx->compOp()->getText();
+    }
+    
+    // Visit left and right operands
+    if (ctx->valueExpression().size() >= 2) {
+        visit(ctx->valueExpression(0));
+        if (!root->children.empty() && root->children.back()->type == ASTNode::EXPRESSION) {
+            exprNode->left = std::move(root->children.back());
+            root->children.pop_back();
+        }
+        
+        visit(ctx->valueExpression(1));
+        if (!root->children.empty() && root->children.back()->type == ASTNode::EXPRESSION) {
+            exprNode->right = std::move(root->children.back());
+            root->children.pop_back();
+        }
+    }
+    
+    root->children.push_back(std::move(exprNode));
+    return nullptr;
+}
+
+antlrcpp::Any ASTBuilder::visitConjunctiveExprAlt(GQLParser::ConjunctiveExprAltContext* ctx) {
+    // Handle AND: valueExpression AND valueExpression
+    auto exprNode = std::make_unique<ExpressionNode>();
+    exprNode->type = "BINARY_OP";
+    exprNode->operator_ = "AND";
+    
+    // Visit left and right operands
+    if (ctx->valueExpression().size() >= 2) {
+        visit(ctx->valueExpression(0));
+        if (!root->children.empty() && root->children.back()->type == ASTNode::EXPRESSION) {
+            exprNode->left = std::move(root->children.back());
+            root->children.pop_back();
+        }
+        
+        visit(ctx->valueExpression(1));
+        if (!root->children.empty() && root->children.back()->type == ASTNode::EXPRESSION) {
+            exprNode->right = std::move(root->children.back());
+            root->children.pop_back();
+        }
+    }
+    
+    root->children.push_back(std::move(exprNode));
+    return nullptr;
+}
+
+antlrcpp::Any ASTBuilder::visitDisjunctiveExprAlt(GQLParser::DisjunctiveExprAltContext* ctx) {
+    // Handle OR/XOR: valueExpression (OR | XOR) valueExpression
+    auto exprNode = std::make_unique<ExpressionNode>();
+    exprNode->type = "BINARY_OP";
+    
+    if (ctx->OR()) {
+        exprNode->operator_ = "OR";
+    } else if (ctx->XOR()) {
+        exprNode->operator_ = "XOR";
+    }
+    
+    // Visit left and right operands
+    if (ctx->valueExpression().size() >= 2) {
+        visit(ctx->valueExpression(0));
+        if (!root->children.empty() && root->children.back()->type == ASTNode::EXPRESSION) {
+            exprNode->left = std::move(root->children.back());
+            root->children.pop_back();
+        }
+        
+        visit(ctx->valueExpression(1));
+        if (!root->children.empty() && root->children.back()->type == ASTNode::EXPRESSION) {
+            exprNode->right = std::move(root->children.back());
+            root->children.pop_back();
+        }
+    }
+    
+    root->children.push_back(std::move(exprNode));
+    return nullptr;
+}
+
+antlrcpp::Any ASTBuilder::visitPrimaryExprAlt(GQLParser::PrimaryExprAltContext* ctx) {
+    // Handle primary expression: valueExpressionPrimary
+    if (ctx->valueExpressionPrimary()) {
+        return visit(ctx->valueExpressionPrimary());
+    }
+    return nullptr;
+}
+
+antlrcpp::Any ASTBuilder::visitValueExpressionPrimary(GQLParser::ValueExpressionPrimaryContext* ctx) {
+    auto exprNode = std::make_unique<ExpressionNode>();
+    
+    // Handle property access: valueExpressionPrimary.propertyName
+    if (ctx->PERIOD() && ctx->propertyName()) {
+        exprNode->type = "PROPERTY_ACCESS";
+        
+        // Visit the object (left side of .)
+        if (ctx->valueExpressionPrimary()) {
+            visit(ctx->valueExpressionPrimary());
+            // The object expression should be in root->children now
+            // Extract it
+            if (!root->children.empty() && root->children.back()->type == ASTNode::EXPRESSION) {
+                exprNode->object = std::move(root->children.back());
+                root->children.pop_back();
+            }
+        }
+        
+        // Extract property name
+        if (ctx->propertyName()) {
+            exprNode->propertyName = ctx->propertyName()->getText();
+        }
+    }
+    // Handle binding variable reference
+    else if (ctx->bindingVariableReference()) {
+        visit(ctx->bindingVariableReference());
+        return nullptr; // Already added by visitBindingVariableReference
+    }
+    // Handle literals and other primaries
+    else {
+        exprNode->type = "EXPRESSION";
+        exprNode->value = ctx->getText();
+    }
+    
+    root->children.push_back(std::move(exprNode));
+    return nullptr;
+}
+
+antlrcpp::Any ASTBuilder::visitBindingVariableReference(GQLParser::BindingVariableReferenceContext* ctx) {
+    auto exprNode = std::make_unique<ExpressionNode>();
+    exprNode->type = "VARIABLE";
+    
+    if (ctx->bindingVariable()) {
+        exprNode->value = ctx->bindingVariable()->getText();
+    }
+    
+    root->children.push_back(std::move(exprNode));
+    return nullptr;
+}
+
+antlrcpp::Any ASTBuilder::visitPropertyName(GQLParser::PropertyNameContext* ctx) {
+    // Property name is usually extracted as part of property access
+    // This visitor is called when propertyName is visited separately
     return nullptr;
 }
 

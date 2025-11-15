@@ -31,4 +31,5 @@ public:
     void visitSelectStatement(SelectStatementNode* n) override;
     void visitGroupByClause(GroupByClauseNode* n) override;
     void visitHavingClause(HavingClauseNode* n) override;
+    void visitUseGraph(UseGraphNode* n) override;
 };

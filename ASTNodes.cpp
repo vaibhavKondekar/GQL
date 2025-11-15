@@ -26,5 +26,6 @@ void CompositeQueryNode::accept(ASTVisitor* v) { v->visitCompositeQuery(this); }
 void SelectStatementNode::accept(ASTVisitor* v) { v->visitSelectStatement(this); }
 void GroupByClauseNode::accept(ASTVisitor* v) { v->visitGroupByClause(this); }
 void HavingClauseNode::accept(ASTVisitor* v) { v->visitHavingClause(this); }
+void UseGraphNode::accept(ASTVisitor* v) { v->visitUseGraph(this); }
 
 

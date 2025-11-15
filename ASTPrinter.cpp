@@ -335,3 +335,12 @@ void ASTPrinter::visitHavingClause(HavingClauseNode* n) {
     indent--;
 }
 
+void ASTPrinter::visitUseGraph(UseGraphNode* n) {
+    printIndent(); std::cout << "UseGraph\n";
+    indent++;
+    if (n->graphExpression) {
+        n->graphExpression->accept(this);
+    }
+    indent--;
+}
+
