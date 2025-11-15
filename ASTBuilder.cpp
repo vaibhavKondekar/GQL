@@ -98,10 +98,26 @@ antlrcpp::Any ASTBuilder::visitPrimitiveCatalogModifyingStatement(GQLParser::Pri
         catalogNode->action = "CREATE";
         catalogNode->objectType = "SCHEMA";
         if (ctx->catalogSchemaParentAndName()) {
-            catalogNode->name = ctx->catalogSchemaParentAndName()->getText();
+            auto nameCtx = ctx->catalogSchemaParentAndName();
+            if (nameCtx->schemaName()) {
+                auto schemaNameCtx = nameCtx->schemaName();
+                if (schemaNameCtx->identifier()) {
+                    catalogNode->name = schemaNameCtx->identifier()->getText();
+                } else {
+                    // Fallback to getText and clean
+                    catalogNode->name = schemaNameCtx->getText();
+                }
+            } else {
+                catalogNode->name = nameCtx->getText();
+            }
+            // Clean up path separators and formatting
             size_t lastSlash = catalogNode->name.find_last_of('/');
             if (lastSlash != std::string::npos && lastSlash + 1 < catalogNode->name.length()) {
                 catalogNode->name = catalogNode->name.substr(lastSlash + 1);
+            }
+            // Remove angle bracket artifacts
+            if (catalogNode->name.find("'>") == 0) {
+                catalogNode->name = catalogNode->name.substr(2);
             }
         }
         if (ctx->IF() && ctx->NOT() && ctx->EXISTS()) {
@@ -113,10 +129,24 @@ antlrcpp::Any ASTBuilder::visitPrimitiveCatalogModifyingStatement(GQLParser::Pri
         catalogNode->action = "DROP";
         catalogNode->objectType = "SCHEMA";
         if (ctx->catalogSchemaParentAndName()) {
-            catalogNode->name = ctx->catalogSchemaParentAndName()->getText();
+            auto nameCtx = ctx->catalogSchemaParentAndName();
+            if (nameCtx->schemaName()) {
+                auto schemaNameCtx = nameCtx->schemaName();
+                if (schemaNameCtx->identifier()) {
+                    catalogNode->name = schemaNameCtx->identifier()->getText();
+                } else {
+                    catalogNode->name = schemaNameCtx->getText();
+                }
+            } else {
+                catalogNode->name = nameCtx->getText();
+            }
+            // Clean up path separators and formatting
             size_t lastSlash = catalogNode->name.find_last_of('/');
             if (lastSlash != std::string::npos && lastSlash + 1 < catalogNode->name.length()) {
                 catalogNode->name = catalogNode->name.substr(lastSlash + 1);
+            }
+            if (catalogNode->name.find("'>") == 0) {
+                catalogNode->name = catalogNode->name.substr(2);
             }
         }
         if (ctx->IF() && ctx->EXISTS()) {
@@ -353,18 +383,31 @@ antlrcpp::Any ASTBuilder::visitPfPathPrimary(GQLParser::PfPathPrimaryContext* ct
 
 antlrcpp::Any ASTBuilder::visitPfQuantifiedPathPrimary(GQLParser::PfQuantifiedPathPrimaryContext* ctx) {
     // Quantified path primary (with *, +, {n}, etc.)
+    // Extract quantifier first
+    if (ctx->graphPatternQuantifier()) {
+        visit(ctx->graphPatternQuantifier());
+        // The quantifier string is returned, store it
+        std::string quantifier = ctx->graphPatternQuantifier()->getText();
+        currentQuantifier = quantifier;
+    }
+    
+    // Visit path primary (which may create an edge pattern)
     if (ctx->pathPrimary()) {
         visit(ctx->pathPrimary());
     }
-    // TODO: Handle quantifier
+    
+    // Clear quantifier after use
+    currentQuantifier.clear();
     return nullptr;
 }
 
 antlrcpp::Any ASTBuilder::visitPfQuestionedPathPrimary(GQLParser::PfQuestionedPathPrimaryContext* ctx) {
     // Optional path primary (with ?)
+    currentQuantifier = "?";
     if (ctx->pathPrimary()) {
         visit(ctx->pathPrimary());
     }
+    currentQuantifier.clear();
     return nullptr;
 }
 
@@ -418,13 +461,13 @@ antlrcpp::Any ASTBuilder::visitElementPattern(GQLParser::ElementPatternContext* 
                     nodePattern->labels.push_back(labelName);
                 } else {
                     // Fallback: extract from text and remove colon prefix
-                    std::string labelText = ctx->elementPatternFiller()->isLabelExpression()->getText();
+            std::string labelText = ctx->elementPatternFiller()->isLabelExpression()->getText();
                     // Remove leading colon if present
                     if (!labelText.empty() && labelText[0] == ':') {
                         labelText = labelText.substr(1);
                     }
-                    if (!labelText.empty()) {
-                        nodePattern->labels.push_back(labelText);
+            if (!labelText.empty()) {
+                nodePattern->labels.push_back(labelText);
                     }
                 }
             }
@@ -462,7 +505,7 @@ antlrcpp::Any ASTBuilder::visitElementPattern(GQLParser::ElementPatternContext* 
                 currentMatchNode->patterns.push_back(std::move(nodePattern));
             }
         } else {
-            root->children.push_back(std::move(nodePattern));
+        root->children.push_back(std::move(nodePattern));
         }
     } else if (ctx->fullEdgePattern()) {
         // Handle full edge patterns
@@ -531,12 +574,15 @@ antlrcpp::Any ASTBuilder::visitFullEdgePattern(GQLParser::FullEdgePatternContext
         if (filler->elementPatternPredicate()) {
             auto pred = filler->elementPatternPredicate();
             if (pred->elementPropertySpecification()) {
-                std::string propText = pred->elementPropertySpecification()->getText();
-                if (!propText.empty() && propText[0] == '{') {
-                    edgePattern->properties["raw"] = propText;
-                }
+                visit(pred->elementPropertySpecification());
+                // Properties are now parsed properly
             }
         }
+    }
+    
+    // Attach quantifier if present
+    if (!currentQuantifier.empty()) {
+        edgePattern->quantifier = currentQuantifier;
     }
     
     // Add to current match node if available, otherwise to root
@@ -573,6 +619,11 @@ antlrcpp::Any ASTBuilder::visitAbbreviatedEdgePattern(GQLParser::AbbreviatedEdge
     
     // Abbreviated edges don't have variables or labels
     edgePattern->variable = "";
+    
+    // Attach quantifier if present
+    if (!currentQuantifier.empty()) {
+        edgePattern->quantifier = currentQuantifier;
+    }
     
     // Add to current match node if available, otherwise to root
     if (currentMatchNode) {
@@ -620,7 +671,7 @@ antlrcpp::Any ASTBuilder::visitPrimitiveResultStatement(GQLParser::PrimitiveResu
             }
             if (!attached) {
                 // No match statement found, add to root
-                root->children.push_back(std::move(returnNode));
+        root->children.push_back(std::move(returnNode));
             }
         }
         
@@ -659,7 +710,7 @@ antlrcpp::Any ASTBuilder::visitReturnItem(GQLParser::ReturnItemContext* ctx) {
             }
             if (!added) {
                 // If no return statement found, add to root
-                root->children.push_back(std::move(exprNode));
+        root->children.push_back(std::move(exprNode));
             }
         }
     }
@@ -670,17 +721,26 @@ antlrcpp::Any ASTBuilder::visitWhereClause(GQLParser::WhereClauseContext* ctx) {
     auto whereNode = std::make_unique<WhereClauseNode>();
     
     if (ctx->searchCondition()) {
-        auto exprNode = std::make_unique<ExpressionNode>();
-        exprNode->type = "CONDITION";
-        exprNode->value = ctx->searchCondition()->getText();
-        whereNode->condition = std::move(exprNode);
+        // Visit search condition to build expression tree
+        visit(ctx->searchCondition());
+        // The expression tree should be in root->children now
+        if (!root->children.empty() && root->children.back()->type == ASTNode::EXPRESSION) {
+            whereNode->condition = std::move(root->children.back());
+            root->children.pop_back();
+        } else {
+            // Fallback: use text if tree building failed
+            auto exprNode = std::make_unique<ExpressionNode>();
+            exprNode->type = "CONDITION";
+            exprNode->value = ctx->searchCondition()->getText();
+            whereNode->condition = std::move(exprNode);
+        }
     }
     
     // Add to current match node if available, otherwise to root
     if (currentMatchNode) {
         currentMatchNode->whereClause = std::move(whereNode);
     } else {
-        root->children.push_back(std::move(whereNode));
+    root->children.push_back(std::move(whereNode));
     }
     
     return nullptr;
@@ -758,27 +818,26 @@ antlrcpp::Any ASTBuilder::visitLabelExpressionWildcard(GQLParser::LabelExpressio
 
 antlrcpp::Any ASTBuilder::visitGraphPatternQuantifier(GQLParser::GraphPatternQuantifierContext* ctx) {
     // Graph pattern quantifier: *, +, {n}, {n,m}
-    // Extract the quantifier and return it as a string
+    // Extract the quantifier and store it in currentQuantifier
     if (ctx->ASTERISK()) {
-        return std::string("*");
+        currentQuantifier = "*";
     } else if (ctx->PLUS_SIGN()) {
-        return std::string("+");
+        currentQuantifier = "+";
     } else if (ctx->LEFT_BRACE()) {
         // Handle {n} or {n,m} or {,m} or {n,}
-        std::string quantifier = "{";
+        currentQuantifier = "{";
         if (ctx->unsignedInteger().size() > 0) {
-            quantifier += ctx->unsignedInteger(0)->getText();
+            currentQuantifier += ctx->unsignedInteger(0)->getText();
         }
         if (ctx->COMMA()) {
-            quantifier += ",";
+            currentQuantifier += ",";
             if (ctx->unsignedInteger().size() > 1) {
-                quantifier += ctx->unsignedInteger(1)->getText();
+                currentQuantifier += ctx->unsignedInteger(1)->getText();
             }
         }
-        quantifier += "}";
-        return quantifier;
+        currentQuantifier += "}";
     }
-    return std::string("");
+    return nullptr;
 }
 
 // Phase 2: Primitive query statement visitors
@@ -2044,7 +2103,21 @@ antlrcpp::Any ASTBuilder::visitValueFunction(GQLParser::ValueFunctionContext* ct
     if (ctx->numericValueFunction()) {
         return visit(ctx->numericValueFunction());
     }
-    // Add other function types as needed (datetime, string, list, etc.)
+    if (ctx->datetimeValueFunction()) {
+        return visit(ctx->datetimeValueFunction());
+    }
+    if (ctx->characterOrByteStringFunction()) {
+        return visit(ctx->characterOrByteStringFunction());
+    }
+    if (ctx->listValueFunction()) {
+        return visit(ctx->listValueFunction());
+    }
+    if (ctx->durationValueFunction()) {
+        return visit(ctx->durationValueFunction());
+    }
+    if (ctx->datetimeSubtraction()) {
+        return visit(ctx->datetimeSubtraction());
+    }
     return nullptr;
 }
 
@@ -2116,6 +2189,98 @@ antlrcpp::Any ASTBuilder::visitAggregateFunction(GQLParser::AggregateFunctionCon
         visit(ctx->numericValueExpression(1));
         if (!root->children.empty() && root->children.back()->type == ASTNode::EXPRESSION) {
             exprNode->arguments.push_back(std::move(root->children.back()));
+            root->children.pop_back();
+        }
+    }
+    
+    root->children.push_back(std::move(exprNode));
+    return nullptr;
+}
+
+antlrcpp::Any ASTBuilder::visitDatetimeValueFunction(GQLParser::DatetimeValueFunctionContext* ctx) {
+    // Handle datetime functions: DATE, TIME, TIMESTAMP, etc.
+    auto exprNode = std::make_unique<ExpressionNode>();
+    exprNode->type = "FUNCTION_CALL";
+    exprNode->value = ctx->getText(); // Extract function name and arguments
+    root->children.push_back(std::move(exprNode));
+    return nullptr;
+}
+
+antlrcpp::Any ASTBuilder::visitCharacterOrByteStringFunction(GQLParser::CharacterOrByteStringFunctionContext* ctx) {
+    // Handle string functions: LEFT, RIGHT, TRIM, UPPER, LOWER, etc.
+    auto exprNode = std::make_unique<ExpressionNode>();
+    exprNode->type = "FUNCTION_CALL";
+    
+    // Extract function name
+    if (ctx->LEFT()) {
+        exprNode->value = "LEFT";
+    } else if (ctx->RIGHT()) {
+        exprNode->value = "RIGHT";
+    } else if (ctx->TRIM()) {
+        exprNode->value = "TRIM";
+    } else if (ctx->UPPER()) {
+        exprNode->value = "UPPER";
+    } else if (ctx->LOWER()) {
+        exprNode->value = "LOWER";
+    } else if (ctx->BTRIM()) {
+        exprNode->value = "BTRIM";
+    } else if (ctx->LTRIM()) {
+        exprNode->value = "LTRIM";
+    } else if (ctx->RTRIM()) {
+        exprNode->value = "RTRIM";
+    } else if (ctx->NORMALIZE()) {
+        exprNode->value = "NORMALIZE";
+    }
+    
+    // Extract arguments
+    if (!ctx->valueExpression().empty()) {
+        for (auto* arg : ctx->valueExpression()) {
+            visit(arg);
+            if (!root->children.empty() && root->children.back()->type == ASTNode::EXPRESSION) {
+                exprNode->arguments.push_back(std::move(root->children.back()));
+                root->children.pop_back();
+            }
+        }
+    }
+    
+    root->children.push_back(std::move(exprNode));
+    return nullptr;
+}
+
+antlrcpp::Any ASTBuilder::visitListValueFunction(GQLParser::ListValueFunctionContext* ctx) {
+    // Handle list functions
+    auto exprNode = std::make_unique<ExpressionNode>();
+    exprNode->type = "FUNCTION_CALL";
+    exprNode->value = ctx->getText();
+    root->children.push_back(std::move(exprNode));
+    return nullptr;
+}
+
+antlrcpp::Any ASTBuilder::visitDurationValueFunction(GQLParser::DurationValueFunctionContext* ctx) {
+    // Handle duration functions
+    auto exprNode = std::make_unique<ExpressionNode>();
+    exprNode->type = "FUNCTION_CALL";
+    exprNode->value = ctx->getText();
+    root->children.push_back(std::move(exprNode));
+    return nullptr;
+}
+
+antlrcpp::Any ASTBuilder::visitDatetimeSubtraction(GQLParser::DatetimeSubtractionContext* ctx) {
+    // Handle datetime subtraction
+    auto exprNode = std::make_unique<ExpressionNode>();
+    exprNode->type = "BINARY_OP";
+    exprNode->operator_ = "-";
+    
+    // Visit left and right operands
+    if (ctx->datetimeValueExpression().size() >= 2) {
+        visit(ctx->datetimeValueExpression(0));
+        if (!root->children.empty() && root->children.back()->type == ASTNode::EXPRESSION) {
+            exprNode->left = std::move(root->children.back());
+            root->children.pop_back();
+        }
+        visit(ctx->datetimeValueExpression(1));
+        if (!root->children.empty() && root->children.back()->type == ASTNode::EXPRESSION) {
+            exprNode->right = std::move(root->children.back());
             root->children.pop_back();
         }
     }

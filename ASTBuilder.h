@@ -6,6 +6,7 @@ class ASTBuilder : public GQLBaseVisitor {
     std::unique_ptr<QueryNode> root;
     MatchStatementNode* currentMatchNode = nullptr;  // Track current MATCH statement being built
     ReturnStatementNode* currentReturnNode = nullptr;  // Track current RETURN statement being built
+    std::string currentQuantifier;  // Track quantifier for current edge pattern
 public:
     std::unique_ptr<QueryNode> build(GQLParser::GqlProgramContext* ctx);
 
@@ -109,6 +110,11 @@ public:
     antlrcpp::Any visitValueFunction(GQLParser::ValueFunctionContext* ctx) override;
     antlrcpp::Any visitNumericValueFunction(GQLParser::NumericValueFunctionContext* ctx) override;
     antlrcpp::Any visitAggregateFunction(GQLParser::AggregateFunctionContext* ctx) override;
+    antlrcpp::Any visitDatetimeValueFunction(GQLParser::DatetimeValueFunctionContext* ctx) override;
+    antlrcpp::Any visitCharacterOrByteStringFunction(GQLParser::CharacterOrByteStringFunctionContext* ctx) override;
+    antlrcpp::Any visitListValueFunction(GQLParser::ListValueFunctionContext* ctx) override;
+    antlrcpp::Any visitDurationValueFunction(GQLParser::DurationValueFunctionContext* ctx) override;
+    antlrcpp::Any visitDatetimeSubtraction(GQLParser::DatetimeSubtractionContext* ctx) override;
     antlrcpp::Any visitElementPropertySpecification(GQLParser::ElementPropertySpecificationContext* ctx) override;
     antlrcpp::Any visitPropertyKeyValuePairList(GQLParser::PropertyKeyValuePairListContext* ctx) override;
     antlrcpp::Any visitPropertyKeyValuePair(GQLParser::PropertyKeyValuePairContext* ctx) override;

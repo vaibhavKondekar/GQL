@@ -71,6 +71,9 @@ void ASTPrinter::visitEdgePattern(EdgePatternNode* n) {
             std::cout << ":" << n->labels[i];
         }
     }
+    if (!n->quantifier.empty()) {
+        std::cout << n->quantifier;
+    }
     if (!n->properties.empty()) {
         std::cout << " {";
         bool first = true;
@@ -109,6 +112,9 @@ void ASTPrinter::visitExpression(ExpressionNode* n) {
     if (!n->operator_.empty()) {
         std::cout << " [" << n->operator_ << "]";
     }
+    if (!n->literalType.empty()) {
+        std::cout << " <" << n->literalType << ">";
+    }
     std::cout << "\n";
     if (n->left) {
         indent++;
@@ -119,6 +125,27 @@ void ASTPrinter::visitExpression(ExpressionNode* n) {
         indent++;
         n->right->accept(this);
         indent--;
+    }
+    if (!n->arguments.empty()) {
+        indent++;
+        printIndent(); std::cout << "Arguments:\n";
+        indent++;
+        for (auto& arg : n->arguments) {
+            arg->accept(this);
+        }
+        indent--;
+        indent--;
+    }
+    if (n->object) {
+        indent++;
+        printIndent(); std::cout << "Object:\n";
+        indent++;
+        n->object->accept(this);
+        indent--;
+        indent--;
+    }
+    if (!n->propertyName.empty()) {
+        printIndent(); std::cout << "Property: " << n->propertyName << "\n";
     }
 }
 

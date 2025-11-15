@@ -141,6 +141,7 @@ public:
     std::vector<std::string> labels;  // Relationship labels (e.g., "ACTED_IN")
     std::map<std::string, std::string> properties;  // Properties {key: value}
     std::string direction;  // "->", "<-", "<->", etc.
+    std::string quantifier;  // Quantifier: "*", "+", "{n}", "{n,m}", etc.
     
     EdgePatternNode() : ASTNode(EDGE_PATTERN) {}
     void accept(ASTVisitor* v) override;
