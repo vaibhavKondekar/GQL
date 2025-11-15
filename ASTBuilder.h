@@ -69,6 +69,14 @@ public:
     antlrcpp::Any visitFocusedLinearQueryStatement(GQLParser::FocusedLinearQueryStatementContext* ctx) override;
     antlrcpp::Any visitAmbientLinearQueryStatement(GQLParser::AmbientLinearQueryStatementContext* ctx) override;
     
+    // Phase 5: SELECT statement visitors
+    antlrcpp::Any visitSelectStatement(GQLParser::SelectStatementContext* ctx) override;
+    antlrcpp::Any visitSelectItem(GQLParser::SelectItemContext* ctx) override;
+    antlrcpp::Any visitSelectStatementBody(GQLParser::SelectStatementBodyContext* ctx) override;
+    antlrcpp::Any visitSelectGraphMatch(GQLParser::SelectGraphMatchContext* ctx) override;
+    antlrcpp::Any visitGroupByClause(GQLParser::GroupByClauseContext* ctx) override;
+    antlrcpp::Any visitHavingClause(GQLParser::HavingClauseContext* ctx) override;
+    
     // Additional visitors for procedure body and statements
     antlrcpp::Any visitProcedureBody(GQLParser::ProcedureBodyContext* ctx) override;
     antlrcpp::Any visitStatementBlock(GQLParser::StatementBlockContext* ctx) override;

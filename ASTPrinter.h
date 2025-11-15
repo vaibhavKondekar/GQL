@@ -28,4 +28,7 @@ public:
     void visitRemoveStatement(RemoveStatementNode* n) override;
     void visitDeleteStatement(DeleteStatementNode* n) override;
     void visitCompositeQuery(CompositeQueryNode* n) override;
+    void visitSelectStatement(SelectStatementNode* n) override;
+    void visitGroupByClause(GroupByClauseNode* n) override;
+    void visitHavingClause(HavingClauseNode* n) override;
 };

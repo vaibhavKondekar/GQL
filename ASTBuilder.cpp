@@ -1146,7 +1146,10 @@ antlrcpp::Any ASTBuilder::visitLinearQueryStatement(GQLParser::LinearQueryStatem
 
 antlrcpp::Any ASTBuilder::visitFocusedLinearQueryStatement(GQLParser::FocusedLinearQueryStatementContext* ctx) {
     // Handle useGraphClause and simpleQueryStatement+ primitiveResultStatement
-    // For now, just visit simpleQueryStatement and primitiveResultStatement
+    // Also handle selectStatement directly
+    if (ctx->selectStatement()) {
+        visit(ctx->selectStatement());
+    }
     for (auto* stmt : ctx->simpleQueryStatement()) {
         visit(stmt);
     }
@@ -1171,6 +1174,213 @@ antlrcpp::Any ASTBuilder::visitAmbientLinearQueryStatement(GQLParser::AmbientLin
     if (ctx->nestedQuerySpecification()) {
         visit(ctx->nestedQuerySpecification());
     }
+    return nullptr;
+}
+
+// Phase 5: SELECT statement visitors
+antlrcpp::Any ASTBuilder::visitSelectStatement(GQLParser::SelectStatementContext* ctx) {
+    auto selectNode = std::make_unique<SelectStatementNode>();
+    
+    // Check for DISTINCT
+    if (ctx->setQuantifier() && ctx->setQuantifier()->DISTINCT()) {
+        selectNode->distinct = true;
+    }
+    
+    // Check for SELECT *
+    if (ctx->ASTERISK()) {
+        selectNode->selectAll = true;
+    }
+    
+    // Push select node first so visitSelectItem can find it
+    root->children.push_back(std::move(selectNode));
+    
+    // Visit select items (they will add to the select node)
+    for (auto* selectItem : ctx->selectItem()) {
+        visit(selectItem);
+    }
+    
+    // Visit select statement body (FROM clause)
+    if (ctx->selectStatementBody()) {
+        visit(ctx->selectStatementBody());
+    }
+    
+    // Visit WHERE clause
+    if (ctx->whereClause()) {
+        visit(ctx->whereClause());
+        // WHERE clause visitor will add to root, we need to attach it to SELECT
+        // Find the last WhereClauseNode and attach to SELECT
+        for (auto it = root->children.rbegin(); it != root->children.rend(); ++it) {
+            if ((*it)->type == ASTNode::WHERE_CLAUSE) {
+                std::unique_ptr<ASTNode> whereNode = std::move(*it);
+                root->children.erase(std::next(it).base());
+                // Attach to SELECT
+                for (auto it2 = root->children.rbegin(); it2 != root->children.rend(); ++it2) {
+                    if ((*it2)->type == ASTNode::SELECT_STATEMENT) {
+                        SelectStatementNode* selectNode = static_cast<SelectStatementNode*>(it2->get());
+                        selectNode->whereClause = std::move(whereNode);
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+    }
+    
+    // GROUP BY and HAVING are already handled by their visitors (they attach to SELECT)
+    
+    // Visit ORDER BY clause
+    if (ctx->orderByClause()) {
+        visit(ctx->orderByClause());
+        // ORDER BY visitor adds to root, attach to SELECT
+        for (auto it = root->children.rbegin(); it != root->children.rend(); ++it) {
+            if ((*it)->type == ASTNode::ORDER_BY_STATEMENT) {
+                std::unique_ptr<ASTNode> orderByNode = std::move(*it);
+                root->children.erase(std::next(it).base());
+                // Attach to SELECT
+                for (auto it2 = root->children.rbegin(); it2 != root->children.rend(); ++it2) {
+                    if ((*it2)->type == ASTNode::SELECT_STATEMENT) {
+                        SelectStatementNode* selectNode = static_cast<SelectStatementNode*>(it2->get());
+                        selectNode->orderByClause = std::move(orderByNode);
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+    }
+    
+    // Visit OFFSET and LIMIT
+    if (ctx->offsetClause()) {
+        visit(ctx->offsetClause());
+        // OFFSET is added to OrderByStatementNode, but for SELECT we need to handle it separately
+        // For now, it's handled by orderByClause if present
+    }
+    if (ctx->limitClause()) {
+        visit(ctx->limitClause());
+        // LIMIT is added to OrderByStatementNode, but for SELECT we need to handle it separately
+        // For now, it's handled by orderByClause if present
+    }
+    
+    return nullptr;
+}
+
+antlrcpp::Any ASTBuilder::visitSelectItem(GQLParser::SelectItemContext* ctx) {
+    if (ctx->aggregatingValueExpression()) {
+        auto exprNode = std::make_unique<ExpressionNode>();
+        exprNode->type = "SELECT_ITEM";
+        exprNode->value = ctx->aggregatingValueExpression()->getText();
+        
+        // Check for alias (AS identifier)
+        if (ctx->AS() && ctx->identifier()) {
+            exprNode->value += " AS " + ctx->identifier()->getText();
+        }
+        
+        // Add to last SelectStatementNode
+        for (auto it = root->children.rbegin(); it != root->children.rend(); ++it) {
+            if ((*it)->type == ASTNode::SELECT_STATEMENT) {
+                SelectStatementNode* selectNode = static_cast<SelectStatementNode*>(it->get());
+                selectNode->selectItems.push_back(std::move(exprNode));
+                break;
+            }
+        }
+    }
+    return nullptr;
+}
+
+antlrcpp::Any ASTBuilder::visitSelectStatementBody(GQLParser::SelectStatementBodyContext* ctx) {
+    // Handle FROM clause with selectGraphMatch or selectQuerySpecification
+    if (ctx->FROM()) {
+        // Visit selectGraphMatch items
+        for (auto* match : ctx->selectGraphMatch()) {
+            visit(match);
+        }
+        // Visit selectQuerySpecification if present
+        if (ctx->selectQuerySpecification()) {
+            visit(ctx->selectQuerySpecification());
+        }
+    }
+    return nullptr;
+}
+
+antlrcpp::Any ASTBuilder::visitSelectGraphMatch(GQLParser::SelectGraphMatchContext* ctx) {
+    // Extract match statement from selectGraphMatch
+    if (ctx->matchStatement()) {
+        // Find the SelectStatementNode first (it should be the last one)
+        SelectStatementNode* selectNode = nullptr;
+        for (auto it = root->children.rbegin(); it != root->children.rend(); ++it) {
+            if ((*it)->type == ASTNode::SELECT_STATEMENT) {
+                selectNode = static_cast<SelectStatementNode*>(it->get());
+                break;
+            }
+        }
+        
+        if (selectNode) {
+            // Temporarily set currentMatchNode to nullptr so match statement doesn't get added to root
+            MatchStatementNode* savedMatchNode = currentMatchNode;
+            currentMatchNode = nullptr;
+            
+            // Visit the match statement - it will create a MatchStatementNode and add to root
+            visit(ctx->matchStatement());
+            
+            // Restore currentMatchNode
+            currentMatchNode = savedMatchNode;
+            
+            // Find the MatchStatementNode that was just added and move it to fromMatches
+            for (auto it = root->children.rbegin(); it != root->children.rend(); ++it) {
+                if ((*it)->type == ASTNode::MATCH_STATEMENT) {
+                    std::unique_ptr<ASTNode> matchNode = std::move(*it);
+                    root->children.erase(std::next(it).base());
+                    selectNode->fromMatches.push_back(std::move(matchNode));
+                    break;
+                }
+            }
+        }
+    }
+    return nullptr;
+}
+
+antlrcpp::Any ASTBuilder::visitGroupByClause(GQLParser::GroupByClauseContext* ctx) {
+    auto groupByNode = std::make_unique<GroupByClauseNode>();
+    
+    // GROUP BY uses bindingVariableReference (not aggregatingValueExpression)
+    for (auto* varRef : ctx->bindingVariableReference()) {
+        auto exprNode = std::make_unique<ExpressionNode>();
+        exprNode->type = "GROUP_BY";
+        exprNode->value = varRef->getText();
+        groupByNode->groupingExpressions.push_back(std::move(exprNode));
+    }
+    
+    // Add to last SelectStatementNode
+    for (auto it = root->children.rbegin(); it != root->children.rend(); ++it) {
+        if ((*it)->type == ASTNode::SELECT_STATEMENT) {
+            SelectStatementNode* selectNode = static_cast<SelectStatementNode*>(it->get());
+            selectNode->groupByClause = std::move(groupByNode);
+            break;
+        }
+    }
+    
+    return nullptr;
+}
+
+antlrcpp::Any ASTBuilder::visitHavingClause(GQLParser::HavingClauseContext* ctx) {
+    auto havingNode = std::make_unique<HavingClauseNode>();
+    
+    if (ctx->searchCondition()) {
+        auto exprNode = std::make_unique<ExpressionNode>();
+        exprNode->type = "HAVING";
+        exprNode->value = ctx->searchCondition()->getText();
+        havingNode->condition = std::move(exprNode);
+    }
+    
+    // Add to last SelectStatementNode
+    for (auto it = root->children.rbegin(); it != root->children.rend(); ++it) {
+        if ((*it)->type == ASTNode::SELECT_STATEMENT) {
+            SelectStatementNode* selectNode = static_cast<SelectStatementNode*>(it->get());
+            selectNode->havingClause = std::move(havingNode);
+            break;
+        }
+    }
+    
     return nullptr;
 }
 

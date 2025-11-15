@@ -268,3 +268,70 @@ void ASTPrinter::visitCompositeQuery(CompositeQueryNode* n) {
     indent--;
 }
 
+void ASTPrinter::visitSelectStatement(SelectStatementNode* n) {
+    printIndent(); std::cout << "SelectStatement";
+    if (n->distinct) std::cout << " (DISTINCT)";
+    if (n->selectAll) std::cout << " (*)";
+    std::cout << "\n";
+    indent++;
+    if (!n->selectItems.empty()) {
+        printIndent(); std::cout << "SelectItems:\n";
+        indent++;
+        for (auto& item : n->selectItems) {
+            item->accept(this);
+        }
+        indent--;
+    }
+    if (!n->fromMatches.empty()) {
+        printIndent(); std::cout << "FromMatches:\n";
+        indent++;
+        for (auto& match : n->fromMatches) {
+            match->accept(this);
+        }
+        indent--;
+    }
+    if (n->whereClause) {
+        n->whereClause->accept(this);
+    }
+    if (n->groupByClause) {
+        n->groupByClause->accept(this);
+    }
+    if (n->havingClause) {
+        n->havingClause->accept(this);
+    }
+    if (n->orderByClause) {
+        n->orderByClause->accept(this);
+    }
+    if (n->offset) {
+        printIndent(); std::cout << "Offset\n";
+        indent++;
+        n->offset->accept(this);
+        indent--;
+    }
+    if (n->limit) {
+        printIndent(); std::cout << "Limit\n";
+        indent++;
+        n->limit->accept(this);
+        indent--;
+    }
+    indent--;
+}
+
+void ASTPrinter::visitGroupByClause(GroupByClauseNode* n) {
+    printIndent(); std::cout << "GroupByClause\n";
+    indent++;
+    for (auto& expr : n->groupingExpressions) {
+        expr->accept(this);
+    }
+    indent--;
+}
+
+void ASTPrinter::visitHavingClause(HavingClauseNode* n) {
+    printIndent(); std::cout << "HavingClause\n";
+    indent++;
+    if (n->condition) {
+        n->condition->accept(this);
+    }
+    indent--;
+}
+

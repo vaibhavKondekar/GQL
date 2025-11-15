@@ -23,6 +23,9 @@ class SetStatementNode;
 class RemoveStatementNode;
 class DeleteStatementNode;
 class CompositeQueryNode;
+class SelectStatementNode;
+class GroupByClauseNode;
+class HavingClauseNode;
 
 
 class ASTVisitor {
@@ -50,6 +53,9 @@ public:
     virtual void visitRemoveStatement(RemoveStatementNode* n) = 0;
     virtual void visitDeleteStatement(DeleteStatementNode* n) = 0;
     virtual void visitCompositeQuery(CompositeQueryNode* n) = 0;
+    virtual void visitSelectStatement(SelectStatementNode* n) = 0;
+    virtual void visitGroupByClause(GroupByClauseNode* n) = 0;
+    virtual void visitHavingClause(HavingClauseNode* n) = 0;
 };
 
 

@@ -23,5 +23,8 @@ void SetStatementNode::accept(ASTVisitor* v) { v->visitSetStatement(this); }
 void RemoveStatementNode::accept(ASTVisitor* v) { v->visitRemoveStatement(this); }
 void DeleteStatementNode::accept(ASTVisitor* v) { v->visitDeleteStatement(this); }
 void CompositeQueryNode::accept(ASTVisitor* v) { v->visitCompositeQuery(this); }
+void SelectStatementNode::accept(ASTVisitor* v) { v->visitSelectStatement(this); }
+void GroupByClauseNode::accept(ASTVisitor* v) { v->visitGroupByClause(this); }
+void HavingClauseNode::accept(ASTVisitor* v) { v->visitHavingClause(this); }
 
 

@@ -35,7 +35,11 @@ public:
         REMOVE_STATEMENT,
         DELETE_STATEMENT,
         // Phase 4: Composite query statements
-        COMPOSITE_QUERY
+        COMPOSITE_QUERY,
+        // Phase 5: SELECT statements
+        SELECT_STATEMENT,
+        GROUP_BY_CLAUSE,
+        HAVING_CLAUSE
     };
     Type type;
     ASTNode(Type t) : type(t) {}
@@ -286,5 +290,41 @@ public:
     bool all = false;                // UNION ALL, EXCEPT ALL, etc.
     
     CompositeQueryNode() : ASTNode(COMPOSITE_QUERY) {}
+    void accept(ASTVisitor* v) override;
+};
+
+// ---------- Select Statement ----------
+class SelectStatementNode : public ASTNode {
+public:
+    std::vector<std::unique_ptr<ASTNode>> selectItems;  // Select items (expressions with optional aliases)
+    std::vector<std::unique_ptr<ASTNode>> fromMatches;  // FROM MATCH statements
+    std::unique_ptr<ASTNode> whereClause;               // WHERE clause
+    std::unique_ptr<ASTNode> groupByClause;             // GROUP BY clause
+    std::unique_ptr<ASTNode> havingClause;              // HAVING clause
+    std::unique_ptr<ASTNode> orderByClause;             // ORDER BY clause (reuse OrderByStatementNode)
+    std::unique_ptr<ASTNode> offset;                    // OFFSET
+    std::unique_ptr<ASTNode> limit;                     // LIMIT
+    bool distinct = false;                              // SELECT DISTINCT
+    bool selectAll = false;                             // SELECT *
+    
+    SelectStatementNode() : ASTNode(SELECT_STATEMENT) {}
+    void accept(ASTVisitor* v) override;
+};
+
+// ---------- Group By Clause ----------
+class GroupByClauseNode : public ASTNode {
+public:
+    std::vector<std::unique_ptr<ASTNode>> groupingExpressions;  // Expressions to group by
+    
+    GroupByClauseNode() : ASTNode(GROUP_BY_CLAUSE) {}
+    void accept(ASTVisitor* v) override;
+};
+
+// ---------- Having Clause ----------
+class HavingClauseNode : public ASTNode {
+public:
+    std::unique_ptr<ASTNode> condition;  // Search condition (expression)
+    
+    HavingClauseNode() : ASTNode(HAVING_CLAUSE) {}
     void accept(ASTVisitor* v) override;
 };
