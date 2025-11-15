@@ -19,4 +19,8 @@ public:
     void visitReturnStatement(ReturnStatementNode* n) override;
     void visitWhereClause(WhereClauseNode* n) override;
     void visitExpression(ExpressionNode* n) override;
+    void visitLetStatement(LetStatementNode* n) override;
+    void visitForStatement(ForStatementNode* n) override;
+    void visitFilterStatement(FilterStatementNode* n) override;
+    void visitOrderByStatement(OrderByStatementNode* n) override;
 };

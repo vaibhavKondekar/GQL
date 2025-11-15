@@ -14,6 +14,10 @@ class EdgePatternNode;
 class ReturnStatementNode;
 class WhereClauseNode;
 class ExpressionNode;
+class LetStatementNode;
+class ForStatementNode;
+class FilterStatementNode;
+class OrderByStatementNode;
 
 
 class ASTVisitor {
@@ -32,6 +36,10 @@ public:
     virtual void visitReturnStatement(ReturnStatementNode* n) = 0;
     virtual void visitWhereClause(WhereClauseNode* n) = 0;
     virtual void visitExpression(ExpressionNode* n) = 0;
+    virtual void visitLetStatement(LetStatementNode* n) = 0;
+    virtual void visitForStatement(ForStatementNode* n) = 0;
+    virtual void visitFilterStatement(FilterStatementNode* n) = 0;
+    virtual void visitOrderByStatement(OrderByStatementNode* n) = 0;
 };
 
 

@@ -14,5 +14,9 @@ void EdgePatternNode::accept(ASTVisitor* v) { v->visitEdgePattern(this); }
 void ReturnStatementNode::accept(ASTVisitor* v) { v->visitReturnStatement(this); }
 void WhereClauseNode::accept(ASTVisitor* v) { v->visitWhereClause(this); }
 void ExpressionNode::accept(ASTVisitor* v) { v->visitExpression(this); }
+void LetStatementNode::accept(ASTVisitor* v) { v->visitLetStatement(this); }
+void ForStatementNode::accept(ASTVisitor* v) { v->visitForStatement(this); }
+void FilterStatementNode::accept(ASTVisitor* v) { v->visitFilterStatement(this); }
+void OrderByStatementNode::accept(ASTVisitor* v) { v->visitOrderByStatement(this); }
 
 

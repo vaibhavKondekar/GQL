@@ -23,7 +23,12 @@ public:
         EDGE_PATTERN,
         RETURN_STATEMENT,
         WHERE_CLAUSE,
-        EXPRESSION
+        EXPRESSION,
+        // Phase 2: Primitive query statements
+        LET_STATEMENT,
+        FOR_STATEMENT,
+        FILTER_STATEMENT,
+        ORDER_BY_STATEMENT
     };
     Type type;
     ASTNode(Type t) : type(t) {}
@@ -155,5 +160,58 @@ public:
     std::unique_ptr<ASTNode> right;  // Right operand
     
     ExpressionNode() : ASTNode(EXPRESSION) {}
+    void accept(ASTVisitor* v) override;
+};
+
+// ---------- Let Statement ----------
+class LetStatementNode : public ASTNode {
+public:
+    struct LetVariableDefinition {
+        std::string variable;
+        std::string type;  // Optional type
+        std::unique_ptr<ASTNode> valueExpression;  // Optional value expression
+        bool hasType = false;
+        bool hasValue = false;
+    };
+    std::vector<LetVariableDefinition> definitions;
+    
+    LetStatementNode() : ASTNode(LET_STATEMENT) {}
+    void accept(ASTVisitor* v) override;
+};
+
+// ---------- For Statement ----------
+class ForStatementNode : public ASTNode {
+public:
+    std::string variable;  // Binding variable
+    std::unique_ptr<ASTNode> collectionExpression;  // valueExpression to iterate over
+    bool withOrdinality = false;
+    bool withOffset = false;
+    std::string ordinalityVar;  // Variable for ordinality/offset
+    
+    ForStatementNode() : ASTNode(FOR_STATEMENT) {}
+    void accept(ASTVisitor* v) override;
+};
+
+// ---------- Filter Statement ----------
+class FilterStatementNode : public ASTNode {
+public:
+    std::unique_ptr<ASTNode> condition;  // WhereClause or Expression
+    
+    FilterStatementNode() : ASTNode(FILTER_STATEMENT) {}
+    void accept(ASTVisitor* v) override;
+};
+
+// ---------- Order By Statement ----------
+class OrderByStatementNode : public ASTNode {
+public:
+    struct SortSpecification {
+        std::unique_ptr<ASTNode> sortKey;  // Expression to sort by
+        std::string direction;  // "ASC" or "DESC", empty for default
+    };
+    std::vector<SortSpecification> sortSpecs;
+    std::unique_ptr<ASTNode> offset;  // ExpressionNode for OFFSET
+    std::unique_ptr<ASTNode> limit;   // ExpressionNode for LIMIT
+    
+    OrderByStatementNode() : ASTNode(ORDER_BY_STATEMENT) {}
     void accept(ASTVisitor* v) override;
 };

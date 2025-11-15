@@ -120,3 +120,72 @@ void ASTPrinter::visitExpression(ExpressionNode* n) {
     }
 }
 
+void ASTPrinter::visitLetStatement(LetStatementNode* n) {
+    printIndent(); std::cout << "LetStatement\n";
+    indent++;
+    for (const auto& def : n->definitions) {
+        printIndent(); std::cout << "Variable: " << def.variable;
+        if (def.hasType) {
+            std::cout << " Type: " << def.type;
+        }
+        if (def.hasValue && def.valueExpression) {
+            std::cout << " Value: ";
+            def.valueExpression->accept(this);
+        }
+        std::cout << "\n";
+    }
+    indent--;
+}
+
+void ASTPrinter::visitForStatement(ForStatementNode* n) {
+    printIndent(); std::cout << "ForStatement: " << n->variable;
+    if (n->withOrdinality) std::cout << " (WITH ORDINALITY)";
+    if (n->withOffset) std::cout << " (WITH OFFSET)";
+    if (!n->ordinalityVar.empty()) std::cout << " var: " << n->ordinalityVar;
+    std::cout << "\n";
+    indent++;
+    if (n->collectionExpression) {
+        n->collectionExpression->accept(this);
+    }
+    indent--;
+}
+
+void ASTPrinter::visitFilterStatement(FilterStatementNode* n) {
+    printIndent(); std::cout << "FilterStatement\n";
+    indent++;
+    if (n->condition) {
+        n->condition->accept(this);
+    }
+    indent--;
+}
+
+void ASTPrinter::visitOrderByStatement(OrderByStatementNode* n) {
+    printIndent(); std::cout << "OrderByStatement\n";
+    indent++;
+    for (const auto& spec : n->sortSpecs) {
+        printIndent(); std::cout << "SortKey";
+        if (!spec.direction.empty()) {
+            std::cout << " (" << spec.direction << ")";
+        }
+        std::cout << "\n";
+        if (spec.sortKey) {
+            indent++;
+            spec.sortKey->accept(this);
+            indent--;
+        }
+    }
+    if (n->offset) {
+        printIndent(); std::cout << "Offset\n";
+        indent++;
+        n->offset->accept(this);
+        indent--;
+    }
+    if (n->limit) {
+        printIndent(); std::cout << "Limit\n";
+        indent++;
+        n->limit->accept(this);
+        indent--;
+    }
+    indent--;
+}
+
