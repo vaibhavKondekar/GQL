@@ -1,0 +1,7 @@
+//COMMIT
+//MATCH (p:Person) WHERE p.age > 25 DELETE p;
+MATCH (p:Person)-[:FRIEND_OF]->(f:Person)
+WHERE p.age > 25 AND f.city = 'London'
+DELETE f;
+
+

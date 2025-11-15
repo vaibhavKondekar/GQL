@@ -1,0 +1,18 @@
+-- 1. Schema Setting
+SESSION SET SCHEMA mySchema;
+
+-- 2. Simple Transaction with Match
+START TRANSACTION;
+MATCH (n) RETURN n;
+COMMIT;
+
+-- 3. Path Pattern Matching
+MATCH (a)-[r:LIKES]->(b) RETURN a, b;
+
+-- 4. Create + Match
+CREATE (p:Person {name: "Alice", age: 30});
+MATCH (p:Person) RETURN p.name, p.age;
+
+-- 5. Delete with Condition
+MATCH (p:Person) WHERE p.age > 25 DELETE p;
+
