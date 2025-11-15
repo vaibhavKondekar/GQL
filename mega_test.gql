@@ -1,0 +1,231 @@
+-- mega_test.gql
+-- Comprehensive test suite covering all AST features
+
+-- =========================
+-- SESSION / CATALOG / PROC
+-- =========================
+SESSION SET SCHEMA mySchema;
+SESSION SET GRAPH myGraph;
+CREATE GRAPH myGraph;
+CREATE SCHEMA mySchema;
+CALL myProcedure('arg1', 42);
+-- name formatting edge cases
+CREATE GRAPH `my/graph\\name`;
+DROP GRAPH myGraph;
+SESSION RESET ALL;
+SESSION CLOSE;
+
+-- =========================
+-- TRANSACTIONS
+-- =========================
+START TRANSACTION;
+  -- small transactional modifications
+  INSERT {
+    nodes: [
+      (n:Person {name: 'Alice', age: 30, tags: ['engineer','mentor']}),
+      (m:Movie {title: 'Example', year: 2021})
+    ],
+    edges: [
+      (n)-[:ACTED_IN {role: 'lead'}]->(m)
+    ]
+  };
+COMMIT;
+
+START TRANSACTION;
+  -- rollback example
+  INSERT {
+    nodes: [(x:Temp {t: true})]
+  };
+ROLLBACK;
+
+-- =========================
+-- MATCH / RETURN / WHERE / OPTIONAL MATCH
+-- =========================
+MATCH (p:Person:Actor {name: 'Keanu'})-[:ACTED_IN*2..5 {credited: true}]->(m:Movie|Documentary)
+WHERE p.age + 5 > 40 AND NOT (m.year < 2000 OR m.ratings.avg < 7.5)
+RETURN p.name AS actorName, m.title AS movieTitle, COUNT(m) AS numMovies;
+
+-- OPTIONAL MATCH and property maps
+OPTIONAL MATCH (u:User {email: 'u@example.com'})-[:FRIEND_OF]->(f:Person & Influencer)
+WHERE f.city = 'London' OR f.city = 'New York'
+RETURN u, f LIMIT 10;
+
+-- path quantifiers and abbreviated edges
+MATCH (a:Person)-[:KNOWS+]->(b:Person)
+RETURN a.id, b.id;
+
+MATCH (s:Start)-[r:LINKED_TO?]->(t:Target)
+RETURN s, r, t;
+
+-- simplified path pattern using /.../ syntax (simplified path expression)
+-- (parser should support simplified path pattern expressions)
+MATCH (root)-/->/(leaf)
+RETURN root, leaf;
+
+-- property map with complex literals
+MATCH (c:Company {name: 'Acme', founded: 1999, metadata: {hq: 'Berlin', employees: 500}})-[:LOCATED_IN]->(loc:City)
+WHERE loc.population > 1000000
+RETURN c.name, loc.name;
+
+-- labels with logic
+MATCH (x:Person|Robot)-[:BUILT_BY]->(y:Company&Supplier)
+RETURN x, y;
+
+-- negated label
+MATCH (z) WHERE NOT z:Deprecated RETURN z;
+
+-- =========================
+-- LET / FOR / FILTER / ORDER BY / LIMIT / OFFSET
+-- =========================
+LET recentMovies = (MATCH (m:Movie) WHERE m.year >= 2020 RETURN m ORDER BY m.year DESC LIMIT 50);
+FOR item IN recentMovies
+  FILTER item.ratings.avg > 8.0
+  RETURN item.title, item.year
+ORDER BY item.year DESC, item.title ASC
+OFFSET 5 LIMIT 20;
+
+-- LET with expression, property access, and function calls
+LET topActors = (
+  MATCH (p:Person)-[:ACTED_IN]->(m:Movie)
+  WHERE m.year > 2015
+  RETURN p, COUNT(m) AS cnt
+  ORDER BY cnt DESC
+  LIMIT 100
+);
+
+-- =========================
+-- AGGREGATIONS / GROUP BY / HAVING
+-- =========================
+MATCH (p:Person)-[:ACTED_IN]->(m:Movie)
+WHERE m.year >= 2000
+RETURN p.name, COUNT(m) AS moviesCount, AVG(m.ratings.avg) AS avgRating
+GROUP BY p.name
+HAVING AVG(m.ratings.avg) > 7.0
+ORDER BY moviesCount DESC
+LIMIT 10;
+
+-- =========================
+-- COMPOSITE QUERIES / UNION / INTERSECT / EXCEPT
+-- =========================
+MATCH (n:Node) WHERE n.type = 'A' RETURN n.id
+UNION
+MATCH (n:Node) WHERE n.type = 'B' RETURN n.id;
+
+-- use DISTINCT / ALL
+MATCH (u:User) RETURN DISTINCT u.city
+UNION ALL
+MATCH (v:Visitor) RETURN v.city;
+
+-- =========================
+-- SELECT (FROM MATCH style)
+-- =========================
+SELECT p.name, m.title, m.year
+FROM MATCH (p:Person)-[:DIRECTED]->(m:Movie)
+WHERE m.rating > 8.0
+ORDER BY m.year DESC
+LIMIT 25;
+
+-- =========================
+-- INSERT / SET / REMOVE / DELETE
+-- =========================
+-- INSERT nodes and edges with property maps
+INSERT {
+  nodes: [
+    (newP:Person {name: 'New Person', age: 28, createdAt: datetime('2024-01-01T00:00:00Z')})
+  ],
+  edges: [
+    (newP)-[:FRIEND_OF {since: date('2020-05-01')}]->(existing:Person {id: 'p-123'})
+  ]
+};
+
+-- SET property update and add label
+MATCH (q:Person {id: 'p-123'}) 
+SET q.name = 'Updated Name', q.score = q.score + 10, q:Verified
+RETURN q;
+
+-- REMOVE property and label
+MATCH (r:Person {id: 'p-999'})
+REMOVE r.age, r:Inactive
+RETURN r;
+
+-- DELETE with DETACH
+MATCH (d:Temp {flag: true})
+DETACH DELETE d;
+
+-- =========================
+-- EXPRESSIONS: functions, literals, property access
+-- =========================
+MATCH (s:Sensor)
+WHERE s.value * 1.1 + 5 >= 100 AND (s.status = 'OK' OR s.mode != 'SAFE')
+RETURN s.id, s.value, ROUND(s.value * 1.1) AS scaled;
+
+-- datetime + duration functions
+MATCH (ev:Event)
+WHERE ev.start + duration('P2D') < datetime('2025-01-01T00:00:00Z')
+RETURN ev.name, ev.start, duration('P2D');
+
+-- string functions
+MATCH (t:Text)
+RETURN LEFT(t.body, 30) AS preview, TRIM(UPPER(t.tag)) AS tagUpper;
+
+-- list functions & access
+MATCH (u:User)
+WHERE SIZE(u.tags) > 0 AND CONTAINS(LOWER(u.email), 'example')
+RETURN u.id, u.tags[0], REVERSE(u.tags)[0];
+
+-- aggregation functions including COUNT(*)
+MATCH (n)
+RETURN COUNT(*) AS totalNodes, SUM(n.weight) AS totalWeight, MIN(n.score) AS minScore, MAX(n.score) AS maxScore;
+
+-- function call nesting and property access
+MATCH (o:Order)-[:CONTAINS]->(it:Item)
+RETURN o.id, SUM(it.price * it.qty) AS orderTotal, FLOOR(SUM(it.price * it.qty) * 100) / 100.0 AS orderRounded;
+
+-- =========================
+-- PATTERN COMPLEXITY & QUANTIFIERS (all forms)
+-- =========================
+-- star quantifier
+MATCH (a)-[:REL*]->(b) RETURN a,b;
+
+-- plus quantifier
+MATCH (a)-[:CHAIN+]->(b) RETURN a,b;
+
+-- optional quantifier (?)
+MATCH (a)-[:MAYBE?]->(b) RETURN a,b;
+
+-- explicit bounds {n}
+MATCH (a)-[:STEP{3}]->(b) RETURN a,b;
+
+-- range {n,m}
+MATCH (a)-[:HOP{1,4}]->(b) RETURN a,b;
+
+-- =========================
+-- PROCEDURE CALLS & ADVANCED
+-- =========================
+CALL computeStatistics('movies', {since: 2010});
+CALL optionalProcedure('x') OPTIONAL;
+
+-- =========================
+-- SIMPLIFIED PATH PATTERNS (regex-like or /.../ form)
+-- =========================
+-- simplified syntax should be supported by parser
+MATCH (start)-/->/(end)
+RETURN start, end;
+
+-- =========================
+-- EDGE/PROPERTY COMPLEXITY
+-- =========================
+MATCH (n:Complex {meta: {a: 1, b: 'x', nested: {k: true}}})-[:E:TYPE {p: 'v'}]->(m)
+RETURN n, m;
+
+-- =========================
+-- ROUND-TRIP / PRINT TESTS
+-- =========================
+-- a few queries designed to stress the printer & expression tree
+MATCH (x:Person)-[:FRIEND_OF{since:date('2018-01-01')}]->(y:Person)
+WHERE (x.age + ((y.age - 2) * 1.5) > 30) AND NOT x.blocked
+RETURN x.name, y.name, (x.age + y.age) / 2 AS avgAge;
+
+-- =========================
+-- EOF
+-- =========================

@@ -55,17 +55,22 @@ options { caseInsensitive = true; }
 // ===============================================================
 
 gqlProgram
-    : programActivity (SESSION CLOSE)? EOF
-    | SESSION CLOSE EOF
+    : programActivity (SEMICOLON? programActivity)* EOF
     ;
 
 programActivity
     : sessionActivity
     | transactionActivity
+    | linearCatalogModifyingStatement
+    | callProcedureStatement
+    | compositeQueryStatement
     ;
 
 sessionActivity
-    : sessionResetCommand+
+    : sessionResetCommand
+    | sessionSetCommand
+    | SESSION CLOSE
+    | sessionResetCommand+ sessionSetCommand*
     | sessionSetCommand+ sessionResetCommand*
     ;
 
@@ -106,7 +111,7 @@ sessionSetParameterClause
 // ===============================================================
 
 sessionResetCommand
-    : SESSION RESET (ALL? (PARAMETERS | CHARACTERISTICS) | SCHEMA | PROPERTY? GRAPH | TIME ZONE | PARAMETER? GENERAL_PARAMETER_REFERENCE)?
+    : SESSION RESET (ALL | ALL? (PARAMETERS | CHARACTERISTICS) | SCHEMA | PROPERTY? GRAPH | TIME ZONE | PARAMETER? GENERAL_PARAMETER_REFERENCE)?
     ;
 
 // ===============================================================
@@ -194,9 +199,9 @@ linearCatalogModifyingStatement
     ;
 
 primitiveCatalogModifyingStatement
-    : CREATE SCHEMA (IF NOT EXISTS)? catalogSchemaParentAndName
-    | DROP SCHEMA (IF EXISTS)? catalogSchemaParentAndName
-    | CREATE (PROPERTY? GRAPH (IF NOT EXISTS)? | OR REPLACE PROPERTY? GRAPH) catalogGraphParentAndName (openGraphType | ofGraphType) graphSource?
+    : CREATE SCHEMA (IF NOT EXISTS)? (catalogSchemaParentAndName | schemaName)
+    | DROP SCHEMA (IF EXISTS)? (catalogSchemaParentAndName | schemaName)
+    | CREATE (PROPERTY? GRAPH (IF NOT EXISTS)? | OR REPLACE PROPERTY? GRAPH) catalogGraphParentAndName (openGraphType | ofGraphType)? graphSource?
     | DROP PROPERTY? GRAPH (IF EXISTS)? catalogGraphParentAndName
     | CREATE (PROPERTY? GRAPH TYPE (IF NOT EXISTS)? | OR REPLACE PROPERTY? GRAPH TYPE) catalogGraphTypeParentAndName graphTypeSource
     | DROP PROPERTY? GRAPH TYPE (IF EXISTS)? catalogGraphTypeParentAndName
@@ -745,6 +750,7 @@ offsetClause
 schemaReference
     : absoluteCatalogSchemaReference
     | relativeCatalogSchemaReference
+    | schemaName
     | SUBSTITUTED_PARAMETER_REFERENCE
     ;
 

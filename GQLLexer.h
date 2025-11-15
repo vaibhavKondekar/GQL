@@ -1,5 +1,5 @@
 
-// Generate from GQL.g4 by ANTLR 4.13.1
+// Generated from GQL.g4 by ANTLR 4.13.1
 
 #pragma once
 

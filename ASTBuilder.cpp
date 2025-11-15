@@ -8,9 +8,8 @@ std::unique_ptr<QueryNode> ASTBuilder::build(GQLParser::GqlProgramContext* ctx) 
 }
 
 antlrcpp::Any ASTBuilder::visitGqlProgram(GQLParser::GqlProgramContext* ctx) {
-    if (ctx->programActivity()) visit(ctx->programActivity());
-    if (ctx->SESSION() && ctx->CLOSE()) {
-        root->children.push_back(std::make_unique<SessionCloseNode>());
+    for (auto* activity : ctx->programActivity()) {
+        visit(activity);
     }
     return nullptr;
 }
@@ -18,12 +17,19 @@ antlrcpp::Any ASTBuilder::visitGqlProgram(GQLParser::GqlProgramContext* ctx) {
 antlrcpp::Any ASTBuilder::visitProgramActivity(GQLParser::ProgramActivityContext* ctx) {
     if (ctx->sessionActivity()) visit(ctx->sessionActivity());
     if (ctx->transactionActivity()) visit(ctx->transactionActivity());
+    if (ctx->linearCatalogModifyingStatement()) visit(ctx->linearCatalogModifyingStatement());
+    if (ctx->callProcedureStatement()) visit(ctx->callProcedureStatement());
+    if (ctx->compositeQueryStatement()) visit(ctx->compositeQueryStatement());
     return nullptr;
 }
 
 antlrcpp::Any ASTBuilder::visitSessionActivity(GQLParser::SessionActivityContext* ctx) {
-    for (auto* s : ctx->sessionSetCommand()) visit(s);
-    for (auto* r : ctx->sessionResetCommand()) visit(r);
+    if (ctx->SESSION() && ctx->CLOSE()) {
+        root->children.push_back(std::make_unique<SessionCloseNode>());
+    } else {
+        for (auto* s : ctx->sessionSetCommand()) visit(s);
+        for (auto* r : ctx->sessionResetCommand()) visit(r);
+    }
     return nullptr;
 }
 
