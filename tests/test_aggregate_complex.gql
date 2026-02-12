@@ -1,0 +1,2 @@
+MATCH (p:Person)
+RETURN COUNT(*), AVG(p.age), MAX(p.age), MIN(p.age), SUM(p.age);

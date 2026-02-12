@@ -14,9 +14,10 @@ QUERY_FILE="$1"
 # Check if parser exists
 if [ ! -f "./gqlparser" ]; then
     echo "Error: Parser not found. Compiling..."
-    g++ -std=c++17 -I/usr/local/include/antlr4-runtime \
-        main.cpp ASTNodes.cpp ASTBuilder.cpp ASTPrinter.cpp \
-        GQLLexer.cpp GQLParser.cpp GQLBaseVisitor.cpp GQLBaseListener.cpp \
+    g++ -std=c++17 -I/usr/local/include/antlr4-runtime -Isrc -Igenerated \
+        src/main.cpp src/ASTNodes.cpp src/ASTBuilder.cpp src/ASTPrinter.cpp \
+        src/LogicalPlanNodes.cpp src/LogicalPlanBuilder.cpp src/LogicalPlanPrinter.cpp \
+        generated/GQLLexer.cpp generated/GQLParser.cpp generated/GQLBaseVisitor.cpp \
         -lantlr4-runtime -L/usr/local/lib -o gqlparser
     
     if [ $? -ne 0 ]; then

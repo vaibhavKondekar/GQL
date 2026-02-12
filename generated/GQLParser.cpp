@@ -2,6 +2,7 @@
 // Generated from GQL.g4 by ANTLR 4.13.1
 
 
+#include "GQLListener.h"
 #include "GQLVisitor.h"
 
 #include "GQLParser.h"
@@ -1839,8 +1840,20 @@ size_t GQLParser::GqlProgramContext::getRuleIndex() const {
   return GQLParser::RuleGqlProgram;
 }
 
+void GQLParser::GqlProgramContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterGqlProgram(this);
+}
 
-std::any GQLParser::GqlProgramContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::GqlProgramContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitGqlProgram(this);
+}
+
+
+antlrcpp::Any GQLParser::GqlProgramContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitGqlProgram(this);
   else
@@ -1930,8 +1943,20 @@ size_t GQLParser::ProgramActivityContext::getRuleIndex() const {
   return GQLParser::RuleProgramActivity;
 }
 
+void GQLParser::ProgramActivityContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterProgramActivity(this);
+}
 
-std::any GQLParser::ProgramActivityContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ProgramActivityContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitProgramActivity(this);
+}
+
+
+antlrcpp::Any GQLParser::ProgramActivityContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitProgramActivity(this);
   else
@@ -2037,8 +2062,20 @@ size_t GQLParser::SessionActivityContext::getRuleIndex() const {
   return GQLParser::RuleSessionActivity;
 }
 
+void GQLParser::SessionActivityContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSessionActivity(this);
+}
 
-std::any GQLParser::SessionActivityContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SessionActivityContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSessionActivity(this);
+}
+
+
+antlrcpp::Any GQLParser::SessionActivityContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSessionActivity(this);
   else
@@ -2195,8 +2232,20 @@ size_t GQLParser::TransactionActivityContext::getRuleIndex() const {
   return GQLParser::RuleTransactionActivity;
 }
 
+void GQLParser::TransactionActivityContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterTransactionActivity(this);
+}
 
-std::any GQLParser::TransactionActivityContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::TransactionActivityContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitTransactionActivity(this);
+}
+
+
+antlrcpp::Any GQLParser::TransactionActivityContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitTransactionActivity(this);
   else
@@ -2379,8 +2428,20 @@ size_t GQLParser::SessionSetCommandContext::getRuleIndex() const {
   return GQLParser::RuleSessionSetCommand;
 }
 
+void GQLParser::SessionSetCommandContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSessionSetCommand(this);
+}
 
-std::any GQLParser::SessionSetCommandContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SessionSetCommandContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSessionSetCommand(this);
+}
+
+
+antlrcpp::Any GQLParser::SessionSetCommandContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSessionSetCommand(this);
   else
@@ -2464,8 +2525,20 @@ size_t GQLParser::SessionSetSchemaClauseContext::getRuleIndex() const {
   return GQLParser::RuleSessionSetSchemaClause;
 }
 
+void GQLParser::SessionSetSchemaClauseContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSessionSetSchemaClause(this);
+}
 
-std::any GQLParser::SessionSetSchemaClauseContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SessionSetSchemaClauseContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSessionSetSchemaClause(this);
+}
+
+
+antlrcpp::Any GQLParser::SessionSetSchemaClauseContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSessionSetSchemaClause(this);
   else
@@ -2523,8 +2596,20 @@ size_t GQLParser::SessionSetGraphClauseContext::getRuleIndex() const {
   return GQLParser::RuleSessionSetGraphClause;
 }
 
+void GQLParser::SessionSetGraphClauseContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSessionSetGraphClause(this);
+}
 
-std::any GQLParser::SessionSetGraphClauseContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SessionSetGraphClauseContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSessionSetGraphClause(this);
+}
+
+
+antlrcpp::Any GQLParser::SessionSetGraphClauseContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSessionSetGraphClause(this);
   else
@@ -2591,8 +2676,20 @@ size_t GQLParser::SessionSetTimeZoneClauseContext::getRuleIndex() const {
   return GQLParser::RuleSessionSetTimeZoneClause;
 }
 
+void GQLParser::SessionSetTimeZoneClauseContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSessionSetTimeZoneClause(this);
+}
 
-std::any GQLParser::SessionSetTimeZoneClauseContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SessionSetTimeZoneClauseContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSessionSetTimeZoneClause(this);
+}
+
+
+antlrcpp::Any GQLParser::SessionSetTimeZoneClauseContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSessionSetTimeZoneClause(this);
   else
@@ -2708,8 +2805,20 @@ size_t GQLParser::SessionSetParameterClauseContext::getRuleIndex() const {
   return GQLParser::RuleSessionSetParameterClause;
 }
 
+void GQLParser::SessionSetParameterClauseContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSessionSetParameterClause(this);
+}
 
-std::any GQLParser::SessionSetParameterClauseContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SessionSetParameterClauseContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSessionSetParameterClause(this);
+}
+
+
+antlrcpp::Any GQLParser::SessionSetParameterClauseContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSessionSetParameterClause(this);
   else
@@ -2961,8 +3070,20 @@ size_t GQLParser::SessionResetCommandContext::getRuleIndex() const {
   return GQLParser::RuleSessionResetCommand;
 }
 
+void GQLParser::SessionResetCommandContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSessionResetCommand(this);
+}
 
-std::any GQLParser::SessionResetCommandContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SessionResetCommandContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSessionResetCommand(this);
+}
+
+
+antlrcpp::Any GQLParser::SessionResetCommandContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSessionResetCommand(this);
   else
@@ -3109,8 +3230,20 @@ size_t GQLParser::StartTransactionCommandContext::getRuleIndex() const {
   return GQLParser::RuleStartTransactionCommand;
 }
 
+void GQLParser::StartTransactionCommandContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterStartTransactionCommand(this);
+}
 
-std::any GQLParser::StartTransactionCommandContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::StartTransactionCommandContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitStartTransactionCommand(this);
+}
+
+
+antlrcpp::Any GQLParser::StartTransactionCommandContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitStartTransactionCommand(this);
   else
@@ -3189,8 +3322,20 @@ size_t GQLParser::TransactionAccessModeContext::getRuleIndex() const {
   return GQLParser::RuleTransactionAccessMode;
 }
 
+void GQLParser::TransactionAccessModeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterTransactionAccessMode(this);
+}
 
-std::any GQLParser::TransactionAccessModeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::TransactionAccessModeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitTransactionAccessMode(this);
+}
+
+
+antlrcpp::Any GQLParser::TransactionAccessModeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitTransactionAccessMode(this);
   else
@@ -3267,8 +3412,20 @@ size_t GQLParser::NestedProcedureSpecificationContext::getRuleIndex() const {
   return GQLParser::RuleNestedProcedureSpecification;
 }
 
+void GQLParser::NestedProcedureSpecificationContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterNestedProcedureSpecification(this);
+}
 
-std::any GQLParser::NestedProcedureSpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::NestedProcedureSpecificationContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitNestedProcedureSpecification(this);
+}
+
+
+antlrcpp::Any GQLParser::NestedProcedureSpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitNestedProcedureSpecification(this);
   else
@@ -3332,8 +3489,20 @@ size_t GQLParser::ProcedureBodyContext::getRuleIndex() const {
   return GQLParser::RuleProcedureBody;
 }
 
+void GQLParser::ProcedureBodyContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterProcedureBody(this);
+}
 
-std::any GQLParser::ProcedureBodyContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ProcedureBodyContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitProcedureBody(this);
+}
+
+
+antlrcpp::Any GQLParser::ProcedureBodyContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitProcedureBody(this);
   else
@@ -3411,8 +3580,20 @@ size_t GQLParser::StatementBlockContext::getRuleIndex() const {
   return GQLParser::RuleStatementBlock;
 }
 
+void GQLParser::StatementBlockContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterStatementBlock(this);
+}
 
-std::any GQLParser::StatementBlockContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::StatementBlockContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitStatementBlock(this);
+}
+
+
+antlrcpp::Any GQLParser::StatementBlockContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitStatementBlock(this);
   else
@@ -3479,8 +3660,20 @@ size_t GQLParser::StatementContext::getRuleIndex() const {
   return GQLParser::RuleStatement;
 }
 
+void GQLParser::StatementContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterStatement(this);
+}
 
-std::any GQLParser::StatementContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::StatementContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitStatement(this);
+}
+
+
+antlrcpp::Any GQLParser::StatementContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitStatement(this);
   else
@@ -3560,8 +3753,20 @@ size_t GQLParser::NextStatementContext::getRuleIndex() const {
   return GQLParser::RuleNextStatement;
 }
 
+void GQLParser::NextStatementContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterNextStatement(this);
+}
 
-std::any GQLParser::NextStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::NextStatementContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitNextStatement(this);
+}
+
+
+antlrcpp::Any GQLParser::NextStatementContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitNextStatement(this);
   else
@@ -3672,8 +3877,20 @@ size_t GQLParser::BindingVariableDefinitionContext::getRuleIndex() const {
   return GQLParser::RuleBindingVariableDefinition;
 }
 
+void GQLParser::BindingVariableDefinitionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterBindingVariableDefinition(this);
+}
 
-std::any GQLParser::BindingVariableDefinitionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::BindingVariableDefinitionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitBindingVariableDefinition(this);
+}
+
+
+antlrcpp::Any GQLParser::BindingVariableDefinitionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitBindingVariableDefinition(this);
   else
@@ -3870,8 +4087,20 @@ size_t GQLParser::GraphExpressionContext::getRuleIndex() const {
   return GQLParser::RuleGraphExpression;
 }
 
+void GQLParser::GraphExpressionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterGraphExpression(this);
+}
 
-std::any GQLParser::GraphExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::GraphExpressionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitGraphExpression(this);
+}
+
+
+antlrcpp::Any GQLParser::GraphExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitGraphExpression(this);
   else
@@ -3997,8 +4226,20 @@ size_t GQLParser::BindingTableExpressionContext::getRuleIndex() const {
   return GQLParser::RuleBindingTableExpression;
 }
 
+void GQLParser::BindingTableExpressionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterBindingTableExpression(this);
+}
 
-std::any GQLParser::BindingTableExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::BindingTableExpressionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitBindingTableExpression(this);
+}
+
+
+antlrcpp::Any GQLParser::BindingTableExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitBindingTableExpression(this);
   else
@@ -4105,8 +4346,20 @@ size_t GQLParser::LinearCatalogModifyingStatementContext::getRuleIndex() const {
   return GQLParser::RuleLinearCatalogModifyingStatement;
 }
 
+void GQLParser::LinearCatalogModifyingStatementContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterLinearCatalogModifyingStatement(this);
+}
 
-std::any GQLParser::LinearCatalogModifyingStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::LinearCatalogModifyingStatementContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitLinearCatalogModifyingStatement(this);
+}
+
+
+antlrcpp::Any GQLParser::LinearCatalogModifyingStatementContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitLinearCatalogModifyingStatement(this);
   else
@@ -4261,8 +4514,20 @@ size_t GQLParser::PrimitiveCatalogModifyingStatementContext::getRuleIndex() cons
   return GQLParser::RulePrimitiveCatalogModifyingStatement;
 }
 
+void GQLParser::PrimitiveCatalogModifyingStatementContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPrimitiveCatalogModifyingStatement(this);
+}
 
-std::any GQLParser::PrimitiveCatalogModifyingStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::PrimitiveCatalogModifyingStatementContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPrimitiveCatalogModifyingStatement(this);
+}
+
+
+antlrcpp::Any GQLParser::PrimitiveCatalogModifyingStatementContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPrimitiveCatalogModifyingStatement(this);
   else
@@ -4713,8 +4978,20 @@ size_t GQLParser::OpenGraphTypeContext::getRuleIndex() const {
   return GQLParser::RuleOpenGraphType;
 }
 
+void GQLParser::OpenGraphTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterOpenGraphType(this);
+}
 
-std::any GQLParser::OpenGraphTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::OpenGraphTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitOpenGraphType(this);
+}
+
+
+antlrcpp::Any GQLParser::OpenGraphTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitOpenGraphType(this);
   else
@@ -4816,8 +5093,20 @@ size_t GQLParser::OfGraphTypeContext::getRuleIndex() const {
   return GQLParser::RuleOfGraphType;
 }
 
+void GQLParser::OfGraphTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterOfGraphType(this);
+}
 
-std::any GQLParser::OfGraphTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::OfGraphTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitOfGraphType(this);
+}
+
+
+antlrcpp::Any GQLParser::OfGraphTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitOfGraphType(this);
   else
@@ -4950,8 +5239,20 @@ size_t GQLParser::GraphTypeSourceContext::getRuleIndex() const {
   return GQLParser::RuleGraphTypeSource;
 }
 
+void GQLParser::GraphTypeSourceContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterGraphTypeSource(this);
+}
 
-std::any GQLParser::GraphTypeSourceContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::GraphTypeSourceContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitGraphTypeSource(this);
+}
+
+
+antlrcpp::Any GQLParser::GraphTypeSourceContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitGraphTypeSource(this);
   else
@@ -5059,8 +5360,20 @@ size_t GQLParser::GraphSourceContext::getRuleIndex() const {
   return GQLParser::RuleGraphSource;
 }
 
+void GQLParser::GraphSourceContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterGraphSource(this);
+}
 
-std::any GQLParser::GraphSourceContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::GraphSourceContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitGraphSource(this);
+}
+
+
+antlrcpp::Any GQLParser::GraphSourceContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitGraphSource(this);
   else
@@ -5118,8 +5431,20 @@ size_t GQLParser::LinearDataModifyingStatementContext::getRuleIndex() const {
   return GQLParser::RuleLinearDataModifyingStatement;
 }
 
+void GQLParser::LinearDataModifyingStatementContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterLinearDataModifyingStatement(this);
+}
 
-std::any GQLParser::LinearDataModifyingStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::LinearDataModifyingStatementContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitLinearDataModifyingStatement(this);
+}
+
+
+antlrcpp::Any GQLParser::LinearDataModifyingStatementContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitLinearDataModifyingStatement(this);
   else
@@ -5216,8 +5541,20 @@ size_t GQLParser::FocusedLinearDataModifyingStatementContext::getRuleIndex() con
   return GQLParser::RuleFocusedLinearDataModifyingStatement;
 }
 
+void GQLParser::FocusedLinearDataModifyingStatementContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterFocusedLinearDataModifyingStatement(this);
+}
 
-std::any GQLParser::FocusedLinearDataModifyingStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::FocusedLinearDataModifyingStatementContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitFocusedLinearDataModifyingStatement(this);
+}
+
+
+antlrcpp::Any GQLParser::FocusedLinearDataModifyingStatementContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitFocusedLinearDataModifyingStatement(this);
   else
@@ -5328,8 +5665,20 @@ size_t GQLParser::AmbientLinearDataModifyingStatementContext::getRuleIndex() con
   return GQLParser::RuleAmbientLinearDataModifyingStatement;
 }
 
+void GQLParser::AmbientLinearDataModifyingStatementContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterAmbientLinearDataModifyingStatement(this);
+}
 
-std::any GQLParser::AmbientLinearDataModifyingStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::AmbientLinearDataModifyingStatementContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitAmbientLinearDataModifyingStatement(this);
+}
+
+
+antlrcpp::Any GQLParser::AmbientLinearDataModifyingStatementContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitAmbientLinearDataModifyingStatement(this);
   else
@@ -5447,8 +5796,20 @@ size_t GQLParser::SimpleDataAccessingStatementContext::getRuleIndex() const {
   return GQLParser::RuleSimpleDataAccessingStatement;
 }
 
+void GQLParser::SimpleDataAccessingStatementContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSimpleDataAccessingStatement(this);
+}
 
-std::any GQLParser::SimpleDataAccessingStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SimpleDataAccessingStatementContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSimpleDataAccessingStatement(this);
+}
+
+
+antlrcpp::Any GQLParser::SimpleDataAccessingStatementContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSimpleDataAccessingStatement(this);
   else
@@ -5576,8 +5937,20 @@ size_t GQLParser::PrimitiveDataModifyingStatementContext::getRuleIndex() const {
   return GQLParser::RulePrimitiveDataModifyingStatement;
 }
 
+void GQLParser::PrimitiveDataModifyingStatementContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPrimitiveDataModifyingStatement(this);
+}
 
-std::any GQLParser::PrimitiveDataModifyingStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::PrimitiveDataModifyingStatementContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPrimitiveDataModifyingStatement(this);
+}
+
+
+antlrcpp::Any GQLParser::PrimitiveDataModifyingStatementContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPrimitiveDataModifyingStatement(this);
   else
@@ -5754,8 +6127,20 @@ size_t GQLParser::SetItemContext::getRuleIndex() const {
   return GQLParser::RuleSetItem;
 }
 
+void GQLParser::SetItemContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSetItem(this);
+}
 
-std::any GQLParser::SetItemContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SetItemContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSetItem(this);
+}
+
+
+antlrcpp::Any GQLParser::SetItemContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSetItem(this);
   else
@@ -5873,8 +6258,20 @@ size_t GQLParser::RemoveItemContext::getRuleIndex() const {
   return GQLParser::RuleRemoveItem;
 }
 
+void GQLParser::RemoveItemContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterRemoveItem(this);
+}
 
-std::any GQLParser::RemoveItemContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::RemoveItemContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitRemoveItem(this);
+}
+
+
+antlrcpp::Any GQLParser::RemoveItemContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitRemoveItem(this);
   else
@@ -5947,8 +6344,20 @@ size_t GQLParser::CompositeQueryStatementContext::getRuleIndex() const {
   return GQLParser::RuleCompositeQueryStatement;
 }
 
+void GQLParser::CompositeQueryStatementContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterCompositeQueryStatement(this);
+}
 
-std::any GQLParser::CompositeQueryStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::CompositeQueryStatementContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitCompositeQueryStatement(this);
+}
+
+
+antlrcpp::Any GQLParser::CompositeQueryStatementContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitCompositeQueryStatement(this);
   else
@@ -6004,8 +6413,20 @@ size_t GQLParser::CompositeQueryExpressionContext::getRuleIndex() const {
   return GQLParser::RuleCompositeQueryExpression;
 }
 
+void GQLParser::CompositeQueryExpressionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterCompositeQueryExpression(this);
+}
 
-std::any GQLParser::CompositeQueryExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::CompositeQueryExpressionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitCompositeQueryExpression(this);
+}
+
+
+antlrcpp::Any GQLParser::CompositeQueryExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitCompositeQueryExpression(this);
   else
@@ -6103,8 +6524,20 @@ size_t GQLParser::QueryConjunctionContext::getRuleIndex() const {
   return GQLParser::RuleQueryConjunction;
 }
 
+void GQLParser::QueryConjunctionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterQueryConjunction(this);
+}
 
-std::any GQLParser::QueryConjunctionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::QueryConjunctionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitQueryConjunction(this);
+}
+
+
+antlrcpp::Any GQLParser::QueryConjunctionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitQueryConjunction(this);
   else
@@ -6195,8 +6628,20 @@ size_t GQLParser::LinearQueryStatementContext::getRuleIndex() const {
   return GQLParser::RuleLinearQueryStatement;
 }
 
+void GQLParser::LinearQueryStatementContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterLinearQueryStatement(this);
+}
 
-std::any GQLParser::LinearQueryStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::LinearQueryStatementContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitLinearQueryStatement(this);
+}
+
+
+antlrcpp::Any GQLParser::LinearQueryStatementContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitLinearQueryStatement(this);
   else
@@ -6298,8 +6743,20 @@ size_t GQLParser::FocusedLinearQueryStatementContext::getRuleIndex() const {
   return GQLParser::RuleFocusedLinearQueryStatement;
 }
 
+void GQLParser::FocusedLinearQueryStatementContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterFocusedLinearQueryStatement(this);
+}
 
-std::any GQLParser::FocusedLinearQueryStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::FocusedLinearQueryStatementContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitFocusedLinearQueryStatement(this);
+}
+
+
+antlrcpp::Any GQLParser::FocusedLinearQueryStatementContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitFocusedLinearQueryStatement(this);
   else
@@ -6434,8 +6891,20 @@ size_t GQLParser::AmbientLinearQueryStatementContext::getRuleIndex() const {
   return GQLParser::RuleAmbientLinearQueryStatement;
 }
 
+void GQLParser::AmbientLinearQueryStatementContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterAmbientLinearQueryStatement(this);
+}
 
-std::any GQLParser::AmbientLinearQueryStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::AmbientLinearQueryStatementContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitAmbientLinearQueryStatement(this);
+}
+
+
+antlrcpp::Any GQLParser::AmbientLinearQueryStatementContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitAmbientLinearQueryStatement(this);
   else
@@ -6532,8 +7001,20 @@ size_t GQLParser::NestedQuerySpecificationContext::getRuleIndex() const {
   return GQLParser::RuleNestedQuerySpecification;
 }
 
+void GQLParser::NestedQuerySpecificationContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterNestedQuerySpecification(this);
+}
 
-std::any GQLParser::NestedQuerySpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::NestedQuerySpecificationContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitNestedQuerySpecification(this);
+}
+
+
+antlrcpp::Any GQLParser::NestedQuerySpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitNestedQuerySpecification(this);
   else
@@ -6589,8 +7070,20 @@ size_t GQLParser::SimpleQueryStatementContext::getRuleIndex() const {
   return GQLParser::RuleSimpleQueryStatement;
 }
 
+void GQLParser::SimpleQueryStatementContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSimpleQueryStatement(this);
+}
 
-std::any GQLParser::SimpleQueryStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SimpleQueryStatementContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSimpleQueryStatement(this);
+}
+
+
+antlrcpp::Any GQLParser::SimpleQueryStatementContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSimpleQueryStatement(this);
   else
@@ -6723,8 +7216,20 @@ size_t GQLParser::PrimitiveQueryStatementContext::getRuleIndex() const {
   return GQLParser::RulePrimitiveQueryStatement;
 }
 
+void GQLParser::PrimitiveQueryStatementContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPrimitiveQueryStatement(this);
+}
 
-std::any GQLParser::PrimitiveQueryStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::PrimitiveQueryStatementContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPrimitiveQueryStatement(this);
+}
+
+
+antlrcpp::Any GQLParser::PrimitiveQueryStatementContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPrimitiveQueryStatement(this);
   else
@@ -7054,8 +7559,20 @@ size_t GQLParser::MatchStatementContext::getRuleIndex() const {
   return GQLParser::RuleMatchStatement;
 }
 
+void GQLParser::MatchStatementContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterMatchStatement(this);
+}
 
-std::any GQLParser::MatchStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::MatchStatementContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitMatchStatement(this);
+}
+
+
+antlrcpp::Any GQLParser::MatchStatementContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitMatchStatement(this);
   else
@@ -7197,8 +7714,20 @@ size_t GQLParser::LetVariableDefinitionContext::getRuleIndex() const {
   return GQLParser::RuleLetVariableDefinition;
 }
 
+void GQLParser::LetVariableDefinitionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterLetVariableDefinition(this);
+}
 
-std::any GQLParser::LetVariableDefinitionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::LetVariableDefinitionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitLetVariableDefinition(this);
+}
+
+
+antlrcpp::Any GQLParser::LetVariableDefinitionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitLetVariableDefinition(this);
   else
@@ -7353,8 +7882,20 @@ size_t GQLParser::OrderByAndPageStatementContext::getRuleIndex() const {
   return GQLParser::RuleOrderByAndPageStatement;
 }
 
+void GQLParser::OrderByAndPageStatementContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterOrderByAndPageStatement(this);
+}
 
-std::any GQLParser::OrderByAndPageStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::OrderByAndPageStatementContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitOrderByAndPageStatement(this);
+}
+
+
+antlrcpp::Any GQLParser::OrderByAndPageStatementContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitOrderByAndPageStatement(this);
   else
@@ -7502,8 +8043,20 @@ size_t GQLParser::PrimitiveResultStatementContext::getRuleIndex() const {
   return GQLParser::RulePrimitiveResultStatement;
 }
 
+void GQLParser::PrimitiveResultStatementContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPrimitiveResultStatement(this);
+}
 
-std::any GQLParser::PrimitiveResultStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::PrimitiveResultStatementContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPrimitiveResultStatement(this);
+}
+
+
+antlrcpp::Any GQLParser::PrimitiveResultStatementContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPrimitiveResultStatement(this);
   else
@@ -7796,8 +8349,20 @@ size_t GQLParser::ReturnItemContext::getRuleIndex() const {
   return GQLParser::RuleReturnItem;
 }
 
+void GQLParser::ReturnItemContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterReturnItem(this);
+}
 
-std::any GQLParser::ReturnItemContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ReturnItemContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitReturnItem(this);
+}
+
+
+antlrcpp::Any GQLParser::ReturnItemContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitReturnItem(this);
   else
@@ -7912,8 +8477,20 @@ size_t GQLParser::SelectStatementContext::getRuleIndex() const {
   return GQLParser::RuleSelectStatement;
 }
 
+void GQLParser::SelectStatementContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSelectStatement(this);
+}
 
-std::any GQLParser::SelectStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SelectStatementContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSelectStatement(this);
+}
+
+
+antlrcpp::Any GQLParser::SelectStatementContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSelectStatement(this);
   else
@@ -8254,8 +8831,20 @@ size_t GQLParser::SelectItemContext::getRuleIndex() const {
   return GQLParser::RuleSelectItem;
 }
 
+void GQLParser::SelectItemContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSelectItem(this);
+}
 
-std::any GQLParser::SelectItemContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SelectItemContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSelectItem(this);
+}
+
+
+antlrcpp::Any GQLParser::SelectItemContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSelectItem(this);
   else
@@ -8322,8 +8911,20 @@ size_t GQLParser::HavingClauseContext::getRuleIndex() const {
   return GQLParser::RuleHavingClause;
 }
 
+void GQLParser::HavingClauseContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterHavingClause(this);
+}
 
-std::any GQLParser::HavingClauseContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::HavingClauseContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitHavingClause(this);
+}
+
+
+antlrcpp::Any GQLParser::HavingClauseContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitHavingClause(this);
   else
@@ -8393,8 +8994,20 @@ size_t GQLParser::SelectStatementBodyContext::getRuleIndex() const {
   return GQLParser::RuleSelectStatementBody;
 }
 
+void GQLParser::SelectStatementBodyContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSelectStatementBody(this);
+}
 
-std::any GQLParser::SelectStatementBodyContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SelectStatementBodyContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSelectStatementBody(this);
+}
+
+
+antlrcpp::Any GQLParser::SelectStatementBodyContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSelectStatementBody(this);
   else
@@ -8479,8 +9092,20 @@ size_t GQLParser::SelectGraphMatchContext::getRuleIndex() const {
   return GQLParser::RuleSelectGraphMatch;
 }
 
+void GQLParser::SelectGraphMatchContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSelectGraphMatch(this);
+}
 
-std::any GQLParser::SelectGraphMatchContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SelectGraphMatchContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSelectGraphMatch(this);
+}
+
+
+antlrcpp::Any GQLParser::SelectGraphMatchContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSelectGraphMatch(this);
   else
@@ -8534,8 +9159,20 @@ size_t GQLParser::SelectQuerySpecificationContext::getRuleIndex() const {
   return GQLParser::RuleSelectQuerySpecification;
 }
 
+void GQLParser::SelectQuerySpecificationContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSelectQuerySpecification(this);
+}
 
-std::any GQLParser::SelectQuerySpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SelectQuerySpecificationContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSelectQuerySpecification(this);
+}
+
+
+antlrcpp::Any GQLParser::SelectQuerySpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSelectQuerySpecification(this);
   else
@@ -8610,8 +9247,20 @@ size_t GQLParser::CallProcedureStatementContext::getRuleIndex() const {
   return GQLParser::RuleCallProcedureStatement;
 }
 
+void GQLParser::CallProcedureStatementContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterCallProcedureStatement(this);
+}
 
-std::any GQLParser::CallProcedureStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::CallProcedureStatementContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitCallProcedureStatement(this);
+}
+
+
+antlrcpp::Any GQLParser::CallProcedureStatementContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitCallProcedureStatement(this);
   else
@@ -8710,8 +9359,20 @@ size_t GQLParser::ProcedureCallContext::getRuleIndex() const {
   return GQLParser::RuleProcedureCall;
 }
 
+void GQLParser::ProcedureCallContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterProcedureCall(this);
+}
 
-std::any GQLParser::ProcedureCallContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ProcedureCallContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitProcedureCall(this);
+}
+
+
+antlrcpp::Any GQLParser::ProcedureCallContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitProcedureCall(this);
   else
@@ -8899,8 +9560,20 @@ size_t GQLParser::AtSchemaClauseContext::getRuleIndex() const {
   return GQLParser::RuleAtSchemaClause;
 }
 
+void GQLParser::AtSchemaClauseContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterAtSchemaClause(this);
+}
 
-std::any GQLParser::AtSchemaClauseContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::AtSchemaClauseContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitAtSchemaClause(this);
+}
+
+
+antlrcpp::Any GQLParser::AtSchemaClauseContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitAtSchemaClause(this);
   else
@@ -8954,8 +9627,20 @@ size_t GQLParser::UseGraphClauseContext::getRuleIndex() const {
   return GQLParser::RuleUseGraphClause;
 }
 
+void GQLParser::UseGraphClauseContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterUseGraphClause(this);
+}
 
-std::any GQLParser::UseGraphClauseContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::UseGraphClauseContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitUseGraphClause(this);
+}
+
+
+antlrcpp::Any GQLParser::UseGraphClauseContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitUseGraphClause(this);
   else
@@ -9025,8 +9710,20 @@ size_t GQLParser::GraphPatternBindingTableContext::getRuleIndex() const {
   return GQLParser::RuleGraphPatternBindingTable;
 }
 
+void GQLParser::GraphPatternBindingTableContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterGraphPatternBindingTable(this);
+}
 
-std::any GQLParser::GraphPatternBindingTableContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::GraphPatternBindingTableContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitGraphPatternBindingTable(this);
+}
+
+
+antlrcpp::Any GQLParser::GraphPatternBindingTableContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitGraphPatternBindingTable(this);
   else
@@ -9132,8 +9829,20 @@ size_t GQLParser::GraphPatternContext::getRuleIndex() const {
   return GQLParser::RuleGraphPattern;
 }
 
+void GQLParser::GraphPatternContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterGraphPattern(this);
+}
 
-std::any GQLParser::GraphPatternContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::GraphPatternContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitGraphPattern(this);
+}
+
+
+antlrcpp::Any GQLParser::GraphPatternContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitGraphPattern(this);
   else
@@ -9261,8 +9970,20 @@ size_t GQLParser::MatchModeContext::getRuleIndex() const {
   return GQLParser::RuleMatchMode;
 }
 
+void GQLParser::MatchModeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterMatchMode(this);
+}
 
-std::any GQLParser::MatchModeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::MatchModeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitMatchMode(this);
+}
+
+
+antlrcpp::Any GQLParser::MatchModeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitMatchMode(this);
   else
@@ -9403,8 +10124,20 @@ size_t GQLParser::PathPatternContext::getRuleIndex() const {
   return GQLParser::RulePathPattern;
 }
 
+void GQLParser::PathPatternContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPathPattern(this);
+}
 
-std::any GQLParser::PathPatternContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::PathPatternContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPathPattern(this);
+}
+
+
+antlrcpp::Any GQLParser::PathPatternContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPathPattern(this);
   else
@@ -9483,8 +10216,20 @@ size_t GQLParser::KeepClauseContext::getRuleIndex() const {
   return GQLParser::RuleKeepClause;
 }
 
+void GQLParser::KeepClauseContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterKeepClause(this);
+}
 
-std::any GQLParser::KeepClauseContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::KeepClauseContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitKeepClause(this);
+}
+
+
+antlrcpp::Any GQLParser::KeepClauseContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitKeepClause(this);
   else
@@ -9546,8 +10291,20 @@ size_t GQLParser::InsertGraphPatternContext::getRuleIndex() const {
   return GQLParser::RuleInsertGraphPattern;
 }
 
+void GQLParser::InsertGraphPatternContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterInsertGraphPattern(this);
+}
 
-std::any GQLParser::InsertGraphPatternContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::InsertGraphPatternContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitInsertGraphPattern(this);
+}
+
+
+antlrcpp::Any GQLParser::InsertGraphPatternContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitInsertGraphPattern(this);
   else
@@ -9620,8 +10377,20 @@ size_t GQLParser::InsertPathPatternContext::getRuleIndex() const {
   return GQLParser::RuleInsertPathPattern;
 }
 
+void GQLParser::InsertPathPatternContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterInsertPathPattern(this);
+}
 
-std::any GQLParser::InsertPathPatternContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::InsertPathPatternContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitInsertPathPattern(this);
+}
+
+
+antlrcpp::Any GQLParser::InsertPathPatternContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitInsertPathPattern(this);
   else
@@ -9691,8 +10460,20 @@ size_t GQLParser::InsertNodePatternContext::getRuleIndex() const {
   return GQLParser::RuleInsertNodePattern;
 }
 
+void GQLParser::InsertNodePatternContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterInsertNodePattern(this);
+}
 
-std::any GQLParser::InsertNodePatternContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::InsertNodePatternContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitInsertNodePattern(this);
+}
+
+
+antlrcpp::Any GQLParser::InsertNodePatternContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitInsertNodePattern(this);
   else
@@ -9778,8 +10559,20 @@ size_t GQLParser::InsertEdgePatternContext::getRuleIndex() const {
   return GQLParser::RuleInsertEdgePattern;
 }
 
+void GQLParser::InsertEdgePatternContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterInsertEdgePattern(this);
+}
 
-std::any GQLParser::InsertEdgePatternContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::InsertEdgePatternContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitInsertEdgePattern(this);
+}
+
+
+antlrcpp::Any GQLParser::InsertEdgePatternContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitInsertEdgePattern(this);
   else
@@ -9895,8 +10688,20 @@ size_t GQLParser::InsertElementPatternFillerContext::getRuleIndex() const {
   return GQLParser::RuleInsertElementPatternFiller;
 }
 
+void GQLParser::InsertElementPatternFillerContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterInsertElementPatternFiller(this);
+}
 
-std::any GQLParser::InsertElementPatternFillerContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::InsertElementPatternFillerContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitInsertElementPatternFiller(this);
+}
+
+
+antlrcpp::Any GQLParser::InsertElementPatternFillerContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitInsertElementPatternFiller(this);
   else
@@ -9989,8 +10794,20 @@ size_t GQLParser::LabelAndPropertySetSpecificationContext::getRuleIndex() const 
   return GQLParser::RuleLabelAndPropertySetSpecification;
 }
 
+void GQLParser::LabelAndPropertySetSpecificationContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterLabelAndPropertySetSpecification(this);
+}
 
-std::any GQLParser::LabelAndPropertySetSpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::LabelAndPropertySetSpecificationContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitLabelAndPropertySetSpecification(this);
+}
+
+
+antlrcpp::Any GQLParser::LabelAndPropertySetSpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitLabelAndPropertySetSpecification(this);
   else
@@ -10080,8 +10897,20 @@ size_t GQLParser::PathPatternPrefixContext::getRuleIndex() const {
   return GQLParser::RulePathPatternPrefix;
 }
 
+void GQLParser::PathPatternPrefixContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPathPatternPrefix(this);
+}
 
-std::any GQLParser::PathPatternPrefixContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::PathPatternPrefixContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPathPatternPrefix(this);
+}
+
+
+antlrcpp::Any GQLParser::PathPatternPrefixContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPathPatternPrefix(this);
   else
@@ -10171,8 +11000,20 @@ size_t GQLParser::PathModePrefixContext::getRuleIndex() const {
   return GQLParser::RulePathModePrefix;
 }
 
+void GQLParser::PathModePrefixContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPathModePrefix(this);
+}
 
-std::any GQLParser::PathModePrefixContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::PathModePrefixContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPathModePrefix(this);
+}
+
+
+antlrcpp::Any GQLParser::PathModePrefixContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPathModePrefix(this);
   else
@@ -10287,8 +11128,20 @@ size_t GQLParser::PathSearchPrefixContext::getRuleIndex() const {
   return GQLParser::RulePathSearchPrefix;
 }
 
+void GQLParser::PathSearchPrefixContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPathSearchPrefix(this);
+}
 
-std::any GQLParser::PathSearchPrefixContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::PathSearchPrefixContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPathSearchPrefix(this);
+}
+
+
+antlrcpp::Any GQLParser::PathSearchPrefixContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPathSearchPrefix(this);
   else
@@ -10504,8 +11357,20 @@ size_t GQLParser::ShortestPathSearchContext::getRuleIndex() const {
   return GQLParser::RuleShortestPathSearch;
 }
 
+void GQLParser::ShortestPathSearchContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterShortestPathSearch(this);
+}
 
-std::any GQLParser::ShortestPathSearchContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ShortestPathSearchContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitShortestPathSearch(this);
+}
+
+
+antlrcpp::Any GQLParser::ShortestPathSearchContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitShortestPathSearch(this);
   else
@@ -10794,8 +11659,18 @@ tree::TerminalNode* GQLParser::PpePatternUnionContext::VERTICAL_BAR(size_t i) {
 
 GQLParser::PpePatternUnionContext::PpePatternUnionContext(PathPatternExpressionContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::PpePatternUnionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPpePatternUnion(this);
+}
+void GQLParser::PpePatternUnionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPpePatternUnion(this);
+}
 
-std::any GQLParser::PpePatternUnionContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::PpePatternUnionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPpePatternUnion(this);
   else
@@ -10809,8 +11684,18 @@ GQLParser::PathTermContext* GQLParser::PpePathTermContext::pathTerm() {
 
 GQLParser::PpePathTermContext::PpePathTermContext(PathPatternExpressionContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::PpePathTermContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPpePathTerm(this);
+}
+void GQLParser::PpePathTermContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPpePathTerm(this);
+}
 
-std::any GQLParser::PpePathTermContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::PpePathTermContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPpePathTerm(this);
   else
@@ -10836,8 +11721,18 @@ tree::TerminalNode* GQLParser::PpeMultisetAlternationContext::MULTISET_ALTERNATI
 
 GQLParser::PpeMultisetAlternationContext::PpeMultisetAlternationContext(PathPatternExpressionContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::PpeMultisetAlternationContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPpeMultisetAlternation(this);
+}
+void GQLParser::PpeMultisetAlternationContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPpeMultisetAlternation(this);
+}
 
-std::any GQLParser::PpeMultisetAlternationContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::PpeMultisetAlternationContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPpeMultisetAlternation(this);
   else
@@ -10956,8 +11851,20 @@ size_t GQLParser::PathTermContext::getRuleIndex() const {
   return GQLParser::RulePathTerm;
 }
 
+void GQLParser::PathTermContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPathTerm(this);
+}
 
-std::any GQLParser::PathTermContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::PathTermContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPathTerm(this);
+}
+
+
+antlrcpp::Any GQLParser::PathTermContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPathTerm(this);
   else
@@ -11034,8 +11941,18 @@ GQLParser::GraphPatternQuantifierContext* GQLParser::PfQuantifiedPathPrimaryCont
 
 GQLParser::PfQuantifiedPathPrimaryContext::PfQuantifiedPathPrimaryContext(PathFactorContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::PfQuantifiedPathPrimaryContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPfQuantifiedPathPrimary(this);
+}
+void GQLParser::PfQuantifiedPathPrimaryContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPfQuantifiedPathPrimary(this);
+}
 
-std::any GQLParser::PfQuantifiedPathPrimaryContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::PfQuantifiedPathPrimaryContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPfQuantifiedPathPrimary(this);
   else
@@ -11053,8 +11970,18 @@ tree::TerminalNode* GQLParser::PfQuestionedPathPrimaryContext::QUESTION_MARK() {
 
 GQLParser::PfQuestionedPathPrimaryContext::PfQuestionedPathPrimaryContext(PathFactorContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::PfQuestionedPathPrimaryContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPfQuestionedPathPrimary(this);
+}
+void GQLParser::PfQuestionedPathPrimaryContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPfQuestionedPathPrimary(this);
+}
 
-std::any GQLParser::PfQuestionedPathPrimaryContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::PfQuestionedPathPrimaryContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPfQuestionedPathPrimary(this);
   else
@@ -11068,8 +11995,18 @@ GQLParser::PathPrimaryContext* GQLParser::PfPathPrimaryContext::pathPrimary() {
 
 GQLParser::PfPathPrimaryContext::PfPathPrimaryContext(PathFactorContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::PfPathPrimaryContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPfPathPrimary(this);
+}
+void GQLParser::PfPathPrimaryContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPfPathPrimary(this);
+}
 
-std::any GQLParser::PfPathPrimaryContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::PfPathPrimaryContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPfPathPrimary(this);
   else
@@ -11155,8 +12092,18 @@ GQLParser::ParenthesizedPathPatternExpressionContext* GQLParser::PpParenthesized
 
 GQLParser::PpParenthesizedPathPatternExpressionContext::PpParenthesizedPathPatternExpressionContext(PathPrimaryContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::PpParenthesizedPathPatternExpressionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPpParenthesizedPathPatternExpression(this);
+}
+void GQLParser::PpParenthesizedPathPatternExpressionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPpParenthesizedPathPatternExpression(this);
+}
 
-std::any GQLParser::PpParenthesizedPathPatternExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::PpParenthesizedPathPatternExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPpParenthesizedPathPatternExpression(this);
   else
@@ -11170,8 +12117,18 @@ GQLParser::ElementPatternContext* GQLParser::PpElementPatternContext::elementPat
 
 GQLParser::PpElementPatternContext::PpElementPatternContext(PathPrimaryContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::PpElementPatternContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPpElementPattern(this);
+}
+void GQLParser::PpElementPatternContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPpElementPattern(this);
+}
 
-std::any GQLParser::PpElementPatternContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::PpElementPatternContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPpElementPattern(this);
   else
@@ -11185,8 +12142,18 @@ GQLParser::SimplifiedPathPatternExpressionContext* GQLParser::PpSimplifiedPathPa
 
 GQLParser::PpSimplifiedPathPatternExpressionContext::PpSimplifiedPathPatternExpressionContext(PathPrimaryContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::PpSimplifiedPathPatternExpressionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPpSimplifiedPathPatternExpression(this);
+}
+void GQLParser::PpSimplifiedPathPatternExpressionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPpSimplifiedPathPatternExpression(this);
+}
 
-std::any GQLParser::PpSimplifiedPathPatternExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::PpSimplifiedPathPatternExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPpSimplifiedPathPatternExpression(this);
   else
@@ -11276,8 +12243,20 @@ size_t GQLParser::ElementPatternContext::getRuleIndex() const {
   return GQLParser::RuleElementPattern;
 }
 
+void GQLParser::ElementPatternContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterElementPattern(this);
+}
 
-std::any GQLParser::ElementPatternContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ElementPatternContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitElementPattern(this);
+}
+
+
+antlrcpp::Any GQLParser::ElementPatternContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitElementPattern(this);
   else
@@ -11370,8 +12349,20 @@ size_t GQLParser::ElementPatternFillerContext::getRuleIndex() const {
   return GQLParser::RuleElementPatternFiller;
 }
 
+void GQLParser::ElementPatternFillerContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterElementPatternFiller(this);
+}
 
-std::any GQLParser::ElementPatternFillerContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ElementPatternFillerContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitElementPatternFiller(this);
+}
+
+
+antlrcpp::Any GQLParser::ElementPatternFillerContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitElementPatternFiller(this);
   else
@@ -11443,8 +12434,20 @@ size_t GQLParser::ElementVariableDeclarationContext::getRuleIndex() const {
   return GQLParser::RuleElementVariableDeclaration;
 }
 
+void GQLParser::ElementVariableDeclarationContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterElementVariableDeclaration(this);
+}
 
-std::any GQLParser::ElementVariableDeclarationContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ElementVariableDeclarationContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitElementVariableDeclaration(this);
+}
+
+
+antlrcpp::Any GQLParser::ElementVariableDeclarationContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitElementVariableDeclaration(this);
   else
@@ -11496,8 +12499,20 @@ size_t GQLParser::IsLabelExpressionContext::getRuleIndex() const {
   return GQLParser::RuleIsLabelExpression;
 }
 
+void GQLParser::IsLabelExpressionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterIsLabelExpression(this);
+}
 
-std::any GQLParser::IsLabelExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::IsLabelExpressionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitIsLabelExpression(this);
+}
+
+
+antlrcpp::Any GQLParser::IsLabelExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitIsLabelExpression(this);
   else
@@ -11551,8 +12566,20 @@ size_t GQLParser::IsOrColonContext::getRuleIndex() const {
   return GQLParser::RuleIsOrColon;
 }
 
+void GQLParser::IsOrColonContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterIsOrColon(this);
+}
 
-std::any GQLParser::IsOrColonContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::IsOrColonContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitIsOrColon(this);
+}
+
+
+antlrcpp::Any GQLParser::IsOrColonContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitIsOrColon(this);
   else
@@ -11616,8 +12643,20 @@ size_t GQLParser::ElementPatternPredicateContext::getRuleIndex() const {
   return GQLParser::RuleElementPatternPredicate;
 }
 
+void GQLParser::ElementPatternPredicateContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterElementPatternPredicate(this);
+}
 
-std::any GQLParser::ElementPatternPredicateContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ElementPatternPredicateContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitElementPatternPredicate(this);
+}
+
+
+antlrcpp::Any GQLParser::ElementPatternPredicateContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitElementPatternPredicate(this);
   else
@@ -11692,8 +12731,20 @@ size_t GQLParser::ElementPropertySpecificationContext::getRuleIndex() const {
   return GQLParser::RuleElementPropertySpecification;
 }
 
+void GQLParser::ElementPropertySpecificationContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterElementPropertySpecification(this);
+}
 
-std::any GQLParser::ElementPropertySpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ElementPropertySpecificationContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitElementPropertySpecification(this);
+}
+
+
+antlrcpp::Any GQLParser::ElementPropertySpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitElementPropertySpecification(this);
   else
@@ -11757,8 +12808,20 @@ size_t GQLParser::PropertyKeyValuePairListContext::getRuleIndex() const {
   return GQLParser::RulePropertyKeyValuePairList;
 }
 
+void GQLParser::PropertyKeyValuePairListContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPropertyKeyValuePairList(this);
+}
 
-std::any GQLParser::PropertyKeyValuePairListContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::PropertyKeyValuePairListContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPropertyKeyValuePairList(this);
+}
+
+
+antlrcpp::Any GQLParser::PropertyKeyValuePairListContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPropertyKeyValuePairList(this);
   else
@@ -11827,8 +12890,20 @@ size_t GQLParser::PropertyKeyValuePairContext::getRuleIndex() const {
   return GQLParser::RulePropertyKeyValuePair;
 }
 
+void GQLParser::PropertyKeyValuePairContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPropertyKeyValuePair(this);
+}
 
-std::any GQLParser::PropertyKeyValuePairContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::PropertyKeyValuePairContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPropertyKeyValuePair(this);
+}
+
+
+antlrcpp::Any GQLParser::PropertyKeyValuePairContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPropertyKeyValuePair(this);
   else
@@ -11912,8 +12987,20 @@ size_t GQLParser::FullEdgePatternContext::getRuleIndex() const {
   return GQLParser::RuleFullEdgePattern;
 }
 
+void GQLParser::FullEdgePatternContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterFullEdgePattern(this);
+}
 
-std::any GQLParser::FullEdgePatternContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::FullEdgePatternContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitFullEdgePattern(this);
+}
+
+
+antlrcpp::Any GQLParser::FullEdgePatternContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitFullEdgePattern(this);
   else
@@ -12065,8 +13152,20 @@ size_t GQLParser::AbbreviatedEdgePatternContext::getRuleIndex() const {
   return GQLParser::RuleAbbreviatedEdgePattern;
 }
 
+void GQLParser::AbbreviatedEdgePatternContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterAbbreviatedEdgePattern(this);
+}
 
-std::any GQLParser::AbbreviatedEdgePatternContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::AbbreviatedEdgePatternContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitAbbreviatedEdgePattern(this);
+}
+
+
+antlrcpp::Any GQLParser::AbbreviatedEdgePatternContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitAbbreviatedEdgePattern(this);
   else
@@ -12151,8 +13250,20 @@ size_t GQLParser::ParenthesizedPathPatternExpressionContext::getRuleIndex() cons
   return GQLParser::RuleParenthesizedPathPatternExpression;
 }
 
+void GQLParser::ParenthesizedPathPatternExpressionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterParenthesizedPathPatternExpression(this);
+}
 
-std::any GQLParser::ParenthesizedPathPatternExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ParenthesizedPathPatternExpressionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitParenthesizedPathPatternExpression(this);
+}
+
+
+antlrcpp::Any GQLParser::ParenthesizedPathPatternExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitParenthesizedPathPatternExpression(this);
   else
@@ -12251,8 +13362,18 @@ GQLParser::LabelExpressionContext* GQLParser::LabelExpressionNegationContext::la
 
 GQLParser::LabelExpressionNegationContext::LabelExpressionNegationContext(LabelExpressionContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::LabelExpressionNegationContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterLabelExpressionNegation(this);
+}
+void GQLParser::LabelExpressionNegationContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitLabelExpressionNegation(this);
+}
 
-std::any GQLParser::LabelExpressionNegationContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::LabelExpressionNegationContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitLabelExpressionNegation(this);
   else
@@ -12274,8 +13395,18 @@ tree::TerminalNode* GQLParser::LabelExpressionDisjunctionContext::VERTICAL_BAR()
 
 GQLParser::LabelExpressionDisjunctionContext::LabelExpressionDisjunctionContext(LabelExpressionContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::LabelExpressionDisjunctionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterLabelExpressionDisjunction(this);
+}
+void GQLParser::LabelExpressionDisjunctionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitLabelExpressionDisjunction(this);
+}
 
-std::any GQLParser::LabelExpressionDisjunctionContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::LabelExpressionDisjunctionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitLabelExpressionDisjunction(this);
   else
@@ -12297,8 +13428,18 @@ tree::TerminalNode* GQLParser::LabelExpressionParenthesizedContext::RIGHT_PAREN(
 
 GQLParser::LabelExpressionParenthesizedContext::LabelExpressionParenthesizedContext(LabelExpressionContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::LabelExpressionParenthesizedContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterLabelExpressionParenthesized(this);
+}
+void GQLParser::LabelExpressionParenthesizedContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitLabelExpressionParenthesized(this);
+}
 
-std::any GQLParser::LabelExpressionParenthesizedContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::LabelExpressionParenthesizedContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitLabelExpressionParenthesized(this);
   else
@@ -12312,8 +13453,18 @@ tree::TerminalNode* GQLParser::LabelExpressionWildcardContext::PERCENT() {
 
 GQLParser::LabelExpressionWildcardContext::LabelExpressionWildcardContext(LabelExpressionContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::LabelExpressionWildcardContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterLabelExpressionWildcard(this);
+}
+void GQLParser::LabelExpressionWildcardContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitLabelExpressionWildcard(this);
+}
 
-std::any GQLParser::LabelExpressionWildcardContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::LabelExpressionWildcardContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitLabelExpressionWildcard(this);
   else
@@ -12335,8 +13486,18 @@ tree::TerminalNode* GQLParser::LabelExpressionConjunctionContext::AMPERSAND() {
 
 GQLParser::LabelExpressionConjunctionContext::LabelExpressionConjunctionContext(LabelExpressionContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::LabelExpressionConjunctionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterLabelExpressionConjunction(this);
+}
+void GQLParser::LabelExpressionConjunctionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitLabelExpressionConjunction(this);
+}
 
-std::any GQLParser::LabelExpressionConjunctionContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::LabelExpressionConjunctionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitLabelExpressionConjunction(this);
   else
@@ -12350,8 +13511,18 @@ GQLParser::LabelNameContext* GQLParser::LabelExpressionNameContext::labelName() 
 
 GQLParser::LabelExpressionNameContext::LabelExpressionNameContext(LabelExpressionContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::LabelExpressionNameContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterLabelExpressionName(this);
+}
+void GQLParser::LabelExpressionNameContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitLabelExpressionName(this);
+}
 
-std::any GQLParser::LabelExpressionNameContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::LabelExpressionNameContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitLabelExpressionName(this);
   else
@@ -12577,8 +13748,20 @@ size_t GQLParser::GraphPatternQuantifierContext::getRuleIndex() const {
   return GQLParser::RuleGraphPatternQuantifier;
 }
 
+void GQLParser::GraphPatternQuantifierContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterGraphPatternQuantifier(this);
+}
 
-std::any GQLParser::GraphPatternQuantifierContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::GraphPatternQuantifierContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitGraphPatternQuantifier(this);
+}
+
+
+antlrcpp::Any GQLParser::GraphPatternQuantifierContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitGraphPatternQuantifier(this);
   else
@@ -12716,8 +13899,20 @@ size_t GQLParser::SimplifiedPathPatternExpressionContext::getRuleIndex() const {
   return GQLParser::RuleSimplifiedPathPatternExpression;
 }
 
+void GQLParser::SimplifiedPathPatternExpressionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSimplifiedPathPatternExpression(this);
+}
 
-std::any GQLParser::SimplifiedPathPatternExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SimplifiedPathPatternExpressionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSimplifiedPathPatternExpression(this);
+}
+
+
+antlrcpp::Any GQLParser::SimplifiedPathPatternExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSimplifiedPathPatternExpression(this);
   else
@@ -12865,8 +14060,20 @@ size_t GQLParser::SimplifiedContentsContext::getRuleIndex() const {
   return GQLParser::RuleSimplifiedContents;
 }
 
+void GQLParser::SimplifiedContentsContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSimplifiedContents(this);
+}
 
-std::any GQLParser::SimplifiedContentsContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SimplifiedContentsContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSimplifiedContents(this);
+}
+
+
+antlrcpp::Any GQLParser::SimplifiedContentsContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSimplifiedContents(this);
   else
@@ -12979,8 +14186,18 @@ GQLParser::SimplifiedFactorLowContext* GQLParser::SimplifiedFactorLowLabelContex
 
 GQLParser::SimplifiedFactorLowLabelContext::SimplifiedFactorLowLabelContext(SimplifiedTermContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::SimplifiedFactorLowLabelContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSimplifiedFactorLowLabel(this);
+}
+void GQLParser::SimplifiedFactorLowLabelContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSimplifiedFactorLowLabel(this);
+}
 
-std::any GQLParser::SimplifiedFactorLowLabelContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::SimplifiedFactorLowLabelContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSimplifiedFactorLowLabel(this);
   else
@@ -12998,8 +14215,18 @@ GQLParser::SimplifiedFactorLowContext* GQLParser::SimplifiedConcatenationLabelCo
 
 GQLParser::SimplifiedConcatenationLabelContext::SimplifiedConcatenationLabelContext(SimplifiedTermContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::SimplifiedConcatenationLabelContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSimplifiedConcatenationLabel(this);
+}
+void GQLParser::SimplifiedConcatenationLabelContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSimplifiedConcatenationLabel(this);
+}
 
-std::any GQLParser::SimplifiedConcatenationLabelContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::SimplifiedConcatenationLabelContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSimplifiedConcatenationLabel(this);
   else
@@ -13099,8 +14326,18 @@ GQLParser::SimplifiedFactorHighContext* GQLParser::SimplifiedConjunctionLabelCon
 
 GQLParser::SimplifiedConjunctionLabelContext::SimplifiedConjunctionLabelContext(SimplifiedFactorLowContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::SimplifiedConjunctionLabelContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSimplifiedConjunctionLabel(this);
+}
+void GQLParser::SimplifiedConjunctionLabelContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSimplifiedConjunctionLabel(this);
+}
 
-std::any GQLParser::SimplifiedConjunctionLabelContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::SimplifiedConjunctionLabelContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSimplifiedConjunctionLabel(this);
   else
@@ -13114,8 +14351,18 @@ GQLParser::SimplifiedFactorHighContext* GQLParser::SimplifiedFactorHighLabelCont
 
 GQLParser::SimplifiedFactorHighLabelContext::SimplifiedFactorHighLabelContext(SimplifiedFactorLowContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::SimplifiedFactorHighLabelContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSimplifiedFactorHighLabel(this);
+}
+void GQLParser::SimplifiedFactorHighLabelContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSimplifiedFactorHighLabel(this);
+}
 
-std::any GQLParser::SimplifiedFactorHighLabelContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::SimplifiedFactorHighLabelContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSimplifiedFactorHighLabel(this);
   else
@@ -13209,8 +14456,20 @@ size_t GQLParser::SimplifiedFactorHighContext::getRuleIndex() const {
   return GQLParser::RuleSimplifiedFactorHigh;
 }
 
+void GQLParser::SimplifiedFactorHighContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSimplifiedFactorHigh(this);
+}
 
-std::any GQLParser::SimplifiedFactorHighContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SimplifiedFactorHighContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSimplifiedFactorHigh(this);
+}
+
+
+antlrcpp::Any GQLParser::SimplifiedFactorHighContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSimplifiedFactorHigh(this);
   else
@@ -13306,8 +14565,20 @@ size_t GQLParser::SimplifiedTertiaryContext::getRuleIndex() const {
   return GQLParser::RuleSimplifiedTertiary;
 }
 
+void GQLParser::SimplifiedTertiaryContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSimplifiedTertiary(this);
+}
 
-std::any GQLParser::SimplifiedTertiaryContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SimplifiedTertiaryContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSimplifiedTertiary(this);
+}
+
+
+antlrcpp::Any GQLParser::SimplifiedTertiaryContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSimplifiedTertiary(this);
   else
@@ -13436,8 +14707,20 @@ size_t GQLParser::SimplifiedSecondaryContext::getRuleIndex() const {
   return GQLParser::RuleSimplifiedSecondary;
 }
 
+void GQLParser::SimplifiedSecondaryContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSimplifiedSecondary(this);
+}
 
-std::any GQLParser::SimplifiedSecondaryContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SimplifiedSecondaryContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSimplifiedSecondary(this);
+}
+
+
+antlrcpp::Any GQLParser::SimplifiedSecondaryContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSimplifiedSecondary(this);
   else
@@ -13566,8 +14849,20 @@ size_t GQLParser::SimplifiedPrimaryContext::getRuleIndex() const {
   return GQLParser::RuleSimplifiedPrimary;
 }
 
+void GQLParser::SimplifiedPrimaryContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSimplifiedPrimary(this);
+}
 
-std::any GQLParser::SimplifiedPrimaryContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SimplifiedPrimaryContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSimplifiedPrimary(this);
+}
+
+
+antlrcpp::Any GQLParser::SimplifiedPrimaryContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSimplifiedPrimary(this);
   else
@@ -13689,8 +14984,20 @@ size_t GQLParser::WhereClauseContext::getRuleIndex() const {
   return GQLParser::RuleWhereClause;
 }
 
+void GQLParser::WhereClauseContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterWhereClause(this);
+}
 
-std::any GQLParser::WhereClauseContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::WhereClauseContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitWhereClause(this);
+}
+
+
+antlrcpp::Any GQLParser::WhereClauseContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitWhereClause(this);
   else
@@ -13756,8 +15063,20 @@ size_t GQLParser::YieldClauseContext::getRuleIndex() const {
   return GQLParser::RuleYieldClause;
 }
 
+void GQLParser::YieldClauseContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterYieldClause(this);
+}
 
-std::any GQLParser::YieldClauseContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::YieldClauseContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitYieldClause(this);
+}
+
+
+antlrcpp::Any GQLParser::YieldClauseContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitYieldClause(this);
   else
@@ -13828,8 +15147,20 @@ size_t GQLParser::YieldItemContext::getRuleIndex() const {
   return GQLParser::RuleYieldItem;
 }
 
+void GQLParser::YieldItemContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterYieldItem(this);
+}
 
-std::any GQLParser::YieldItemContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::YieldItemContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitYieldItem(this);
+}
+
+
+antlrcpp::Any GQLParser::YieldItemContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitYieldItem(this);
   else
@@ -13916,8 +15247,20 @@ size_t GQLParser::GroupByClauseContext::getRuleIndex() const {
   return GQLParser::RuleGroupByClause;
 }
 
+void GQLParser::GroupByClauseContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterGroupByClause(this);
+}
 
-std::any GQLParser::GroupByClauseContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::GroupByClauseContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitGroupByClause(this);
+}
+
+
+antlrcpp::Any GQLParser::GroupByClauseContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitGroupByClause(this);
   else
@@ -14069,8 +15412,20 @@ size_t GQLParser::OrderByClauseContext::getRuleIndex() const {
   return GQLParser::RuleOrderByClause;
 }
 
+void GQLParser::OrderByClauseContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterOrderByClause(this);
+}
 
-std::any GQLParser::OrderByClauseContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::OrderByClauseContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitOrderByClause(this);
+}
+
+
+antlrcpp::Any GQLParser::OrderByClauseContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitOrderByClause(this);
   else
@@ -14165,8 +15520,20 @@ size_t GQLParser::SortSpecificationContext::getRuleIndex() const {
   return GQLParser::RuleSortSpecification;
 }
 
+void GQLParser::SortSpecificationContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSortSpecification(this);
+}
 
-std::any GQLParser::SortSpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SortSpecificationContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSortSpecification(this);
+}
+
+
+antlrcpp::Any GQLParser::SortSpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSortSpecification(this);
   else
@@ -14264,8 +15631,20 @@ size_t GQLParser::LimitClauseContext::getRuleIndex() const {
   return GQLParser::RuleLimitClause;
 }
 
+void GQLParser::LimitClauseContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterLimitClause(this);
+}
 
-std::any GQLParser::LimitClauseContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::LimitClauseContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitLimitClause(this);
+}
+
+
+antlrcpp::Any GQLParser::LimitClauseContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitLimitClause(this);
   else
@@ -14323,8 +15702,20 @@ size_t GQLParser::OffsetClauseContext::getRuleIndex() const {
   return GQLParser::RuleOffsetClause;
 }
 
+void GQLParser::OffsetClauseContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterOffsetClause(this);
+}
 
-std::any GQLParser::OffsetClauseContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::OffsetClauseContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitOffsetClause(this);
+}
+
+
+antlrcpp::Any GQLParser::OffsetClauseContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitOffsetClause(this);
   else
@@ -14396,8 +15787,20 @@ size_t GQLParser::SchemaReferenceContext::getRuleIndex() const {
   return GQLParser::RuleSchemaReference;
 }
 
+void GQLParser::SchemaReferenceContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSchemaReference(this);
+}
 
-std::any GQLParser::SchemaReferenceContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SchemaReferenceContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSchemaReference(this);
+}
+
+
+antlrcpp::Any GQLParser::SchemaReferenceContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSchemaReference(this);
   else
@@ -14536,8 +15939,20 @@ size_t GQLParser::AbsoluteCatalogSchemaReferenceContext::getRuleIndex() const {
   return GQLParser::RuleAbsoluteCatalogSchemaReference;
 }
 
+void GQLParser::AbsoluteCatalogSchemaReferenceContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterAbsoluteCatalogSchemaReference(this);
+}
 
-std::any GQLParser::AbsoluteCatalogSchemaReferenceContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::AbsoluteCatalogSchemaReferenceContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitAbsoluteCatalogSchemaReference(this);
+}
+
+
+antlrcpp::Any GQLParser::AbsoluteCatalogSchemaReferenceContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitAbsoluteCatalogSchemaReference(this);
   else
@@ -14608,8 +16023,20 @@ size_t GQLParser::CatalogSchemaParentAndNameContext::getRuleIndex() const {
   return GQLParser::RuleCatalogSchemaParentAndName;
 }
 
+void GQLParser::CatalogSchemaParentAndNameContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterCatalogSchemaParentAndName(this);
+}
 
-std::any GQLParser::CatalogSchemaParentAndNameContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::CatalogSchemaParentAndNameContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitCatalogSchemaParentAndName(this);
+}
+
+
+antlrcpp::Any GQLParser::CatalogSchemaParentAndNameContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitCatalogSchemaParentAndName(this);
   else
@@ -14675,8 +16102,20 @@ size_t GQLParser::RelativeCatalogSchemaReferenceContext::getRuleIndex() const {
   return GQLParser::RuleRelativeCatalogSchemaReference;
 }
 
+void GQLParser::RelativeCatalogSchemaReferenceContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterRelativeCatalogSchemaReference(this);
+}
 
-std::any GQLParser::RelativeCatalogSchemaReferenceContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::RelativeCatalogSchemaReferenceContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitRelativeCatalogSchemaReference(this);
+}
+
+
+antlrcpp::Any GQLParser::RelativeCatalogSchemaReferenceContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitRelativeCatalogSchemaReference(this);
   else
@@ -14761,8 +16200,20 @@ size_t GQLParser::AbsoluteDirectoryPathContext::getRuleIndex() const {
   return GQLParser::RuleAbsoluteDirectoryPath;
 }
 
+void GQLParser::AbsoluteDirectoryPathContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterAbsoluteDirectoryPath(this);
+}
 
-std::any GQLParser::AbsoluteDirectoryPathContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::AbsoluteDirectoryPathContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitAbsoluteDirectoryPath(this);
+}
+
+
+antlrcpp::Any GQLParser::AbsoluteDirectoryPathContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitAbsoluteDirectoryPath(this);
   else
@@ -14839,8 +16290,20 @@ size_t GQLParser::RelativeDirectoryPathContext::getRuleIndex() const {
   return GQLParser::RuleRelativeDirectoryPath;
 }
 
+void GQLParser::RelativeDirectoryPathContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterRelativeDirectoryPath(this);
+}
 
-std::any GQLParser::RelativeDirectoryPathContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::RelativeDirectoryPathContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitRelativeDirectoryPath(this);
+}
+
+
+antlrcpp::Any GQLParser::RelativeDirectoryPathContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitRelativeDirectoryPath(this);
   else
@@ -14930,8 +16393,20 @@ size_t GQLParser::SimpleDirectoryPathContext::getRuleIndex() const {
   return GQLParser::RuleSimpleDirectoryPath;
 }
 
+void GQLParser::SimpleDirectoryPathContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSimpleDirectoryPath(this);
+}
 
-std::any GQLParser::SimpleDirectoryPathContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SimpleDirectoryPathContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSimpleDirectoryPath(this);
+}
+
+
+antlrcpp::Any GQLParser::SimpleDirectoryPathContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSimpleDirectoryPath(this);
   else
@@ -15018,8 +16493,20 @@ size_t GQLParser::GraphReferenceContext::getRuleIndex() const {
   return GQLParser::RuleGraphReference;
 }
 
+void GQLParser::GraphReferenceContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterGraphReference(this);
+}
 
-std::any GQLParser::GraphReferenceContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::GraphReferenceContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitGraphReference(this);
+}
+
+
+antlrcpp::Any GQLParser::GraphReferenceContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitGraphReference(this);
   else
@@ -15111,8 +16598,20 @@ size_t GQLParser::CatalogGraphParentAndNameContext::getRuleIndex() const {
   return GQLParser::RuleCatalogGraphParentAndName;
 }
 
+void GQLParser::CatalogGraphParentAndNameContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterCatalogGraphParentAndName(this);
+}
 
-std::any GQLParser::CatalogGraphParentAndNameContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::CatalogGraphParentAndNameContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitCatalogGraphParentAndName(this);
+}
+
+
+antlrcpp::Any GQLParser::CatalogGraphParentAndNameContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitCatalogGraphParentAndName(this);
   else
@@ -15177,8 +16676,20 @@ size_t GQLParser::GraphTypeReferenceContext::getRuleIndex() const {
   return GQLParser::RuleGraphTypeReference;
 }
 
+void GQLParser::GraphTypeReferenceContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterGraphTypeReference(this);
+}
 
-std::any GQLParser::GraphTypeReferenceContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::GraphTypeReferenceContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitGraphTypeReference(this);
+}
+
+
+antlrcpp::Any GQLParser::GraphTypeReferenceContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitGraphTypeReference(this);
   else
@@ -15247,8 +16758,20 @@ size_t GQLParser::CatalogGraphTypeParentAndNameContext::getRuleIndex() const {
   return GQLParser::RuleCatalogGraphTypeParentAndName;
 }
 
+void GQLParser::CatalogGraphTypeParentAndNameContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterCatalogGraphTypeParentAndName(this);
+}
 
-std::any GQLParser::CatalogGraphTypeParentAndNameContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::CatalogGraphTypeParentAndNameContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitCatalogGraphTypeParentAndName(this);
+}
+
+
+antlrcpp::Any GQLParser::CatalogGraphTypeParentAndNameContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitCatalogGraphTypeParentAndName(this);
   else
@@ -15321,8 +16844,20 @@ size_t GQLParser::BindingTableReferenceContext::getRuleIndex() const {
   return GQLParser::RuleBindingTableReference;
 }
 
+void GQLParser::BindingTableReferenceContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterBindingTableReference(this);
+}
 
-std::any GQLParser::BindingTableReferenceContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::BindingTableReferenceContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitBindingTableReference(this);
+}
+
+
+antlrcpp::Any GQLParser::BindingTableReferenceContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitBindingTableReference(this);
   else
@@ -15404,8 +16939,20 @@ size_t GQLParser::ProcedureReferenceContext::getRuleIndex() const {
   return GQLParser::RuleProcedureReference;
 }
 
+void GQLParser::ProcedureReferenceContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterProcedureReference(this);
+}
 
-std::any GQLParser::ProcedureReferenceContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ProcedureReferenceContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitProcedureReference(this);
+}
+
+
+antlrcpp::Any GQLParser::ProcedureReferenceContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitProcedureReference(this);
   else
@@ -15503,8 +17050,20 @@ size_t GQLParser::CatalogObjectParentReferenceContext::getRuleIndex() const {
   return GQLParser::RuleCatalogObjectParentReference;
 }
 
+void GQLParser::CatalogObjectParentReferenceContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterCatalogObjectParentReference(this);
+}
 
-std::any GQLParser::CatalogObjectParentReferenceContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::CatalogObjectParentReferenceContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitCatalogObjectParentReference(this);
+}
+
+
+antlrcpp::Any GQLParser::CatalogObjectParentReferenceContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitCatalogObjectParentReference(this);
   else
@@ -15631,8 +17190,20 @@ size_t GQLParser::NestedGraphTypeSpecificationContext::getRuleIndex() const {
   return GQLParser::RuleNestedGraphTypeSpecification;
 }
 
+void GQLParser::NestedGraphTypeSpecificationContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterNestedGraphTypeSpecification(this);
+}
 
-std::any GQLParser::NestedGraphTypeSpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::NestedGraphTypeSpecificationContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitNestedGraphTypeSpecification(this);
+}
+
+
+antlrcpp::Any GQLParser::NestedGraphTypeSpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitNestedGraphTypeSpecification(this);
   else
@@ -15701,8 +17272,20 @@ size_t GQLParser::ElementTypeSpecificationContext::getRuleIndex() const {
   return GQLParser::RuleElementTypeSpecification;
 }
 
+void GQLParser::ElementTypeSpecificationContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterElementTypeSpecification(this);
+}
 
-std::any GQLParser::ElementTypeSpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ElementTypeSpecificationContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitElementTypeSpecification(this);
+}
+
+
+antlrcpp::Any GQLParser::ElementTypeSpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitElementTypeSpecification(this);
   else
@@ -15799,8 +17382,20 @@ size_t GQLParser::NodeTypeSpecificationContext::getRuleIndex() const {
   return GQLParser::RuleNodeTypeSpecification;
 }
 
+void GQLParser::NodeTypeSpecificationContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterNodeTypeSpecification(this);
+}
 
-std::any GQLParser::NodeTypeSpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::NodeTypeSpecificationContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitNodeTypeSpecification(this);
+}
+
+
+antlrcpp::Any GQLParser::NodeTypeSpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitNodeTypeSpecification(this);
   else
@@ -15952,8 +17547,20 @@ size_t GQLParser::NodeTypePhraseFillerContext::getRuleIndex() const {
   return GQLParser::RuleNodeTypePhraseFiller;
 }
 
+void GQLParser::NodeTypePhraseFillerContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterNodeTypePhraseFiller(this);
+}
 
-std::any GQLParser::NodeTypePhraseFillerContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::NodeTypePhraseFillerContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitNodeTypePhraseFiller(this);
+}
+
+
+antlrcpp::Any GQLParser::NodeTypePhraseFillerContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitNodeTypePhraseFiller(this);
   else
@@ -16039,8 +17646,20 @@ size_t GQLParser::NodeTypeFillerContext::getRuleIndex() const {
   return GQLParser::RuleNodeTypeFiller;
 }
 
+void GQLParser::NodeTypeFillerContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterNodeTypeFiller(this);
+}
 
-std::any GQLParser::NodeTypeFillerContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::NodeTypeFillerContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitNodeTypeFiller(this);
+}
+
+
+antlrcpp::Any GQLParser::NodeTypeFillerContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitNodeTypeFiller(this);
   else
@@ -16133,8 +17752,20 @@ size_t GQLParser::NodeTypeImpliedContentContext::getRuleIndex() const {
   return GQLParser::RuleNodeTypeImpliedContent;
 }
 
+void GQLParser::NodeTypeImpliedContentContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterNodeTypeImpliedContent(this);
+}
 
-std::any GQLParser::NodeTypeImpliedContentContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::NodeTypeImpliedContentContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitNodeTypeImpliedContent(this);
+}
+
+
+antlrcpp::Any GQLParser::NodeTypeImpliedContentContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitNodeTypeImpliedContent(this);
   else
@@ -16243,8 +17874,20 @@ size_t GQLParser::EdgeTypeSpecificationContext::getRuleIndex() const {
   return GQLParser::RuleEdgeTypeSpecification;
 }
 
+void GQLParser::EdgeTypeSpecificationContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterEdgeTypeSpecification(this);
+}
 
-std::any GQLParser::EdgeTypeSpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::EdgeTypeSpecificationContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitEdgeTypeSpecification(this);
+}
+
+
+antlrcpp::Any GQLParser::EdgeTypeSpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitEdgeTypeSpecification(this);
   else
@@ -16383,8 +18026,20 @@ size_t GQLParser::EdgeTypePhraseFillerContext::getRuleIndex() const {
   return GQLParser::RuleEdgeTypePhraseFiller;
 }
 
+void GQLParser::EdgeTypePhraseFillerContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterEdgeTypePhraseFiller(this);
+}
 
-std::any GQLParser::EdgeTypePhraseFillerContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::EdgeTypePhraseFillerContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitEdgeTypePhraseFiller(this);
+}
+
+
+antlrcpp::Any GQLParser::EdgeTypePhraseFillerContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitEdgeTypePhraseFiller(this);
   else
@@ -16470,8 +18125,20 @@ size_t GQLParser::EdgeTypeFillerContext::getRuleIndex() const {
   return GQLParser::RuleEdgeTypeFiller;
 }
 
+void GQLParser::EdgeTypeFillerContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterEdgeTypeFiller(this);
+}
 
-std::any GQLParser::EdgeTypeFillerContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::EdgeTypeFillerContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitEdgeTypeFiller(this);
+}
+
+
+antlrcpp::Any GQLParser::EdgeTypeFillerContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitEdgeTypeFiller(this);
   else
@@ -16563,8 +18230,20 @@ size_t GQLParser::EdgeTypeImpliedContentContext::getRuleIndex() const {
   return GQLParser::RuleEdgeTypeImpliedContent;
 }
 
+void GQLParser::EdgeTypeImpliedContentContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterEdgeTypeImpliedContent(this);
+}
 
-std::any GQLParser::EdgeTypeImpliedContentContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::EdgeTypeImpliedContentContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitEdgeTypeImpliedContent(this);
+}
+
+
+antlrcpp::Any GQLParser::EdgeTypeImpliedContentContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitEdgeTypeImpliedContent(this);
   else
@@ -16653,8 +18332,20 @@ size_t GQLParser::EdgeTypePatternDirectedContext::getRuleIndex() const {
   return GQLParser::RuleEdgeTypePatternDirected;
 }
 
+void GQLParser::EdgeTypePatternDirectedContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterEdgeTypePatternDirected(this);
+}
 
-std::any GQLParser::EdgeTypePatternDirectedContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::EdgeTypePatternDirectedContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitEdgeTypePatternDirected(this);
+}
+
+
+antlrcpp::Any GQLParser::EdgeTypePatternDirectedContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitEdgeTypePatternDirected(this);
   else
@@ -16735,8 +18426,20 @@ size_t GQLParser::EdgeTypePatternUndirectedContext::getRuleIndex() const {
   return GQLParser::RuleEdgeTypePatternUndirected;
 }
 
+void GQLParser::EdgeTypePatternUndirectedContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterEdgeTypePatternUndirected(this);
+}
 
-std::any GQLParser::EdgeTypePatternUndirectedContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::EdgeTypePatternUndirectedContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitEdgeTypePatternUndirected(this);
+}
+
+
+antlrcpp::Any GQLParser::EdgeTypePatternUndirectedContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitEdgeTypePatternUndirected(this);
   else
@@ -16796,8 +18499,20 @@ size_t GQLParser::ArcTypePointingRightContext::getRuleIndex() const {
   return GQLParser::RuleArcTypePointingRight;
 }
 
+void GQLParser::ArcTypePointingRightContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterArcTypePointingRight(this);
+}
 
-std::any GQLParser::ArcTypePointingRightContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ArcTypePointingRightContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitArcTypePointingRight(this);
+}
+
+
+antlrcpp::Any GQLParser::ArcTypePointingRightContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitArcTypePointingRight(this);
   else
@@ -16857,8 +18572,20 @@ size_t GQLParser::ArcTypePointingLeftContext::getRuleIndex() const {
   return GQLParser::RuleArcTypePointingLeft;
 }
 
+void GQLParser::ArcTypePointingLeftContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterArcTypePointingLeft(this);
+}
 
-std::any GQLParser::ArcTypePointingLeftContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ArcTypePointingLeftContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitArcTypePointingLeft(this);
+}
+
+
+antlrcpp::Any GQLParser::ArcTypePointingLeftContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitArcTypePointingLeft(this);
   else
@@ -16918,8 +18645,20 @@ size_t GQLParser::ArcTypeUndirectedContext::getRuleIndex() const {
   return GQLParser::RuleArcTypeUndirected;
 }
 
+void GQLParser::ArcTypeUndirectedContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterArcTypeUndirected(this);
+}
 
-std::any GQLParser::ArcTypeUndirectedContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ArcTypeUndirectedContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitArcTypeUndirected(this);
+}
+
+
+antlrcpp::Any GQLParser::ArcTypeUndirectedContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitArcTypeUndirected(this);
   else
@@ -16983,8 +18722,20 @@ size_t GQLParser::SourceNodeTypeReferenceContext::getRuleIndex() const {
   return GQLParser::RuleSourceNodeTypeReference;
 }
 
+void GQLParser::SourceNodeTypeReferenceContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSourceNodeTypeReference(this);
+}
 
-std::any GQLParser::SourceNodeTypeReferenceContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SourceNodeTypeReferenceContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSourceNodeTypeReference(this);
+}
+
+
+antlrcpp::Any GQLParser::SourceNodeTypeReferenceContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSourceNodeTypeReference(this);
   else
@@ -17080,8 +18831,20 @@ size_t GQLParser::DestinationNodeTypeReferenceContext::getRuleIndex() const {
   return GQLParser::RuleDestinationNodeTypeReference;
 }
 
+void GQLParser::DestinationNodeTypeReferenceContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterDestinationNodeTypeReference(this);
+}
 
-std::any GQLParser::DestinationNodeTypeReferenceContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::DestinationNodeTypeReferenceContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitDestinationNodeTypeReference(this);
+}
+
+
+antlrcpp::Any GQLParser::DestinationNodeTypeReferenceContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitDestinationNodeTypeReference(this);
   else
@@ -17169,8 +18932,20 @@ size_t GQLParser::EdgeKindContext::getRuleIndex() const {
   return GQLParser::RuleEdgeKind;
 }
 
+void GQLParser::EdgeKindContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterEdgeKind(this);
+}
 
-std::any GQLParser::EdgeKindContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::EdgeKindContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitEdgeKind(this);
+}
+
+
+antlrcpp::Any GQLParser::EdgeKindContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitEdgeKind(this);
   else
@@ -17232,8 +19007,20 @@ size_t GQLParser::EndpointPairPhraseContext::getRuleIndex() const {
   return GQLParser::RuleEndpointPairPhrase;
 }
 
+void GQLParser::EndpointPairPhraseContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterEndpointPairPhrase(this);
+}
 
-std::any GQLParser::EndpointPairPhraseContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::EndpointPairPhraseContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitEndpointPairPhrase(this);
+}
+
+
+antlrcpp::Any GQLParser::EndpointPairPhraseContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitEndpointPairPhrase(this);
   else
@@ -17311,8 +19098,20 @@ size_t GQLParser::EndpointPairContext::getRuleIndex() const {
   return GQLParser::RuleEndpointPair;
 }
 
+void GQLParser::EndpointPairContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterEndpointPair(this);
+}
 
-std::any GQLParser::EndpointPairContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::EndpointPairContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitEndpointPair(this);
+}
+
+
+antlrcpp::Any GQLParser::EndpointPairContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitEndpointPair(this);
   else
@@ -17449,8 +19248,20 @@ size_t GQLParser::LabelSetPhraseContext::getRuleIndex() const {
   return GQLParser::RuleLabelSetPhrase;
 }
 
+void GQLParser::LabelSetPhraseContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterLabelSetPhrase(this);
+}
 
-std::any GQLParser::LabelSetPhraseContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::LabelSetPhraseContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitLabelSetPhrase(this);
+}
+
+
+antlrcpp::Any GQLParser::LabelSetPhraseContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitLabelSetPhrase(this);
   else
@@ -17570,8 +19381,20 @@ size_t GQLParser::LabelSetSpecificationContext::getRuleIndex() const {
   return GQLParser::RuleLabelSetSpecification;
 }
 
+void GQLParser::LabelSetSpecificationContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterLabelSetSpecification(this);
+}
 
-std::any GQLParser::LabelSetSpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::LabelSetSpecificationContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitLabelSetSpecification(this);
+}
+
+
+antlrcpp::Any GQLParser::LabelSetSpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitLabelSetSpecification(this);
   else
@@ -17668,8 +19491,20 @@ size_t GQLParser::PropertyTypesSpecificationContext::getRuleIndex() const {
   return GQLParser::RulePropertyTypesSpecification;
 }
 
+void GQLParser::PropertyTypesSpecificationContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPropertyTypesSpecification(this);
+}
 
-std::any GQLParser::PropertyTypesSpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::PropertyTypesSpecificationContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPropertyTypesSpecification(this);
+}
+
+
+antlrcpp::Any GQLParser::PropertyTypesSpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPropertyTypesSpecification(this);
   else
@@ -17763,8 +19598,20 @@ size_t GQLParser::PropertyValueTypeContext::getRuleIndex() const {
   return GQLParser::RulePropertyValueType;
 }
 
+void GQLParser::PropertyValueTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPropertyValueType(this);
+}
 
-std::any GQLParser::PropertyValueTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::PropertyValueTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPropertyValueType(this);
+}
+
+
+antlrcpp::Any GQLParser::PropertyValueTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPropertyValueType(this);
   else
@@ -17820,8 +19667,20 @@ size_t GQLParser::BindingTableTypeContext::getRuleIndex() const {
   return GQLParser::RuleBindingTableType;
 }
 
+void GQLParser::BindingTableTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterBindingTableType(this);
+}
 
-std::any GQLParser::BindingTableTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::BindingTableTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitBindingTableType(this);
+}
+
+
+antlrcpp::Any GQLParser::BindingTableTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitBindingTableType(this);
   else
@@ -17900,8 +19759,18 @@ GQLParser::NotNullContext* GQLParser::DynamicPropertyValueTypeLabelContext::notN
 
 GQLParser::DynamicPropertyValueTypeLabelContext::DynamicPropertyValueTypeLabelContext(ValueTypeContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::DynamicPropertyValueTypeLabelContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterDynamicPropertyValueTypeLabel(this);
+}
+void GQLParser::DynamicPropertyValueTypeLabelContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitDynamicPropertyValueTypeLabel(this);
+}
 
-std::any GQLParser::DynamicPropertyValueTypeLabelContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::DynamicPropertyValueTypeLabelContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitDynamicPropertyValueTypeLabel(this);
   else
@@ -17943,8 +19812,18 @@ tree::TerminalNode* GQLParser::ClosedDynamicUnionTypeAtl1Context::VERTICAL_BAR(s
 
 GQLParser::ClosedDynamicUnionTypeAtl1Context::ClosedDynamicUnionTypeAtl1Context(ValueTypeContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::ClosedDynamicUnionTypeAtl1Context::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterClosedDynamicUnionTypeAtl1(this);
+}
+void GQLParser::ClosedDynamicUnionTypeAtl1Context::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitClosedDynamicUnionTypeAtl1(this);
+}
 
-std::any GQLParser::ClosedDynamicUnionTypeAtl1Context::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::ClosedDynamicUnionTypeAtl1Context::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitClosedDynamicUnionTypeAtl1(this);
   else
@@ -17966,8 +19845,18 @@ tree::TerminalNode* GQLParser::ClosedDynamicUnionTypeAtl2Context::VERTICAL_BAR()
 
 GQLParser::ClosedDynamicUnionTypeAtl2Context::ClosedDynamicUnionTypeAtl2Context(ValueTypeContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::ClosedDynamicUnionTypeAtl2Context::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterClosedDynamicUnionTypeAtl2(this);
+}
+void GQLParser::ClosedDynamicUnionTypeAtl2Context::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitClosedDynamicUnionTypeAtl2(this);
+}
 
-std::any GQLParser::ClosedDynamicUnionTypeAtl2Context::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::ClosedDynamicUnionTypeAtl2Context::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitClosedDynamicUnionTypeAtl2(this);
   else
@@ -17981,8 +19870,18 @@ GQLParser::PathValueTypeContext* GQLParser::PathValueTypeLabelContext::pathValue
 
 GQLParser::PathValueTypeLabelContext::PathValueTypeLabelContext(ValueTypeContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::PathValueTypeLabelContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPathValueTypeLabel(this);
+}
+void GQLParser::PathValueTypeLabelContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPathValueTypeLabel(this);
+}
 
-std::any GQLParser::PathValueTypeLabelContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::PathValueTypeLabelContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPathValueTypeLabel(this);
   else
@@ -18012,8 +19911,18 @@ GQLParser::NotNullContext* GQLParser::ListValueTypeAlt3Context::notNull() {
 
 GQLParser::ListValueTypeAlt3Context::ListValueTypeAlt3Context(ValueTypeContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::ListValueTypeAlt3Context::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterListValueTypeAlt3(this);
+}
+void GQLParser::ListValueTypeAlt3Context::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitListValueTypeAlt3(this);
+}
 
-std::any GQLParser::ListValueTypeAlt3Context::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::ListValueTypeAlt3Context::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitListValueTypeAlt3(this);
   else
@@ -18047,8 +19956,18 @@ GQLParser::NotNullContext* GQLParser::ListValueTypeAlt2Context::notNull() {
 
 GQLParser::ListValueTypeAlt2Context::ListValueTypeAlt2Context(ValueTypeContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::ListValueTypeAlt2Context::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterListValueTypeAlt2(this);
+}
+void GQLParser::ListValueTypeAlt2Context::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitListValueTypeAlt2(this);
+}
 
-std::any GQLParser::ListValueTypeAlt2Context::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::ListValueTypeAlt2Context::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitListValueTypeAlt2(this);
   else
@@ -18090,8 +20009,18 @@ GQLParser::NotNullContext* GQLParser::ListValueTypeAlt1Context::notNull() {
 
 GQLParser::ListValueTypeAlt1Context::ListValueTypeAlt1Context(ValueTypeContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::ListValueTypeAlt1Context::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterListValueTypeAlt1(this);
+}
+void GQLParser::ListValueTypeAlt1Context::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitListValueTypeAlt1(this);
+}
 
-std::any GQLParser::ListValueTypeAlt1Context::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::ListValueTypeAlt1Context::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitListValueTypeAlt1(this);
   else
@@ -18105,8 +20034,18 @@ GQLParser::PredefinedTypeContext* GQLParser::PredefinedTypeLabelContext::predefi
 
 GQLParser::PredefinedTypeLabelContext::PredefinedTypeLabelContext(ValueTypeContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::PredefinedTypeLabelContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPredefinedTypeLabel(this);
+}
+void GQLParser::PredefinedTypeLabelContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPredefinedTypeLabel(this);
+}
 
-std::any GQLParser::PredefinedTypeLabelContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::PredefinedTypeLabelContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPredefinedTypeLabel(this);
   else
@@ -18120,8 +20059,18 @@ GQLParser::RecordTypeContext* GQLParser::RecordTypeLabelContext::recordType() {
 
 GQLParser::RecordTypeLabelContext::RecordTypeLabelContext(ValueTypeContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::RecordTypeLabelContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterRecordTypeLabel(this);
+}
+void GQLParser::RecordTypeLabelContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitRecordTypeLabel(this);
+}
 
-std::any GQLParser::RecordTypeLabelContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::RecordTypeLabelContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitRecordTypeLabel(this);
   else
@@ -18143,8 +20092,18 @@ GQLParser::NotNullContext* GQLParser::OpenDynamicUnionTypeLabelContext::notNull(
 
 GQLParser::OpenDynamicUnionTypeLabelContext::OpenDynamicUnionTypeLabelContext(ValueTypeContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::OpenDynamicUnionTypeLabelContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterOpenDynamicUnionTypeLabel(this);
+}
+void GQLParser::OpenDynamicUnionTypeLabelContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitOpenDynamicUnionTypeLabel(this);
+}
 
-std::any GQLParser::OpenDynamicUnionTypeLabelContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::OpenDynamicUnionTypeLabelContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitOpenDynamicUnionTypeLabel(this);
   else
@@ -18500,8 +20459,20 @@ size_t GQLParser::TypedContext::getRuleIndex() const {
   return GQLParser::RuleTyped;
 }
 
+void GQLParser::TypedContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterTyped(this);
+}
 
-std::any GQLParser::TypedContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::TypedContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitTyped(this);
+}
+
+
+antlrcpp::Any GQLParser::TypedContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitTyped(this);
   else
@@ -18581,8 +20552,20 @@ size_t GQLParser::PredefinedTypeContext::getRuleIndex() const {
   return GQLParser::RulePredefinedType;
 }
 
+void GQLParser::PredefinedTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPredefinedType(this);
+}
 
-std::any GQLParser::PredefinedTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::PredefinedTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPredefinedType(this);
+}
+
+
+antlrcpp::Any GQLParser::PredefinedTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPredefinedType(this);
   else
@@ -18750,8 +20733,20 @@ size_t GQLParser::BooleanTypeContext::getRuleIndex() const {
   return GQLParser::RuleBooleanType;
 }
 
+void GQLParser::BooleanTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterBooleanType(this);
+}
 
-std::any GQLParser::BooleanTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::BooleanTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitBooleanType(this);
+}
+
+
+antlrcpp::Any GQLParser::BooleanTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitBooleanType(this);
   else
@@ -18858,8 +20853,20 @@ size_t GQLParser::CharacterStringTypeContext::getRuleIndex() const {
   return GQLParser::RuleCharacterStringType;
 }
 
+void GQLParser::CharacterStringTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterCharacterStringType(this);
+}
 
-std::any GQLParser::CharacterStringTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::CharacterStringTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitCharacterStringType(this);
+}
+
+
+antlrcpp::Any GQLParser::CharacterStringTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitCharacterStringType(this);
   else
@@ -19072,8 +21079,20 @@ size_t GQLParser::ByteStringTypeContext::getRuleIndex() const {
   return GQLParser::RuleByteStringType;
 }
 
+void GQLParser::ByteStringTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterByteStringType(this);
+}
 
-std::any GQLParser::ByteStringTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ByteStringTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitByteStringType(this);
+}
+
+
+antlrcpp::Any GQLParser::ByteStringTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitByteStringType(this);
   else
@@ -19250,8 +21269,20 @@ size_t GQLParser::MinLengthContext::getRuleIndex() const {
   return GQLParser::RuleMinLength;
 }
 
+void GQLParser::MinLengthContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterMinLength(this);
+}
 
-std::any GQLParser::MinLengthContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::MinLengthContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitMinLength(this);
+}
+
+
+antlrcpp::Any GQLParser::MinLengthContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitMinLength(this);
   else
@@ -19299,8 +21330,20 @@ size_t GQLParser::MaxLengthContext::getRuleIndex() const {
   return GQLParser::RuleMaxLength;
 }
 
+void GQLParser::MaxLengthContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterMaxLength(this);
+}
 
-std::any GQLParser::MaxLengthContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::MaxLengthContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitMaxLength(this);
+}
+
+
+antlrcpp::Any GQLParser::MaxLengthContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitMaxLength(this);
   else
@@ -19348,8 +21391,20 @@ size_t GQLParser::FixedLengthContext::getRuleIndex() const {
   return GQLParser::RuleFixedLength;
 }
 
+void GQLParser::FixedLengthContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterFixedLength(this);
+}
 
-std::any GQLParser::FixedLengthContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::FixedLengthContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitFixedLength(this);
+}
+
+
+antlrcpp::Any GQLParser::FixedLengthContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitFixedLength(this);
   else
@@ -19401,8 +21456,20 @@ size_t GQLParser::NumericTypeContext::getRuleIndex() const {
   return GQLParser::RuleNumericType;
 }
 
+void GQLParser::NumericTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterNumericType(this);
+}
 
-std::any GQLParser::NumericTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::NumericTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitNumericType(this);
+}
+
+
+antlrcpp::Any GQLParser::NumericTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitNumericType(this);
   else
@@ -19508,8 +21575,20 @@ size_t GQLParser::ExactNumericTypeContext::getRuleIndex() const {
   return GQLParser::RuleExactNumericType;
 }
 
+void GQLParser::ExactNumericTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterExactNumericType(this);
+}
 
-std::any GQLParser::ExactNumericTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ExactNumericTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitExactNumericType(this);
+}
+
+
+antlrcpp::Any GQLParser::ExactNumericTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitExactNumericType(this);
   else
@@ -19607,8 +21686,20 @@ size_t GQLParser::BinaryExactNumericTypeContext::getRuleIndex() const {
   return GQLParser::RuleBinaryExactNumericType;
 }
 
+void GQLParser::BinaryExactNumericTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterBinaryExactNumericType(this);
+}
 
-std::any GQLParser::BinaryExactNumericTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::BinaryExactNumericTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitBinaryExactNumericType(this);
+}
+
+
+antlrcpp::Any GQLParser::BinaryExactNumericTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitBinaryExactNumericType(this);
   else
@@ -19756,8 +21847,20 @@ size_t GQLParser::SignedBinaryExactNumericTypeContext::getRuleIndex() const {
   return GQLParser::RuleSignedBinaryExactNumericType;
 }
 
+void GQLParser::SignedBinaryExactNumericTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSignedBinaryExactNumericType(this);
+}
 
-std::any GQLParser::SignedBinaryExactNumericTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SignedBinaryExactNumericTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSignedBinaryExactNumericType(this);
+}
+
+
+antlrcpp::Any GQLParser::SignedBinaryExactNumericTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSignedBinaryExactNumericType(this);
   else
@@ -20086,8 +22189,20 @@ size_t GQLParser::UnsignedBinaryExactNumericTypeContext::getRuleIndex() const {
   return GQLParser::RuleUnsignedBinaryExactNumericType;
 }
 
+void GQLParser::UnsignedBinaryExactNumericTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterUnsignedBinaryExactNumericType(this);
+}
 
-std::any GQLParser::UnsignedBinaryExactNumericTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::UnsignedBinaryExactNumericTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitUnsignedBinaryExactNumericType(this);
+}
+
+
+antlrcpp::Any GQLParser::UnsignedBinaryExactNumericTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitUnsignedBinaryExactNumericType(this);
   else
@@ -20392,8 +22507,20 @@ size_t GQLParser::VerboseBinaryExactNumericTypeContext::getRuleIndex() const {
   return GQLParser::RuleVerboseBinaryExactNumericType;
 }
 
+void GQLParser::VerboseBinaryExactNumericTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterVerboseBinaryExactNumericType(this);
+}
 
-std::any GQLParser::VerboseBinaryExactNumericTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::VerboseBinaryExactNumericTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitVerboseBinaryExactNumericType(this);
+}
+
+
+antlrcpp::Any GQLParser::VerboseBinaryExactNumericTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitVerboseBinaryExactNumericType(this);
   else
@@ -20673,8 +22800,20 @@ size_t GQLParser::DecimalExactNumericTypeContext::getRuleIndex() const {
   return GQLParser::RuleDecimalExactNumericType;
 }
 
+void GQLParser::DecimalExactNumericTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterDecimalExactNumericType(this);
+}
 
-std::any GQLParser::DecimalExactNumericTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::DecimalExactNumericTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitDecimalExactNumericType(this);
+}
+
+
+antlrcpp::Any GQLParser::DecimalExactNumericTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitDecimalExactNumericType(this);
   else
@@ -20772,8 +22911,20 @@ size_t GQLParser::PrecisionContext::getRuleIndex() const {
   return GQLParser::RulePrecision;
 }
 
+void GQLParser::PrecisionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPrecision(this);
+}
 
-std::any GQLParser::PrecisionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::PrecisionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPrecision(this);
+}
+
+
+antlrcpp::Any GQLParser::PrecisionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPrecision(this);
   else
@@ -20821,8 +22972,20 @@ size_t GQLParser::ScaleContext::getRuleIndex() const {
   return GQLParser::RuleScale;
 }
 
+void GQLParser::ScaleContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterScale(this);
+}
 
-std::any GQLParser::ScaleContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ScaleContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitScale(this);
+}
+
+
+antlrcpp::Any GQLParser::ScaleContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitScale(this);
   else
@@ -20926,8 +23089,20 @@ size_t GQLParser::ApproximateNumericTypeContext::getRuleIndex() const {
   return GQLParser::RuleApproximateNumericType;
 }
 
+void GQLParser::ApproximateNumericTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterApproximateNumericType(this);
+}
 
-std::any GQLParser::ApproximateNumericTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ApproximateNumericTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitApproximateNumericType(this);
+}
+
+
+antlrcpp::Any GQLParser::ApproximateNumericTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitApproximateNumericType(this);
   else
@@ -21183,8 +23358,20 @@ size_t GQLParser::TemporalTypeContext::getRuleIndex() const {
   return GQLParser::RuleTemporalType;
 }
 
+void GQLParser::TemporalTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterTemporalType(this);
+}
 
-std::any GQLParser::TemporalTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::TemporalTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitTemporalType(this);
+}
+
+
+antlrcpp::Any GQLParser::TemporalTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitTemporalType(this);
   else
@@ -21269,8 +23456,20 @@ size_t GQLParser::TemporalInstantTypeContext::getRuleIndex() const {
   return GQLParser::RuleTemporalInstantType;
 }
 
+void GQLParser::TemporalInstantTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterTemporalInstantType(this);
+}
 
-std::any GQLParser::TemporalInstantTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::TemporalInstantTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitTemporalInstantType(this);
+}
+
+
+antlrcpp::Any GQLParser::TemporalInstantTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitTemporalInstantType(this);
   else
@@ -21380,8 +23579,20 @@ size_t GQLParser::DatetimeTypeContext::getRuleIndex() const {
   return GQLParser::RuleDatetimeType;
 }
 
+void GQLParser::DatetimeTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterDatetimeType(this);
+}
 
-std::any GQLParser::DatetimeTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::DatetimeTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitDatetimeType(this);
+}
+
+
+antlrcpp::Any GQLParser::DatetimeTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitDatetimeType(this);
   else
@@ -21504,8 +23715,20 @@ size_t GQLParser::LocaldatetimeTypeContext::getRuleIndex() const {
   return GQLParser::RuleLocaldatetimeType;
 }
 
+void GQLParser::LocaldatetimeTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterLocaldatetimeType(this);
+}
 
-std::any GQLParser::LocaldatetimeTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::LocaldatetimeTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitLocaldatetimeType(this);
+}
+
+
+antlrcpp::Any GQLParser::LocaldatetimeTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitLocaldatetimeType(this);
   else
@@ -21619,8 +23842,20 @@ size_t GQLParser::DateTypeContext::getRuleIndex() const {
   return GQLParser::RuleDateType;
 }
 
+void GQLParser::DateTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterDateType(this);
+}
 
-std::any GQLParser::DateTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::DateTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitDateType(this);
+}
+
+
+antlrcpp::Any GQLParser::DateTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitDateType(this);
   else
@@ -21701,8 +23936,20 @@ size_t GQLParser::TimeTypeContext::getRuleIndex() const {
   return GQLParser::RuleTimeType;
 }
 
+void GQLParser::TimeTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterTimeType(this);
+}
 
-std::any GQLParser::TimeTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::TimeTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitTimeType(this);
+}
+
+
+antlrcpp::Any GQLParser::TimeTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitTimeType(this);
   else
@@ -21821,8 +24068,20 @@ size_t GQLParser::LocaltimeTypeContext::getRuleIndex() const {
   return GQLParser::RuleLocaltimeType;
 }
 
+void GQLParser::LocaltimeTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterLocaltimeType(this);
+}
 
-std::any GQLParser::LocaltimeTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::LocaltimeTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitLocaltimeType(this);
+}
+
+
+antlrcpp::Any GQLParser::LocaltimeTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitLocaltimeType(this);
   else
@@ -21953,8 +24212,20 @@ size_t GQLParser::TemporalDurationTypeContext::getRuleIndex() const {
   return GQLParser::RuleTemporalDurationType;
 }
 
+void GQLParser::TemporalDurationTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterTemporalDurationType(this);
+}
 
-std::any GQLParser::TemporalDurationTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::TemporalDurationTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitTemporalDurationType(this);
+}
+
+
+antlrcpp::Any GQLParser::TemporalDurationTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitTemporalDurationType(this);
   else
@@ -22057,8 +24328,20 @@ size_t GQLParser::ReferenceValueTypeContext::getRuleIndex() const {
   return GQLParser::RuleReferenceValueType;
 }
 
+void GQLParser::ReferenceValueTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterReferenceValueType(this);
+}
 
-std::any GQLParser::ReferenceValueTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ReferenceValueTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitReferenceValueType(this);
+}
+
+
+antlrcpp::Any GQLParser::ReferenceValueTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitReferenceValueType(this);
   else
@@ -22145,8 +24428,20 @@ size_t GQLParser::ImmaterialValueTypeContext::getRuleIndex() const {
   return GQLParser::RuleImmaterialValueType;
 }
 
+void GQLParser::ImmaterialValueTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterImmaterialValueType(this);
+}
 
-std::any GQLParser::ImmaterialValueTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ImmaterialValueTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitImmaterialValueType(this);
+}
+
+
+antlrcpp::Any GQLParser::ImmaterialValueTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitImmaterialValueType(this);
   else
@@ -22236,8 +24531,20 @@ size_t GQLParser::GraphReferenceValueTypeContext::getRuleIndex() const {
   return GQLParser::RuleGraphReferenceValueType;
 }
 
+void GQLParser::GraphReferenceValueTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterGraphReferenceValueType(this);
+}
 
-std::any GQLParser::GraphReferenceValueTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::GraphReferenceValueTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitGraphReferenceValueType(this);
+}
+
+
+antlrcpp::Any GQLParser::GraphReferenceValueTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitGraphReferenceValueType(this);
   else
@@ -22354,8 +24661,20 @@ size_t GQLParser::BindingTableReferenceValueTypeContext::getRuleIndex() const {
   return GQLParser::RuleBindingTableReferenceValueType;
 }
 
+void GQLParser::BindingTableReferenceValueTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterBindingTableReferenceValueType(this);
+}
 
-std::any GQLParser::BindingTableReferenceValueTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::BindingTableReferenceValueTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitBindingTableReferenceValueType(this);
+}
+
+
+antlrcpp::Any GQLParser::BindingTableReferenceValueTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitBindingTableReferenceValueType(this);
   else
@@ -22428,8 +24747,20 @@ size_t GQLParser::NodeReferenceValueTypeContext::getRuleIndex() const {
   return GQLParser::RuleNodeReferenceValueType;
 }
 
+void GQLParser::NodeReferenceValueTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterNodeReferenceValueType(this);
+}
 
-std::any GQLParser::NodeReferenceValueTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::NodeReferenceValueTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitNodeReferenceValueType(this);
+}
+
+
+antlrcpp::Any GQLParser::NodeReferenceValueTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitNodeReferenceValueType(this);
   else
@@ -22541,8 +24872,20 @@ size_t GQLParser::EdgeReferenceValueTypeContext::getRuleIndex() const {
   return GQLParser::RuleEdgeReferenceValueType;
 }
 
+void GQLParser::EdgeReferenceValueTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterEdgeReferenceValueType(this);
+}
 
-std::any GQLParser::EdgeReferenceValueTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::EdgeReferenceValueTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitEdgeReferenceValueType(this);
+}
+
+
+antlrcpp::Any GQLParser::EdgeReferenceValueTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitEdgeReferenceValueType(this);
   else
@@ -22646,8 +24989,20 @@ size_t GQLParser::PathValueTypeContext::getRuleIndex() const {
   return GQLParser::RulePathValueType;
 }
 
+void GQLParser::PathValueTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPathValueType(this);
+}
 
-std::any GQLParser::PathValueTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::PathValueTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPathValueType(this);
+}
+
+
+antlrcpp::Any GQLParser::PathValueTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPathValueType(this);
   else
@@ -22712,8 +25067,20 @@ size_t GQLParser::ListValueTypeNameContext::getRuleIndex() const {
   return GQLParser::RuleListValueTypeName;
 }
 
+void GQLParser::ListValueTypeNameContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterListValueTypeName(this);
+}
 
-std::any GQLParser::ListValueTypeNameContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ListValueTypeNameContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitListValueTypeName(this);
+}
+
+
+antlrcpp::Any GQLParser::ListValueTypeNameContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitListValueTypeName(this);
   else
@@ -22781,8 +25148,20 @@ size_t GQLParser::RecordTypeContext::getRuleIndex() const {
   return GQLParser::RuleRecordType;
 }
 
+void GQLParser::RecordTypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterRecordType(this);
+}
 
-std::any GQLParser::RecordTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::RecordTypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitRecordType(this);
+}
+
+
+antlrcpp::Any GQLParser::RecordTypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitRecordType(this);
   else
@@ -22926,8 +25305,20 @@ size_t GQLParser::FieldTypesSpecificationContext::getRuleIndex() const {
   return GQLParser::RuleFieldTypesSpecification;
 }
 
+void GQLParser::FieldTypesSpecificationContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterFieldTypesSpecification(this);
+}
 
-std::any GQLParser::FieldTypesSpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::FieldTypesSpecificationContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitFieldTypesSpecification(this);
+}
+
+
+antlrcpp::Any GQLParser::FieldTypesSpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitFieldTypesSpecification(this);
   else
@@ -23025,8 +25416,20 @@ size_t GQLParser::NotNullContext::getRuleIndex() const {
   return GQLParser::RuleNotNull;
 }
 
+void GQLParser::NotNullContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterNotNull(this);
+}
 
-std::any GQLParser::NotNullContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::NotNullContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitNotNull(this);
+}
+
+
+antlrcpp::Any GQLParser::NotNullContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitNotNull(this);
   else
@@ -23076,8 +25479,20 @@ size_t GQLParser::SearchConditionContext::getRuleIndex() const {
   return GQLParser::RuleSearchCondition;
 }
 
+void GQLParser::SearchConditionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSearchCondition(this);
+}
 
-std::any GQLParser::SearchConditionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SearchConditionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSearchCondition(this);
+}
+
+
+antlrcpp::Any GQLParser::SearchConditionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSearchCondition(this);
   else
@@ -23241,8 +25656,20 @@ size_t GQLParser::PredicateContext::getRuleIndex() const {
   return GQLParser::RulePredicate;
 }
 
+void GQLParser::PredicateContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPredicate(this);
+}
 
-std::any GQLParser::PredicateContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::PredicateContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPredicate(this);
+}
+
+
+antlrcpp::Any GQLParser::PredicateContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPredicate(this);
   else
@@ -23610,8 +26037,20 @@ size_t GQLParser::CompOpContext::getRuleIndex() const {
   return GQLParser::RuleCompOp;
 }
 
+void GQLParser::CompOpContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterCompOp(this);
+}
 
-std::any GQLParser::CompOpContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::CompOpContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitCompOp(this);
+}
+
+
+antlrcpp::Any GQLParser::CompOpContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitCompOp(this);
   else
@@ -23684,8 +26123,18 @@ tree::TerminalNode* GQLParser::ConjunctiveExprAltContext::AND() {
 
 GQLParser::ConjunctiveExprAltContext::ConjunctiveExprAltContext(ValueExpressionContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::ConjunctiveExprAltContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterConjunctiveExprAlt(this);
+}
+void GQLParser::ConjunctiveExprAltContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitConjunctiveExprAlt(this);
+}
 
-std::any GQLParser::ConjunctiveExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::ConjunctiveExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitConjunctiveExprAlt(this);
   else
@@ -23707,8 +26156,18 @@ tree::TerminalNode* GQLParser::PropertyGraphExprAltContext::PROPERTY() {
 
 GQLParser::PropertyGraphExprAltContext::PropertyGraphExprAltContext(ValueExpressionContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::PropertyGraphExprAltContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPropertyGraphExprAlt(this);
+}
+void GQLParser::PropertyGraphExprAltContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPropertyGraphExprAlt(this);
+}
 
-std::any GQLParser::PropertyGraphExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::PropertyGraphExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPropertyGraphExprAlt(this);
   else
@@ -23734,8 +26193,18 @@ tree::TerminalNode* GQLParser::MultDivExprAltContext::SOLIDUS() {
 
 GQLParser::MultDivExprAltContext::MultDivExprAltContext(ValueExpressionContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::MultDivExprAltContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterMultDivExprAlt(this);
+}
+void GQLParser::MultDivExprAltContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitMultDivExprAlt(this);
+}
 
-std::any GQLParser::MultDivExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::MultDivExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitMultDivExprAlt(this);
   else
@@ -23757,8 +26226,18 @@ tree::TerminalNode* GQLParser::BindingTableExprAltContext::BINDING() {
 
 GQLParser::BindingTableExprAltContext::BindingTableExprAltContext(ValueExpressionContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::BindingTableExprAltContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterBindingTableExprAlt(this);
+}
+void GQLParser::BindingTableExprAltContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitBindingTableExprAlt(this);
+}
 
-std::any GQLParser::BindingTableExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::BindingTableExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitBindingTableExprAlt(this);
   else
@@ -23780,8 +26259,18 @@ tree::TerminalNode* GQLParser::SignedExprAltContext::MINUS_SIGN() {
 
 GQLParser::SignedExprAltContext::SignedExprAltContext(ValueExpressionContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::SignedExprAltContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSignedExprAlt(this);
+}
+void GQLParser::SignedExprAltContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSignedExprAlt(this);
+}
 
-std::any GQLParser::SignedExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::SignedExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSignedExprAlt(this);
   else
@@ -23807,8 +26296,18 @@ tree::TerminalNode* GQLParser::IsNotExprAltContext::NOT() {
 
 GQLParser::IsNotExprAltContext::IsNotExprAltContext(ValueExpressionContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::IsNotExprAltContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterIsNotExprAlt(this);
+}
+void GQLParser::IsNotExprAltContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitIsNotExprAlt(this);
+}
 
-std::any GQLParser::IsNotExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::IsNotExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitIsNotExprAlt(this);
   else
@@ -23850,8 +26349,18 @@ tree::TerminalNode* GQLParser::NormalizedPredicateExprAltContext::NFKD() {
 
 GQLParser::NormalizedPredicateExprAltContext::NormalizedPredicateExprAltContext(ValueExpressionContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::NormalizedPredicateExprAltContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterNormalizedPredicateExprAlt(this);
+}
+void GQLParser::NormalizedPredicateExprAltContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitNormalizedPredicateExprAlt(this);
+}
 
-std::any GQLParser::NormalizedPredicateExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::NormalizedPredicateExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitNormalizedPredicateExprAlt(this);
   else
@@ -23869,8 +26378,18 @@ GQLParser::ValueExpressionContext* GQLParser::NotExprAltContext::valueExpression
 
 GQLParser::NotExprAltContext::NotExprAltContext(ValueExpressionContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::NotExprAltContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterNotExprAlt(this);
+}
+void GQLParser::NotExprAltContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitNotExprAlt(this);
+}
 
-std::any GQLParser::NotExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::NotExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitNotExprAlt(this);
   else
@@ -23884,8 +26403,18 @@ GQLParser::ValueFunctionContext* GQLParser::ValueFunctionExprAltContext::valueFu
 
 GQLParser::ValueFunctionExprAltContext::ValueFunctionExprAltContext(ValueExpressionContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::ValueFunctionExprAltContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterValueFunctionExprAlt(this);
+}
+void GQLParser::ValueFunctionExprAltContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitValueFunctionExprAlt(this);
+}
 
-std::any GQLParser::ValueFunctionExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::ValueFunctionExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitValueFunctionExprAlt(this);
   else
@@ -23907,8 +26436,18 @@ tree::TerminalNode* GQLParser::ConcatenationExprAltContext::CONCATENATION_OPERAT
 
 GQLParser::ConcatenationExprAltContext::ConcatenationExprAltContext(ValueExpressionContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::ConcatenationExprAltContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterConcatenationExprAlt(this);
+}
+void GQLParser::ConcatenationExprAltContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitConcatenationExprAlt(this);
+}
 
-std::any GQLParser::ConcatenationExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::ConcatenationExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitConcatenationExprAlt(this);
   else
@@ -23934,8 +26473,18 @@ tree::TerminalNode* GQLParser::DisjunctiveExprAltContext::XOR() {
 
 GQLParser::DisjunctiveExprAltContext::DisjunctiveExprAltContext(ValueExpressionContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::DisjunctiveExprAltContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterDisjunctiveExprAlt(this);
+}
+void GQLParser::DisjunctiveExprAltContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitDisjunctiveExprAlt(this);
+}
 
-std::any GQLParser::DisjunctiveExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::DisjunctiveExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitDisjunctiveExprAlt(this);
   else
@@ -23957,8 +26506,18 @@ GQLParser::CompOpContext* GQLParser::ComparisonExprAltContext::compOp() {
 
 GQLParser::ComparisonExprAltContext::ComparisonExprAltContext(ValueExpressionContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::ComparisonExprAltContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterComparisonExprAlt(this);
+}
+void GQLParser::ComparisonExprAltContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitComparisonExprAlt(this);
+}
 
-std::any GQLParser::ComparisonExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::ComparisonExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitComparisonExprAlt(this);
   else
@@ -23972,8 +26531,18 @@ GQLParser::ValueExpressionPrimaryContext* GQLParser::PrimaryExprAltContext::valu
 
 GQLParser::PrimaryExprAltContext::PrimaryExprAltContext(ValueExpressionContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::PrimaryExprAltContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPrimaryExprAlt(this);
+}
+void GQLParser::PrimaryExprAltContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPrimaryExprAlt(this);
+}
 
-std::any GQLParser::PrimaryExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::PrimaryExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPrimaryExprAlt(this);
   else
@@ -23999,8 +26568,18 @@ tree::TerminalNode* GQLParser::AddSubtractExprAltContext::MINUS_SIGN() {
 
 GQLParser::AddSubtractExprAltContext::AddSubtractExprAltContext(ValueExpressionContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::AddSubtractExprAltContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterAddSubtractExprAlt(this);
+}
+void GQLParser::AddSubtractExprAltContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitAddSubtractExprAlt(this);
+}
 
-std::any GQLParser::AddSubtractExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::AddSubtractExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitAddSubtractExprAlt(this);
   else
@@ -24014,8 +26593,18 @@ GQLParser::PredicateContext* GQLParser::PredicateExprAltContext::predicate() {
 
 GQLParser::PredicateExprAltContext::PredicateExprAltContext(ValueExpressionContext *ctx) { copyFrom(ctx); }
 
+void GQLParser::PredicateExprAltContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPredicateExprAlt(this);
+}
+void GQLParser::PredicateExprAltContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPredicateExprAlt(this);
+}
 
-std::any GQLParser::PredicateExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any GQLParser::PredicateExprAltContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPredicateExprAlt(this);
   else
@@ -24388,8 +26977,20 @@ size_t GQLParser::ValueFunctionContext::getRuleIndex() const {
   return GQLParser::RuleValueFunction;
 }
 
+void GQLParser::ValueFunctionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterValueFunction(this);
+}
 
-std::any GQLParser::ValueFunctionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ValueFunctionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitValueFunction(this);
+}
+
+
+antlrcpp::Any GQLParser::ValueFunctionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitValueFunction(this);
   else
@@ -24482,8 +27083,20 @@ size_t GQLParser::BooleanValueExpressionContext::getRuleIndex() const {
   return GQLParser::RuleBooleanValueExpression;
 }
 
+void GQLParser::BooleanValueExpressionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterBooleanValueExpression(this);
+}
 
-std::any GQLParser::BooleanValueExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::BooleanValueExpressionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitBooleanValueExpression(this);
+}
+
+
+antlrcpp::Any GQLParser::BooleanValueExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitBooleanValueExpression(this);
   else
@@ -24607,8 +27220,20 @@ size_t GQLParser::CharacterOrByteStringFunctionContext::getRuleIndex() const {
   return GQLParser::RuleCharacterOrByteStringFunction;
 }
 
+void GQLParser::CharacterOrByteStringFunctionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterCharacterOrByteStringFunction(this);
+}
 
-std::any GQLParser::CharacterOrByteStringFunctionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::CharacterOrByteStringFunctionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitCharacterOrByteStringFunction(this);
+}
+
+
+antlrcpp::Any GQLParser::CharacterOrByteStringFunctionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitCharacterOrByteStringFunction(this);
   else
@@ -24786,8 +27411,20 @@ size_t GQLParser::AggregatingValueExpressionContext::getRuleIndex() const {
   return GQLParser::RuleAggregatingValueExpression;
 }
 
+void GQLParser::AggregatingValueExpressionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterAggregatingValueExpression(this);
+}
 
-std::any GQLParser::AggregatingValueExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::AggregatingValueExpressionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitAggregatingValueExpression(this);
+}
+
+
+antlrcpp::Any GQLParser::AggregatingValueExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitAggregatingValueExpression(this);
   else
@@ -24939,8 +27576,20 @@ size_t GQLParser::ValueExpressionPrimaryContext::getRuleIndex() const {
   return GQLParser::RuleValueExpressionPrimary;
 }
 
+void GQLParser::ValueExpressionPrimaryContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterValueExpressionPrimary(this);
+}
 
-std::any GQLParser::ValueExpressionPrimaryContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ValueExpressionPrimaryContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitValueExpressionPrimary(this);
+}
+
+
+antlrcpp::Any GQLParser::ValueExpressionPrimaryContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitValueExpressionPrimary(this);
   else
@@ -25234,8 +27883,20 @@ size_t GQLParser::ParenthesizedValueExpressionContext::getRuleIndex() const {
   return GQLParser::RuleParenthesizedValueExpression;
 }
 
+void GQLParser::ParenthesizedValueExpressionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterParenthesizedValueExpression(this);
+}
 
-std::any GQLParser::ParenthesizedValueExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ParenthesizedValueExpressionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitParenthesizedValueExpression(this);
+}
+
+
+antlrcpp::Any GQLParser::ParenthesizedValueExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitParenthesizedValueExpression(this);
   else
@@ -25383,8 +28044,20 @@ size_t GQLParser::NonParenthesizedValueExpressionPrimarySpecialCaseContext::getR
   return GQLParser::RuleNonParenthesizedValueExpressionPrimarySpecialCase;
 }
 
+void GQLParser::NonParenthesizedValueExpressionPrimarySpecialCaseContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterNonParenthesizedValueExpressionPrimarySpecialCase(this);
+}
 
-std::any GQLParser::NonParenthesizedValueExpressionPrimarySpecialCaseContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::NonParenthesizedValueExpressionPrimarySpecialCaseContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitNonParenthesizedValueExpressionPrimarySpecialCase(this);
+}
+
+
+antlrcpp::Any GQLParser::NonParenthesizedValueExpressionPrimarySpecialCaseContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitNonParenthesizedValueExpressionPrimarySpecialCase(this);
   else
@@ -25565,8 +28238,20 @@ size_t GQLParser::UnsignedValueSpecificationContext::getRuleIndex() const {
   return GQLParser::RuleUnsignedValueSpecification;
 }
 
+void GQLParser::UnsignedValueSpecificationContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterUnsignedValueSpecification(this);
+}
 
-std::any GQLParser::UnsignedValueSpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::UnsignedValueSpecificationContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitUnsignedValueSpecification(this);
+}
+
+
+antlrcpp::Any GQLParser::UnsignedValueSpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitUnsignedValueSpecification(this);
   else
@@ -25668,8 +28353,20 @@ size_t GQLParser::NonNegativeIntegerSpecificationContext::getRuleIndex() const {
   return GQLParser::RuleNonNegativeIntegerSpecification;
 }
 
+void GQLParser::NonNegativeIntegerSpecificationContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterNonNegativeIntegerSpecification(this);
+}
 
-std::any GQLParser::NonNegativeIntegerSpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::NonNegativeIntegerSpecificationContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitNonNegativeIntegerSpecification(this);
+}
+
+
+antlrcpp::Any GQLParser::NonNegativeIntegerSpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitNonNegativeIntegerSpecification(this);
   else
@@ -25797,8 +28494,20 @@ size_t GQLParser::CaseExpressionContext::getRuleIndex() const {
   return GQLParser::RuleCaseExpression;
 }
 
+void GQLParser::CaseExpressionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterCaseExpression(this);
+}
 
-std::any GQLParser::CaseExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::CaseExpressionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitCaseExpression(this);
+}
+
+
+antlrcpp::Any GQLParser::CaseExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitCaseExpression(this);
   else
@@ -25972,8 +28681,20 @@ size_t GQLParser::SimpleWhenClauseContext::getRuleIndex() const {
   return GQLParser::RuleSimpleWhenClause;
 }
 
+void GQLParser::SimpleWhenClauseContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSimpleWhenClause(this);
+}
 
-std::any GQLParser::SimpleWhenClauseContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SimpleWhenClauseContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSimpleWhenClause(this);
+}
+
+
+antlrcpp::Any GQLParser::SimpleWhenClauseContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSimpleWhenClause(this);
   else
@@ -26052,8 +28773,20 @@ size_t GQLParser::SearchedWhenClauseContext::getRuleIndex() const {
   return GQLParser::RuleSearchedWhenClause;
 }
 
+void GQLParser::SearchedWhenClauseContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSearchedWhenClause(this);
+}
 
-std::any GQLParser::SearchedWhenClauseContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SearchedWhenClauseContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSearchedWhenClause(this);
+}
+
+
+antlrcpp::Any GQLParser::SearchedWhenClauseContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSearchedWhenClause(this);
   else
@@ -26111,8 +28844,20 @@ size_t GQLParser::ElseClauseContext::getRuleIndex() const {
   return GQLParser::RuleElseClause;
 }
 
+void GQLParser::ElseClauseContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterElseClause(this);
+}
 
-std::any GQLParser::ElseClauseContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ElseClauseContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitElseClause(this);
+}
+
+
+antlrcpp::Any GQLParser::ElseClauseContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitElseClause(this);
   else
@@ -26166,8 +28911,20 @@ size_t GQLParser::CaseOperandContext::getRuleIndex() const {
   return GQLParser::RuleCaseOperand;
 }
 
+void GQLParser::CaseOperandContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterCaseOperand(this);
+}
 
-std::any GQLParser::CaseOperandContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::CaseOperandContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitCaseOperand(this);
+}
+
+
+antlrcpp::Any GQLParser::CaseOperandContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitCaseOperand(this);
   else
@@ -26312,8 +29069,20 @@ size_t GQLParser::WhenOperandContext::getRuleIndex() const {
   return GQLParser::RuleWhenOperand;
 }
 
+void GQLParser::WhenOperandContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterWhenOperand(this);
+}
 
-std::any GQLParser::WhenOperandContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::WhenOperandContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitWhenOperand(this);
+}
+
+
+antlrcpp::Any GQLParser::WhenOperandContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitWhenOperand(this);
   else
@@ -26549,8 +29318,20 @@ size_t GQLParser::ResultContext::getRuleIndex() const {
   return GQLParser::RuleResult;
 }
 
+void GQLParser::ResultContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterResult(this);
+}
 
-std::any GQLParser::ResultContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ResultContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitResult(this);
+}
+
+
+antlrcpp::Any GQLParser::ResultContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitResult(this);
   else
@@ -26683,8 +29464,20 @@ size_t GQLParser::AggregateFunctionContext::getRuleIndex() const {
   return GQLParser::RuleAggregateFunction;
 }
 
+void GQLParser::AggregateFunctionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterAggregateFunction(this);
+}
 
-std::any GQLParser::AggregateFunctionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::AggregateFunctionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitAggregateFunction(this);
+}
+
+
+antlrcpp::Any GQLParser::AggregateFunctionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitAggregateFunction(this);
   else
@@ -26821,8 +29614,20 @@ size_t GQLParser::SetQuantifierContext::getRuleIndex() const {
   return GQLParser::RuleSetQuantifier;
 }
 
+void GQLParser::SetQuantifierContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSetQuantifier(this);
+}
 
-std::any GQLParser::SetQuantifierContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SetQuantifierContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSetQuantifier(this);
+}
+
+
+antlrcpp::Any GQLParser::SetQuantifierContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSetQuantifier(this);
   else
@@ -26880,8 +29685,20 @@ size_t GQLParser::BindingVariableReferenceContext::getRuleIndex() const {
   return GQLParser::RuleBindingVariableReference;
 }
 
+void GQLParser::BindingVariableReferenceContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterBindingVariableReference(this);
+}
 
-std::any GQLParser::BindingVariableReferenceContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::BindingVariableReferenceContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitBindingVariableReference(this);
+}
+
+
+antlrcpp::Any GQLParser::BindingVariableReferenceContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitBindingVariableReference(this);
   else
@@ -26929,8 +29746,20 @@ size_t GQLParser::ElementVariableReferenceContext::getRuleIndex() const {
   return GQLParser::RuleElementVariableReference;
 }
 
+void GQLParser::ElementVariableReferenceContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterElementVariableReference(this);
+}
 
-std::any GQLParser::ElementVariableReferenceContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ElementVariableReferenceContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitElementVariableReference(this);
+}
+
+
+antlrcpp::Any GQLParser::ElementVariableReferenceContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitElementVariableReference(this);
   else
@@ -26978,8 +29807,20 @@ size_t GQLParser::PathValueExpressionContext::getRuleIndex() const {
   return GQLParser::RulePathValueExpression;
 }
 
+void GQLParser::PathValueExpressionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPathValueExpression(this);
+}
 
-std::any GQLParser::PathValueExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::PathValueExpressionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPathValueExpression(this);
+}
+
+
+antlrcpp::Any GQLParser::PathValueExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPathValueExpression(this);
   else
@@ -27051,8 +29892,20 @@ size_t GQLParser::PathValueConstructorContext::getRuleIndex() const {
   return GQLParser::RulePathValueConstructor;
 }
 
+void GQLParser::PathValueConstructorContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPathValueConstructor(this);
+}
 
-std::any GQLParser::PathValueConstructorContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::PathValueConstructorContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPathValueConstructor(this);
+}
+
+
+antlrcpp::Any GQLParser::PathValueConstructorContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPathValueConstructor(this);
   else
@@ -27123,8 +29976,20 @@ size_t GQLParser::ListValueExpressionContext::getRuleIndex() const {
   return GQLParser::RuleListValueExpression;
 }
 
+void GQLParser::ListValueExpressionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterListValueExpression(this);
+}
 
-std::any GQLParser::ListValueExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ListValueExpressionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitListValueExpression(this);
+}
+
+
+antlrcpp::Any GQLParser::ListValueExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitListValueExpression(this);
   else
@@ -27200,8 +30065,20 @@ size_t GQLParser::ListValueFunctionContext::getRuleIndex() const {
   return GQLParser::RuleListValueFunction;
 }
 
+void GQLParser::ListValueFunctionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterListValueFunction(this);
+}
 
-std::any GQLParser::ListValueFunctionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ListValueFunctionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitListValueFunction(this);
+}
+
+
+antlrcpp::Any GQLParser::ListValueFunctionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitListValueFunction(this);
   else
@@ -27306,8 +30183,20 @@ size_t GQLParser::ListValueConstructorContext::getRuleIndex() const {
   return GQLParser::RuleListValueConstructor;
 }
 
+void GQLParser::ListValueConstructorContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterListValueConstructor(this);
+}
 
-std::any GQLParser::ListValueConstructorContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ListValueConstructorContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitListValueConstructor(this);
+}
+
+
+antlrcpp::Any GQLParser::ListValueConstructorContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitListValueConstructor(this);
   else
@@ -27432,8 +30321,20 @@ size_t GQLParser::RecordConstructorContext::getRuleIndex() const {
   return GQLParser::RuleRecordConstructor;
 }
 
+void GQLParser::RecordConstructorContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterRecordConstructor(this);
+}
 
-std::any GQLParser::RecordConstructorContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::RecordConstructorContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitRecordConstructor(this);
+}
+
+
+antlrcpp::Any GQLParser::RecordConstructorContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitRecordConstructor(this);
   else
@@ -27523,8 +30424,20 @@ size_t GQLParser::TruthValueContext::getRuleIndex() const {
   return GQLParser::RuleTruthValue;
 }
 
+void GQLParser::TruthValueContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterTruthValue(this);
+}
 
-std::any GQLParser::TruthValueContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::TruthValueContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitTruthValue(this);
+}
+
+
+antlrcpp::Any GQLParser::TruthValueContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitTruthValue(this);
   else
@@ -27600,8 +30513,20 @@ size_t GQLParser::NumericValueExpressionContext::getRuleIndex() const {
   return GQLParser::RuleNumericValueExpression;
 }
 
+void GQLParser::NumericValueExpressionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterNumericValueExpression(this);
+}
 
-std::any GQLParser::NumericValueExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::NumericValueExpressionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitNumericValueExpression(this);
+}
+
+
+antlrcpp::Any GQLParser::NumericValueExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitNumericValueExpression(this);
   else
@@ -28041,8 +30966,20 @@ size_t GQLParser::NumericValueFunctionContext::getRuleIndex() const {
   return GQLParser::RuleNumericValueFunction;
 }
 
+void GQLParser::NumericValueFunctionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterNumericValueFunction(this);
+}
 
-std::any GQLParser::NumericValueFunctionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::NumericValueFunctionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitNumericValueFunction(this);
+}
+
+
+antlrcpp::Any GQLParser::NumericValueFunctionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitNumericValueFunction(this);
   else
@@ -28362,8 +31299,20 @@ size_t GQLParser::CharacterStringValueExpressionContext::getRuleIndex() const {
   return GQLParser::RuleCharacterStringValueExpression;
 }
 
+void GQLParser::CharacterStringValueExpressionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterCharacterStringValueExpression(this);
+}
 
-std::any GQLParser::CharacterStringValueExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::CharacterStringValueExpressionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitCharacterStringValueExpression(this);
+}
+
+
+antlrcpp::Any GQLParser::CharacterStringValueExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitCharacterStringValueExpression(this);
   else
@@ -28411,8 +31360,20 @@ size_t GQLParser::ByteStringValueExpressionContext::getRuleIndex() const {
   return GQLParser::RuleByteStringValueExpression;
 }
 
+void GQLParser::ByteStringValueExpressionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterByteStringValueExpression(this);
+}
 
-std::any GQLParser::ByteStringValueExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ByteStringValueExpressionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitByteStringValueExpression(this);
+}
+
+
+antlrcpp::Any GQLParser::ByteStringValueExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitByteStringValueExpression(this);
   else
@@ -28480,8 +31441,20 @@ size_t GQLParser::TrimOperandsContext::getRuleIndex() const {
   return GQLParser::RuleTrimOperands;
 }
 
+void GQLParser::TrimOperandsContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterTrimOperands(this);
+}
 
-std::any GQLParser::TrimOperandsContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::TrimOperandsContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitTrimOperands(this);
+}
+
+
+antlrcpp::Any GQLParser::TrimOperandsContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitTrimOperands(this);
   else
@@ -28572,8 +31545,20 @@ size_t GQLParser::StringLengthContext::getRuleIndex() const {
   return GQLParser::RuleStringLength;
 }
 
+void GQLParser::StringLengthContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterStringLength(this);
+}
 
-std::any GQLParser::StringLengthContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::StringLengthContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitStringLength(this);
+}
+
+
+antlrcpp::Any GQLParser::StringLengthContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitStringLength(this);
   else
@@ -28621,8 +31606,20 @@ size_t GQLParser::DatetimeValueExpressionContext::getRuleIndex() const {
   return GQLParser::RuleDatetimeValueExpression;
 }
 
+void GQLParser::DatetimeValueExpressionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterDatetimeValueExpression(this);
+}
 
-std::any GQLParser::DatetimeValueExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::DatetimeValueExpressionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitDatetimeValueExpression(this);
+}
+
+
+antlrcpp::Any GQLParser::DatetimeValueExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitDatetimeValueExpression(this);
   else
@@ -28726,8 +31723,20 @@ size_t GQLParser::DatetimeValueFunctionContext::getRuleIndex() const {
   return GQLParser::RuleDatetimeValueFunction;
 }
 
+void GQLParser::DatetimeValueFunctionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterDatetimeValueFunction(this);
+}
 
-std::any GQLParser::DatetimeValueFunctionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::DatetimeValueFunctionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitDatetimeValueFunction(this);
+}
+
+
+antlrcpp::Any GQLParser::DatetimeValueFunctionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitDatetimeValueFunction(this);
   else
@@ -28992,8 +32001,20 @@ size_t GQLParser::DurationValueExpressionContext::getRuleIndex() const {
   return GQLParser::RuleDurationValueExpression;
 }
 
+void GQLParser::DurationValueExpressionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterDurationValueExpression(this);
+}
 
-std::any GQLParser::DurationValueExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::DurationValueExpressionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitDurationValueExpression(this);
+}
+
+
+antlrcpp::Any GQLParser::DurationValueExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitDurationValueExpression(this);
   else
@@ -29081,8 +32102,20 @@ size_t GQLParser::DatetimeSubtractionContext::getRuleIndex() const {
   return GQLParser::RuleDatetimeSubtraction;
 }
 
+void GQLParser::DatetimeSubtractionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterDatetimeSubtraction(this);
+}
 
-std::any GQLParser::DatetimeSubtractionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::DatetimeSubtractionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitDatetimeSubtraction(this);
+}
+
+
+antlrcpp::Any GQLParser::DatetimeSubtractionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitDatetimeSubtraction(this);
   else
@@ -29191,8 +32224,20 @@ size_t GQLParser::DurationValueFunctionContext::getRuleIndex() const {
   return GQLParser::RuleDurationValueFunction;
 }
 
+void GQLParser::DurationValueFunctionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterDurationValueFunction(this);
+}
 
-std::any GQLParser::DurationValueFunctionContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::DurationValueFunctionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitDurationValueFunction(this);
+}
+
+
+antlrcpp::Any GQLParser::DurationValueFunctionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitDurationValueFunction(this);
   else
@@ -29287,8 +32332,20 @@ size_t GQLParser::ObjectNameContext::getRuleIndex() const {
   return GQLParser::RuleObjectName;
 }
 
+void GQLParser::ObjectNameContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterObjectName(this);
+}
 
-std::any GQLParser::ObjectNameContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ObjectNameContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitObjectName(this);
+}
+
+
+antlrcpp::Any GQLParser::ObjectNameContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitObjectName(this);
   else
@@ -29336,8 +32393,20 @@ size_t GQLParser::ObjectNameOrBindingVariableContext::getRuleIndex() const {
   return GQLParser::RuleObjectNameOrBindingVariable;
 }
 
+void GQLParser::ObjectNameOrBindingVariableContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterObjectNameOrBindingVariable(this);
+}
 
-std::any GQLParser::ObjectNameOrBindingVariableContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ObjectNameOrBindingVariableContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitObjectNameOrBindingVariable(this);
+}
+
+
+antlrcpp::Any GQLParser::ObjectNameOrBindingVariableContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitObjectNameOrBindingVariable(this);
   else
@@ -29385,8 +32454,20 @@ size_t GQLParser::DirectoryNameContext::getRuleIndex() const {
   return GQLParser::RuleDirectoryName;
 }
 
+void GQLParser::DirectoryNameContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterDirectoryName(this);
+}
 
-std::any GQLParser::DirectoryNameContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::DirectoryNameContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitDirectoryName(this);
+}
+
+
+antlrcpp::Any GQLParser::DirectoryNameContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitDirectoryName(this);
   else
@@ -29434,8 +32515,20 @@ size_t GQLParser::SchemaNameContext::getRuleIndex() const {
   return GQLParser::RuleSchemaName;
 }
 
+void GQLParser::SchemaNameContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSchemaName(this);
+}
 
-std::any GQLParser::SchemaNameContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SchemaNameContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSchemaName(this);
+}
+
+
+antlrcpp::Any GQLParser::SchemaNameContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSchemaName(this);
   else
@@ -29487,8 +32580,20 @@ size_t GQLParser::GraphNameContext::getRuleIndex() const {
   return GQLParser::RuleGraphName;
 }
 
+void GQLParser::GraphNameContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterGraphName(this);
+}
 
-std::any GQLParser::GraphNameContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::GraphNameContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitGraphName(this);
+}
+
+
+antlrcpp::Any GQLParser::GraphNameContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitGraphName(this);
   else
@@ -29605,8 +32710,20 @@ size_t GQLParser::DelimitedGraphNameContext::getRuleIndex() const {
   return GQLParser::RuleDelimitedGraphName;
 }
 
+void GQLParser::DelimitedGraphNameContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterDelimitedGraphName(this);
+}
 
-std::any GQLParser::DelimitedGraphNameContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::DelimitedGraphNameContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitDelimitedGraphName(this);
+}
+
+
+antlrcpp::Any GQLParser::DelimitedGraphNameContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitDelimitedGraphName(this);
   else
@@ -29664,8 +32781,20 @@ size_t GQLParser::GraphTypeNameContext::getRuleIndex() const {
   return GQLParser::RuleGraphTypeName;
 }
 
+void GQLParser::GraphTypeNameContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterGraphTypeName(this);
+}
 
-std::any GQLParser::GraphTypeNameContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::GraphTypeNameContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitGraphTypeName(this);
+}
+
+
+antlrcpp::Any GQLParser::GraphTypeNameContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitGraphTypeName(this);
   else
@@ -29713,8 +32842,20 @@ size_t GQLParser::NodeTypeNameContext::getRuleIndex() const {
   return GQLParser::RuleNodeTypeName;
 }
 
+void GQLParser::NodeTypeNameContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterNodeTypeName(this);
+}
 
-std::any GQLParser::NodeTypeNameContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::NodeTypeNameContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitNodeTypeName(this);
+}
+
+
+antlrcpp::Any GQLParser::NodeTypeNameContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitNodeTypeName(this);
   else
@@ -29762,8 +32903,20 @@ size_t GQLParser::EdgeTypeNameContext::getRuleIndex() const {
   return GQLParser::RuleEdgeTypeName;
 }
 
+void GQLParser::EdgeTypeNameContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterEdgeTypeName(this);
+}
 
-std::any GQLParser::EdgeTypeNameContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::EdgeTypeNameContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitEdgeTypeName(this);
+}
+
+
+antlrcpp::Any GQLParser::EdgeTypeNameContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitEdgeTypeName(this);
   else
@@ -29815,8 +32968,20 @@ size_t GQLParser::BindingTableNameContext::getRuleIndex() const {
   return GQLParser::RuleBindingTableName;
 }
 
+void GQLParser::BindingTableNameContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterBindingTableName(this);
+}
 
-std::any GQLParser::BindingTableNameContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::BindingTableNameContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitBindingTableName(this);
+}
+
+
+antlrcpp::Any GQLParser::BindingTableNameContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitBindingTableName(this);
   else
@@ -29933,8 +33098,20 @@ size_t GQLParser::DelimitedBindingTableNameContext::getRuleIndex() const {
   return GQLParser::RuleDelimitedBindingTableName;
 }
 
+void GQLParser::DelimitedBindingTableNameContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterDelimitedBindingTableName(this);
+}
 
-std::any GQLParser::DelimitedBindingTableNameContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::DelimitedBindingTableNameContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitDelimitedBindingTableName(this);
+}
+
+
+antlrcpp::Any GQLParser::DelimitedBindingTableNameContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitDelimitedBindingTableName(this);
   else
@@ -29992,8 +33169,20 @@ size_t GQLParser::ProcedureNameContext::getRuleIndex() const {
   return GQLParser::RuleProcedureName;
 }
 
+void GQLParser::ProcedureNameContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterProcedureName(this);
+}
 
-std::any GQLParser::ProcedureNameContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ProcedureNameContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitProcedureName(this);
+}
+
+
+antlrcpp::Any GQLParser::ProcedureNameContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitProcedureName(this);
   else
@@ -30041,8 +33230,20 @@ size_t GQLParser::LabelNameContext::getRuleIndex() const {
   return GQLParser::RuleLabelName;
 }
 
+void GQLParser::LabelNameContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterLabelName(this);
+}
 
-std::any GQLParser::LabelNameContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::LabelNameContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitLabelName(this);
+}
+
+
+antlrcpp::Any GQLParser::LabelNameContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitLabelName(this);
   else
@@ -30090,8 +33291,20 @@ size_t GQLParser::PropertyNameContext::getRuleIndex() const {
   return GQLParser::RulePropertyName;
 }
 
+void GQLParser::PropertyNameContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPropertyName(this);
+}
 
-std::any GQLParser::PropertyNameContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::PropertyNameContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPropertyName(this);
+}
+
+
+antlrcpp::Any GQLParser::PropertyNameContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPropertyName(this);
   else
@@ -30139,8 +33352,20 @@ size_t GQLParser::FieldNameContext::getRuleIndex() const {
   return GQLParser::RuleFieldName;
 }
 
+void GQLParser::FieldNameContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterFieldName(this);
+}
 
-std::any GQLParser::FieldNameContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::FieldNameContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitFieldName(this);
+}
+
+
+antlrcpp::Any GQLParser::FieldNameContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitFieldName(this);
   else
@@ -30188,8 +33413,20 @@ size_t GQLParser::ElementVariableContext::getRuleIndex() const {
   return GQLParser::RuleElementVariable;
 }
 
+void GQLParser::ElementVariableContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterElementVariable(this);
+}
 
-std::any GQLParser::ElementVariableContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ElementVariableContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitElementVariable(this);
+}
+
+
+antlrcpp::Any GQLParser::ElementVariableContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitElementVariable(this);
   else
@@ -30237,8 +33474,20 @@ size_t GQLParser::PathVariableContext::getRuleIndex() const {
   return GQLParser::RulePathVariable;
 }
 
+void GQLParser::PathVariableContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPathVariable(this);
+}
 
-std::any GQLParser::PathVariableContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::PathVariableContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPathVariable(this);
+}
+
+
+antlrcpp::Any GQLParser::PathVariableContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitPathVariable(this);
   else
@@ -30286,8 +33535,20 @@ size_t GQLParser::SubpathVariableContext::getRuleIndex() const {
   return GQLParser::RuleSubpathVariable;
 }
 
+void GQLParser::SubpathVariableContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSubpathVariable(this);
+}
 
-std::any GQLParser::SubpathVariableContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::SubpathVariableContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSubpathVariable(this);
+}
+
+
+antlrcpp::Any GQLParser::SubpathVariableContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitSubpathVariable(this);
   else
@@ -30335,8 +33596,20 @@ size_t GQLParser::BindingVariableContext::getRuleIndex() const {
   return GQLParser::RuleBindingVariable;
 }
 
+void GQLParser::BindingVariableContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterBindingVariable(this);
+}
 
-std::any GQLParser::BindingVariableContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::BindingVariableContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitBindingVariable(this);
+}
+
+
+antlrcpp::Any GQLParser::BindingVariableContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitBindingVariable(this);
   else
@@ -30388,8 +33661,20 @@ size_t GQLParser::UnsignedLiteralContext::getRuleIndex() const {
   return GQLParser::RuleUnsignedLiteral;
 }
 
+void GQLParser::UnsignedLiteralContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterUnsignedLiteral(this);
+}
 
-std::any GQLParser::UnsignedLiteralContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::UnsignedLiteralContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitUnsignedLiteral(this);
+}
+
+
+antlrcpp::Any GQLParser::UnsignedLiteralContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitUnsignedLiteral(this);
   else
@@ -30507,8 +33792,20 @@ size_t GQLParser::GeneralLiteralContext::getRuleIndex() const {
   return GQLParser::RuleGeneralLiteral;
 }
 
+void GQLParser::GeneralLiteralContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterGeneralLiteral(this);
+}
 
-std::any GQLParser::GeneralLiteralContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::GeneralLiteralContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitGeneralLiteral(this);
+}
+
+
+antlrcpp::Any GQLParser::GeneralLiteralContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitGeneralLiteral(this);
   else
@@ -30646,8 +33943,20 @@ size_t GQLParser::TemporalLiteralContext::getRuleIndex() const {
   return GQLParser::RuleTemporalLiteral;
 }
 
+void GQLParser::TemporalLiteralContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterTemporalLiteral(this);
+}
 
-std::any GQLParser::TemporalLiteralContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::TemporalLiteralContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitTemporalLiteral(this);
+}
+
+
+antlrcpp::Any GQLParser::TemporalLiteralContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitTemporalLiteral(this);
   else
@@ -30734,8 +34043,20 @@ size_t GQLParser::ListLiteralContext::getRuleIndex() const {
   return GQLParser::RuleListLiteral;
 }
 
+void GQLParser::ListLiteralContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterListLiteral(this);
+}
 
-std::any GQLParser::ListLiteralContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ListLiteralContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitListLiteral(this);
+}
+
+
+antlrcpp::Any GQLParser::ListLiteralContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitListLiteral(this);
   else
@@ -30783,8 +34104,20 @@ size_t GQLParser::RecordLiteralContext::getRuleIndex() const {
   return GQLParser::RuleRecordLiteral;
 }
 
+void GQLParser::RecordLiteralContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterRecordLiteral(this);
+}
 
-std::any GQLParser::RecordLiteralContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::RecordLiteralContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitRecordLiteral(this);
+}
+
+
+antlrcpp::Any GQLParser::RecordLiteralContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitRecordLiteral(this);
   else
@@ -30840,8 +34173,20 @@ size_t GQLParser::IdentifierContext::getRuleIndex() const {
   return GQLParser::RuleIdentifier;
 }
 
+void GQLParser::IdentifierContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterIdentifier(this);
+}
 
-std::any GQLParser::IdentifierContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::IdentifierContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitIdentifier(this);
+}
+
+
+antlrcpp::Any GQLParser::IdentifierContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitIdentifier(this);
   else
@@ -30964,8 +34309,20 @@ size_t GQLParser::RegularIdentifierContext::getRuleIndex() const {
   return GQLParser::RuleRegularIdentifier;
 }
 
+void GQLParser::RegularIdentifierContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterRegularIdentifier(this);
+}
 
-std::any GQLParser::RegularIdentifierContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::RegularIdentifierContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitRegularIdentifier(this);
+}
+
+
+antlrcpp::Any GQLParser::RegularIdentifierContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitRegularIdentifier(this);
   else
@@ -31076,8 +34433,20 @@ size_t GQLParser::TimeZoneStringContext::getRuleIndex() const {
   return GQLParser::RuleTimeZoneString;
 }
 
+void GQLParser::TimeZoneStringContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterTimeZoneString(this);
+}
 
-std::any GQLParser::TimeZoneStringContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::TimeZoneStringContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitTimeZoneString(this);
+}
+
+
+antlrcpp::Any GQLParser::TimeZoneStringContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitTimeZoneString(this);
   else
@@ -31129,8 +34498,20 @@ size_t GQLParser::CharacterStringLiteralContext::getRuleIndex() const {
   return GQLParser::RuleCharacterStringLiteral;
 }
 
+void GQLParser::CharacterStringLiteralContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterCharacterStringLiteral(this);
+}
 
-std::any GQLParser::CharacterStringLiteralContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::CharacterStringLiteralContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitCharacterStringLiteral(this);
+}
+
+
+antlrcpp::Any GQLParser::CharacterStringLiteralContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitCharacterStringLiteral(this);
   else
@@ -31192,8 +34573,20 @@ size_t GQLParser::UnsignedNumericLiteralContext::getRuleIndex() const {
   return GQLParser::RuleUnsignedNumericLiteral;
 }
 
+void GQLParser::UnsignedNumericLiteralContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterUnsignedNumericLiteral(this);
+}
 
-std::any GQLParser::UnsignedNumericLiteralContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::UnsignedNumericLiteralContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitUnsignedNumericLiteral(this);
+}
+
+
+antlrcpp::Any GQLParser::UnsignedNumericLiteralContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitUnsignedNumericLiteral(this);
   else
@@ -31284,8 +34677,20 @@ size_t GQLParser::ExactNumericLiteralContext::getRuleIndex() const {
   return GQLParser::RuleExactNumericLiteral;
 }
 
+void GQLParser::ExactNumericLiteralContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterExactNumericLiteral(this);
+}
 
-std::any GQLParser::ExactNumericLiteralContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ExactNumericLiteralContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitExactNumericLiteral(this);
+}
+
+
+antlrcpp::Any GQLParser::ExactNumericLiteralContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitExactNumericLiteral(this);
   else
@@ -31386,8 +34791,20 @@ size_t GQLParser::ApproximateNumericLiteralContext::getRuleIndex() const {
   return GQLParser::RuleApproximateNumericLiteral;
 }
 
+void GQLParser::ApproximateNumericLiteralContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterApproximateNumericLiteral(this);
+}
 
-std::any GQLParser::ApproximateNumericLiteralContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::ApproximateNumericLiteralContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitApproximateNumericLiteral(this);
+}
+
+
+antlrcpp::Any GQLParser::ApproximateNumericLiteralContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitApproximateNumericLiteral(this);
   else
@@ -31456,8 +34873,20 @@ size_t GQLParser::UnsignedIntegerContext::getRuleIndex() const {
   return GQLParser::RuleUnsignedInteger;
 }
 
+void GQLParser::UnsignedIntegerContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterUnsignedInteger(this);
+}
 
-std::any GQLParser::UnsignedIntegerContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::UnsignedIntegerContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitUnsignedInteger(this);
+}
+
+
+antlrcpp::Any GQLParser::UnsignedIntegerContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitUnsignedInteger(this);
   else
@@ -31514,8 +34943,20 @@ size_t GQLParser::UnsignedDecimalIntegerContext::getRuleIndex() const {
   return GQLParser::RuleUnsignedDecimalInteger;
 }
 
+void GQLParser::UnsignedDecimalIntegerContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterUnsignedDecimalInteger(this);
+}
 
-std::any GQLParser::UnsignedDecimalIntegerContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::UnsignedDecimalIntegerContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitUnsignedDecimalInteger(this);
+}
+
+
+antlrcpp::Any GQLParser::UnsignedDecimalIntegerContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitUnsignedDecimalInteger(this);
   else
@@ -31563,8 +35004,20 @@ size_t GQLParser::NullLiteralContext::getRuleIndex() const {
   return GQLParser::RuleNullLiteral;
 }
 
+void GQLParser::NullLiteralContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterNullLiteral(this);
+}
 
-std::any GQLParser::NullLiteralContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::NullLiteralContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitNullLiteral(this);
+}
+
+
+antlrcpp::Any GQLParser::NullLiteralContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitNullLiteral(this);
   else
@@ -31612,8 +35065,20 @@ size_t GQLParser::DateStringContext::getRuleIndex() const {
   return GQLParser::RuleDateString;
 }
 
+void GQLParser::DateStringContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterDateString(this);
+}
 
-std::any GQLParser::DateStringContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::DateStringContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitDateString(this);
+}
+
+
+antlrcpp::Any GQLParser::DateStringContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitDateString(this);
   else
@@ -31661,8 +35126,20 @@ size_t GQLParser::TimeStringContext::getRuleIndex() const {
   return GQLParser::RuleTimeString;
 }
 
+void GQLParser::TimeStringContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterTimeString(this);
+}
 
-std::any GQLParser::TimeStringContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::TimeStringContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitTimeString(this);
+}
+
+
+antlrcpp::Any GQLParser::TimeStringContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitTimeString(this);
   else
@@ -31710,8 +35187,20 @@ size_t GQLParser::DatetimeStringContext::getRuleIndex() const {
   return GQLParser::RuleDatetimeString;
 }
 
+void GQLParser::DatetimeStringContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterDatetimeString(this);
+}
 
-std::any GQLParser::DatetimeStringContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::DatetimeStringContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitDatetimeString(this);
+}
+
+
+antlrcpp::Any GQLParser::DatetimeStringContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitDatetimeString(this);
   else
@@ -31763,8 +35252,20 @@ size_t GQLParser::DurationLiteralContext::getRuleIndex() const {
   return GQLParser::RuleDurationLiteral;
 }
 
+void GQLParser::DurationLiteralContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterDurationLiteral(this);
+}
 
-std::any GQLParser::DurationLiteralContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::DurationLiteralContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitDurationLiteral(this);
+}
+
+
+antlrcpp::Any GQLParser::DurationLiteralContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitDurationLiteral(this);
   else
@@ -31814,8 +35315,20 @@ size_t GQLParser::DurationStringContext::getRuleIndex() const {
   return GQLParser::RuleDurationString;
 }
 
+void GQLParser::DurationStringContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterDurationString(this);
+}
 
-std::any GQLParser::DurationStringContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::DurationStringContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitDurationString(this);
+}
+
+
+antlrcpp::Any GQLParser::DurationStringContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitDurationString(this);
   else
@@ -31867,8 +35380,20 @@ size_t GQLParser::NodeSynonymContext::getRuleIndex() const {
   return GQLParser::RuleNodeSynonym;
 }
 
+void GQLParser::NodeSynonymContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterNodeSynonym(this);
+}
 
-std::any GQLParser::NodeSynonymContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::NodeSynonymContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitNodeSynonym(this);
+}
+
+
+antlrcpp::Any GQLParser::NodeSynonymContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitNodeSynonym(this);
   else
@@ -31930,8 +35455,20 @@ size_t GQLParser::EdgesSynonymContext::getRuleIndex() const {
   return GQLParser::RuleEdgesSynonym;
 }
 
+void GQLParser::EdgesSynonymContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterEdgesSynonym(this);
+}
 
-std::any GQLParser::EdgesSynonymContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::EdgesSynonymContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitEdgesSynonym(this);
+}
+
+
+antlrcpp::Any GQLParser::EdgesSynonymContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitEdgesSynonym(this);
   else
@@ -31993,8 +35530,20 @@ size_t GQLParser::EdgeSynonymContext::getRuleIndex() const {
   return GQLParser::RuleEdgeSynonym;
 }
 
+void GQLParser::EdgeSynonymContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterEdgeSynonym(this);
+}
 
-std::any GQLParser::EdgeSynonymContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::EdgeSynonymContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitEdgeSynonym(this);
+}
+
+
+antlrcpp::Any GQLParser::EdgeSynonymContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitEdgeSynonym(this);
   else
@@ -32236,8 +35785,20 @@ size_t GQLParser::NonReservedWordsContext::getRuleIndex() const {
   return GQLParser::RuleNonReservedWords;
 }
 
+void GQLParser::NonReservedWordsContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterNonReservedWords(this);
+}
 
-std::any GQLParser::NonReservedWordsContext::accept(tree::ParseTreeVisitor *visitor) {
+void GQLParser::NonReservedWordsContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<GQLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitNonReservedWords(this);
+}
+
+
+antlrcpp::Any GQLParser::NonReservedWordsContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<GQLVisitor*>(visitor))
     return parserVisitor->visitNonReservedWords(this);
   else

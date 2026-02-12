@@ -329,10 +329,21 @@ antlrcpp::Any ASTBuilder::visitGraphPattern(GQLParser::GraphPatternContext* ctx)
     // Visit WHERE clause if present - GraphPattern has searchCondition, not whereClause
     if (ctx->searchCondition() && currentMatchNode) {
         auto whereNode = std::make_unique<WhereClauseNode>();
-        auto exprNode = std::make_unique<ExpressionNode>();
-        exprNode->type = "CONDITION";
-        exprNode->value = ctx->searchCondition()->getText();
-        whereNode->condition = std::move(exprNode);
+        
+        // Build expression tree from searchCondition
+        if (ctx->searchCondition()->booleanValueExpression()) {
+            auto expr = buildExpressionFromContext(ctx->searchCondition()->booleanValueExpression());
+            if (expr) {
+                whereNode->condition = std::move(expr);
+            } else {
+                // Fallback to raw text
+                auto exprNode = std::make_unique<ExpressionNode>();
+                exprNode->type = "CONDITION";
+                exprNode->value = ctx->searchCondition()->getText();
+                whereNode->condition = std::move(exprNode);
+            }
+        }
+        
         currentMatchNode->whereClause = std::move(whereNode);
     }
     
@@ -692,31 +703,19 @@ antlrcpp::Any ASTBuilder::visitPrimitiveResultStatement(GQLParser::PrimitiveResu
 
 antlrcpp::Any ASTBuilder::visitReturnItem(GQLParser::ReturnItemContext* ctx) {
     if (ctx->aggregatingValueExpression()) {
-        auto exprNode = std::make_unique<ExpressionNode>();
-        exprNode->type = "VARIABLE";
-        exprNode->value = ctx->aggregatingValueExpression()->getText();
+        // Visit the expression to build its tree
+        visit(ctx->aggregatingValueExpression());
         
-        // Attach to current return node if available
-        if (currentReturnNode) {
-            currentReturnNode->expressions.push_back(std::move(exprNode));
-        } else if (currentMatchNode && currentMatchNode->returnStatement) {
-            // Fallback: attach to match statement's return statement
-            ReturnStatementNode* returnNode = static_cast<ReturnStatementNode*>(currentMatchNode->returnStatement.get());
-            returnNode->expressions.push_back(std::move(exprNode));
-        } else {
-            // Look for last return statement in root children
-            bool added = false;
-            for (auto it = root->children.rbegin(); it != root->children.rend(); ++it) {
-                if ((*it)->type == ASTNode::RETURN_STATEMENT) {
-                    ReturnStatementNode* returnNode = static_cast<ReturnStatementNode*>(it->get());
-                    returnNode->expressions.push_back(std::move(exprNode));
-                    added = true;
-                    break;
-                }
-            }
-            if (!added) {
-                // If no return statement found, add to root
-        root->children.push_back(std::move(exprNode));
+        if (!root->children.empty() && root->children.back()->type == ASTNode::EXPRESSION) {
+            auto exprNode = std::unique_ptr<ExpressionNode>(static_cast<ExpressionNode*>(root->children.back().release()));
+            root->children.pop_back();
+            
+            // Attach to current return node if available
+            if (currentReturnNode) {
+                currentReturnNode->expressions.push_back(std::move(exprNode));
+            } else {
+                // Fallback: add to root
+                root->children.push_back(std::move(exprNode));
             }
         }
     }
@@ -857,20 +856,14 @@ antlrcpp::Any ASTBuilder::visitLetVariableDefinition(GQLParser::LetVariableDefin
         }
         // TODO: Handle typed and valueType
         if (ctx->EQUALS_OPERATOR() && ctx->valueExpression()) {
-            auto exprNode = std::make_unique<ExpressionNode>();
-            exprNode->type = "VALUE";
-            exprNode->value = ctx->valueExpression()->getText();
-            def.valueExpression = std::move(exprNode);
+            def.valueExpression = buildExpressionFromValueExpression(ctx->valueExpression());
             def.hasValue = true;
         }
     } else if (ctx->bindingVariable()) {
         // Handle bindingVariable EQUALS_OPERATOR valueExpression
         def.variable = ctx->bindingVariable()->getText();
         if (ctx->EQUALS_OPERATOR() && ctx->valueExpression()) {
-            auto exprNode = std::make_unique<ExpressionNode>();
-            exprNode->type = "VALUE";
-            exprNode->value = ctx->valueExpression()->getText();
-            def.valueExpression = std::move(exprNode);
+            def.valueExpression = buildExpressionFromValueExpression(ctx->valueExpression());
             def.hasValue = true;
         }
     }
@@ -1249,10 +1242,7 @@ antlrcpp::Any ASTBuilder::visitSetItem(GQLParser::SetItemContext* ctx) {
         item.type = "PROPERTY";
         item.propertyName = ctx->propertyName()->getText();
         if (ctx->valueExpression()) {
-            auto exprNode = std::make_unique<ExpressionNode>();
-            exprNode->type = "VALUE";
-            exprNode->value = ctx->valueExpression()->getText();
-            item.valueExpression = std::move(exprNode);
+            item.valueExpression = buildExpressionFromValueExpression(ctx->valueExpression());
         }
     }
     // Type 2: variable = {key: value, ...}
@@ -1779,17 +1769,156 @@ antlrcpp::Any ASTBuilder::visitUseGraphClause(GQLParser::UseGraphClauseContext* 
 antlrcpp::Any ASTBuilder::visitSearchCondition(GQLParser::SearchConditionContext* ctx) {
     // searchCondition is a booleanValueExpression
     if (ctx->booleanValueExpression()) {
-        return visit(ctx->booleanValueExpression());
+        // Manually build the expression tree by examining the parse tree structure
+        auto expr = buildExpressionFromContext(ctx->booleanValueExpression());
+        if (expr) {
+            root->children.push_back(std::move(expr));
+        }
     }
     return nullptr;
 }
 
-antlrcpp::Any ASTBuilder::visitBooleanValueExpression(GQLParser::BooleanValueExpressionContext* ctx) {
-    // booleanValueExpression is just a valueExpression
-    if (ctx->valueExpression()) {
-        return visit(ctx->valueExpression());
+// Helper method to build expression tree from booleanValueExpression context
+std::unique_ptr<ExpressionNode> ASTBuilder::buildExpressionFromContext(GQLParser::BooleanValueExpressionContext* ctx) {
+    if (!ctx) return nullptr;
+    
+    // Get the text to check for operators
+    std::string text = ctx->getText();
+    
+    // Check if it contains AND
+    if (text.find("AND") != std::string::npos && ctx->valueExpression()) {
+        auto exprNode = std::make_unique<ExpressionNode>();
+        exprNode->type = "BINARY_OP";
+        exprNode->operator_ = "AND";
+        
+        // Try to split by AND
+        // This is a simplified approach - we'll parse the valueExpression children
+        auto valueExpr = ctx->valueExpression();
+        if (valueExpr) {
+            // Visit children to build sub-expressions
+            auto children = valueExpr->children;
+            if (children.size() >= 3) { // left AND right
+                // Build left expression
+                if (auto leftCtx = dynamic_cast<antlr4::ParserRuleContext*>(children[0])) {
+                    exprNode->left = buildExpressionFromValueExpression(leftCtx);
+                }
+                // Build right expression  
+                if (auto rightCtx = dynamic_cast<antlr4::ParserRuleContext*>(children[2])) {
+                    exprNode->right = buildExpressionFromValueExpression(rightCtx);
+                }
+            }
+        }
+        return exprNode;
     }
+    
+    // Otherwise, it's a simple comparison or value
+    if (ctx->valueExpression()) {
+        return buildExpressionFromValueExpression(ctx->valueExpression());
+    }
+    
     return nullptr;
+}
+
+// Helper to build expression from valueExpression
+std::unique_ptr<ExpressionNode> ASTBuilder::buildExpressionFromValueExpression(antlr4::ParserRuleContext* ctx) {
+    if (!ctx) return nullptr;
+    
+    std::string text = ctx->getText();
+    auto exprNode = std::make_unique<ExpressionNode>();
+    
+    // Check for comparison operators
+    if (text.find(">") != std::string::npos) {
+        exprNode->type = "BINARY_OP";
+        exprNode->operator_ = ">";
+        
+        // Split by >
+        auto children = ctx->children;
+        if (children.size() >= 3) {
+            if (auto leftCtx = dynamic_cast<antlr4::ParserRuleContext*>(children[0])) {
+                exprNode->left = buildExpressionFromPrimary(leftCtx);
+            }
+            if (auto rightCtx = dynamic_cast<antlr4::ParserRuleContext*>(children[2])) {
+                exprNode->right = buildExpressionFromPrimary(rightCtx);
+            }
+        }
+        return exprNode;
+    } else if (text.find("=") != std::string::npos && text.find("!=") == std::string::npos) {
+        exprNode->type = "BINARY_OP";
+        exprNode->operator_ = "=";
+        
+        auto children = ctx->children;
+        if (children.size() >= 3) {
+            if (auto leftCtx = dynamic_cast<antlr4::ParserRuleContext*>(children[0])) {
+                exprNode->left = buildExpressionFromPrimary(leftCtx);
+            }
+            if (auto rightCtx = dynamic_cast<antlr4::ParserRuleContext*>(children[2])) {
+                exprNode->right = buildExpressionFromPrimary(rightCtx);
+            }
+        }
+        return exprNode;
+    }
+    
+    // Otherwise it's a primary expression
+    return buildExpressionFromPrimary(ctx);
+}
+
+// Helper to build expression from primary (property access, literal, variable)
+std::unique_ptr<ExpressionNode> ASTBuilder::buildExpressionFromPrimary(antlr4::ParserRuleContext* ctx) {
+    if (!ctx) return nullptr;
+    
+    std::string text = ctx->getText();
+    auto exprNode = std::make_unique<ExpressionNode>();
+    
+    // Check for property access (contains .)
+    if (text.find('.') != std::string::npos) {
+        exprNode->type = "PROPERTY_ACCESS";
+        size_t dotPos = text.find('.');
+        std::string varName = text.substr(0, dotPos);
+        std::string propName = text.substr(dotPos + 1);
+        
+        // Create variable reference for object
+        auto varNode = std::make_unique<ExpressionNode>();
+        varNode->type = "VARIABLE";
+        varNode->value = varName;
+        exprNode->object = std::move(varNode);
+        exprNode->propertyName = propName;
+        return exprNode;
+    }
+    
+    // Check if it's a string literal (starts with ')
+    if (!text.empty() && text[0] == '\'') {
+        exprNode->type = "LITERAL";
+        exprNode->value = text;
+        exprNode->literalType = "STRING";
+        return exprNode;
+    }
+    
+    // Check if it's a number
+    bool isNumber = true;
+    for (char c : text) {
+        if (!std::isdigit(c) && c != '.' && c != '-' && c != '+') {
+            isNumber = false;
+            break;
+        }
+    }
+    
+    if (isNumber) {
+        exprNode->type = "LITERAL";
+        exprNode->value = text;
+        exprNode->literalType = (text.find('.') != std::string::npos) ? "FLOAT" : "INTEGER";
+        return exprNode;
+    }
+    
+    // Otherwise it's a variable
+    exprNode->type = "VARIABLE";
+    exprNode->value = text;
+    return exprNode;
+}
+
+antlrcpp::Any ASTBuilder::visitBooleanValueExpression(GQLParser::BooleanValueExpressionContext* ctx) {
+    // Let ANTLR automatically route to the correct alternative
+    // (ComparisonExprAlt, ConjunctiveExprAlt, etc.)
+    return visitChildren(ctx);
 }
 
 antlrcpp::Any ASTBuilder::visitComparisonExprAlt(GQLParser::ComparisonExprAltContext* ctx) {
@@ -2168,6 +2297,14 @@ antlrcpp::Any ASTBuilder::visitAggregateFunction(GQLParser::AggregateFunctionCon
     }
     
     // Handle COUNT(*)
+    // Handle setQuantifier (DISTINCT/ALL)
+    if (ctx->setQuantifier()) {
+        if (ctx->setQuantifier()->DISTINCT()) {
+            exprNode->operator_ = "DISTINCT"; // Use operator_ to store DISTINCT for now
+        }
+    }
+    
+    // Handle COUNT(*)
     if (ctx->ASTERISK()) {
         auto asteriskNode = std::make_unique<ExpressionNode>();
         asteriskNode->type = "LITERAL";
@@ -2186,16 +2323,13 @@ antlrcpp::Any ASTBuilder::visitAggregateFunction(GQLParser::AggregateFunctionCon
     }
     
     // Handle PERCENTILE functions with two arguments
-    if (ctx->numericValueExpression().size() >= 2) {
-        visit(ctx->numericValueExpression(0));
-        if (!root->children.empty() && root->children.back()->type == ASTNode::EXPRESSION) {
-            exprNode->arguments.push_back(std::move(root->children.back()));
-            root->children.pop_back();
-        }
-        visit(ctx->numericValueExpression(1));
-        if (!root->children.empty() && root->children.back()->type == ASTNode::EXPRESSION) {
-            exprNode->arguments.push_back(std::move(root->children.back()));
-            root->children.pop_back();
+    if (!ctx->numericValueExpression().empty()) {
+        for (auto* numericExpr : ctx->numericValueExpression()) {
+            visit(numericExpr);
+            if (!root->children.empty() && root->children.back()->type == ASTNode::EXPRESSION) {
+                exprNode->arguments.push_back(std::move(root->children.back()));
+                root->children.pop_back();
+            }
         }
     }
     

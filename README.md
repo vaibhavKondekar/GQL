@@ -40,24 +40,28 @@ This project implements a complete GQL parser using ANTLR4 with a compressed gra
 ## 📁 Project Structure
 
 ```
-newGQL/
-├── GQL.g4                          # Compressed GQL grammar (67KB)
-├── GQLLexer.cpp/h                  # Generated lexer
-├── GQLParser.cpp/h                 # Generated parser
-├── GQLBaseVisitor.cpp/h            # Generated base visitor
-├── GQLVisitor.cpp/h                # Generated visitor interface
-├── GQLBaseListener.cpp/h           # Generated base listener
-├── GQLListener.cpp/h               # Generated listener interface
-├── ASTNodes.h/cpp                  # Custom AST node definitions
-├── ASTVisitor.h                    # AST visitor interface
-├── ASTPrinter.h/cpp                # AST pretty printer
-├── ASTBuilder.h/cpp                # AST construction from parse tree
-├── main.cpp                        # Main application
-├── test.gql                        # Complex test query
-├── test_match.gql                  # Simple MATCH test
-├── test_match_complex.gql          # Complex MATCH test
-├── test_all.gql                    # Comprehensive test suite
-└── cmd.txt                         # Build instructions
+GQL/
+├── src/                            # Core engine source code
+│   ├── main.cpp                    # Main application entry point
+│   ├── ASTBuilder.h/cpp            # AST construction from parse tree
+│   ├── ASTNodes.h/cpp              # Custom AST node definitions
+│   ├── ASTPrinter.h/cpp            # AST pretty printer
+│   ├── LogicalPlanBuilder.h/cpp    # Logical plan generation from AST
+│   ├── LogicalPlanNodes.h/cpp      # Logical plan node definitions
+│   └── LogicalPlanPrinter.h/cpp    # Logical plan pretty printer
+├── generated/                      # ANTLR4 generated Lexer, Parser, and Visitors
+│   ├── GQLLexer.cpp/h              # Generated lexer
+│   ├── GQLParser.cpp/h             # Generated parser
+│   └── GQLBaseVisitor.cpp/h        # Generated base visitor
+├── grammar/                        # GQL grammar files
+│   └── GQL.g4                      # Compressed GQL grammar (67KB)
+├── tests/                          # GQL test scripts and queries
+│   ├── mega_test.gql               # Comprehensive test query
+│   └── test_match.gql              # Simple MATCH test
+├── docs/                           # Documentation and guides
+│   ├── LOGICAL_PLAN_EXPLANATION.md # Detailed logical plan guide
+│   └── AST_ROADMAP.md              # AST development roadmap
+└── README.md                       # Project overview and build guide
 ```
 
 ## 🔧 Dependencies
@@ -86,22 +90,23 @@ sudo make install
 ### 1. Generate Lexer & Parser
 
 ```bash
-antlr4 -Dlanguage=Cpp GQL.g4 -visitor -listener
+antlr4 -Dlanguage=Cpp grammar/GQL.g4 -visitor -o generated/
 ```
 
 ### 2. Compile the Project
 
 ```bash
-g++ -std=c++17 -I/usr/local/include/antlr4-runtime \
-    main.cpp ASTNodes.cpp ASTBuilder.cpp ASTPrinter.cpp \
-    GQLLexer.cpp GQLParser.cpp GQLBaseVisitor.cpp GQLBaseListener.cpp \
+g++ -std=c++17 -I/usr/local/include/antlr4-runtime -Isrc -Igenerated \
+    src/main.cpp src/ASTNodes.cpp src/ASTBuilder.cpp src/ASTPrinter.cpp \
+    src/LogicalPlanNodes.cpp src/LogicalPlanBuilder.cpp src/LogicalPlanPrinter.cpp \
+    generated/GQLLexer.cpp generated/GQLParser.cpp generated/GQLBaseVisitor.cpp \
     -lantlr4-runtime -L/usr/local/lib -o gqlparser
 ```
 
 ### 3. Test a Query
 
 ```bash
-./gqlparser test.gql
+./gqlparser tests/mega_test.gql
 ```
 
 ## 🚀 Usage

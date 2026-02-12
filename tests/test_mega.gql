@@ -1,0 +1,4 @@
+MATCH (p:Person)-[r:ACTED_IN]->(m:Movie)
+WHERE p.age > 20 AND p.city = "London"
+SET p.last_access = "2026-02-07"
+RETURN m.title, COUNT(p);
