@@ -1,0 +1,5 @@
+MATCH (p:Person)-[r:ACTED_IN]->(m:Movie)
+WHERE p.age > 30
+RETURN p.name, m.title
+ORDER BY p.name ASC
+LIMIT 10

@@ -7,6 +7,7 @@
 #include "ASTPrinter.h"
 #include "LogicalPlanBuilder.h"
 #include "LogicalPlanPrinter.h"
+#include "PhysicalPlanner.h"
 
 using namespace antlr4;
 using namespace std;
@@ -117,6 +118,17 @@ int main(int argc, const char* argv[]) {
         if (logicalPlan) {
             LogicalPlanPrinter planPrinter;
             planPrinter.print(logicalPlan.get());
+
+            // ✅ Build Physical Plan from Logical Plan
+            cout << "\n==================== PHYSICAL PLAN ====================\n";
+            PhysicalPlanner phyPlanner;
+            auto phyPlan = phyPlanner.build(logicalPlan.get());
+            if (phyPlan) {
+                phyPlan->print();
+            } else {
+                cout << "(No physical plan generated)\n";
+            }
+
         } else {
             cout << "(No logical plan generated)\n";
         }
