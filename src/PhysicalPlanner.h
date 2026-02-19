@@ -5,15 +5,17 @@
 #include <memory>
 #include <stack>
 
+using namespace std;
+
 class PhysicalPlanner : public LogicalPlanVisitor {
 public:
-    std::unique_ptr<PhysicalPlanNode> build(LogicalPlanNode* logicalPlan);
+    unique_ptr<PhysicalPlanNode> build(LogicalPlanNode* logicalPlan);
 
     // Visitor methods
     void visitNodeScan(NodeScanNode* node) override;
     void visitEdgeScan(EdgeScanNode* node) override;
     void visitFilter(FilterNode* node) override;
-    void visitProject(ProjectNode* n) override; // Wait, interface uses 'n' or types? Types matter.
+    void visitProject(ProjectNode* n) override; 
     void visitJoin(JoinNode* node) override;
     void visitAggregate(AggregateNode* node) override;
     void visitSort(SortNode* node) override;
@@ -31,6 +33,6 @@ public:
     void visitLiteral(LiteralNode* node) override;
 
 private:
-   std::unique_ptr<PhysicalPlanNode> currentPhysicalNode;
-   std::string currentExpressionString; // Temporary Hack to build expression strings
+   unique_ptr<PhysicalPlanNode> currentPhysicalNode;
+   string currentExpressionString; // Temporary Hack to build expression strings
 };

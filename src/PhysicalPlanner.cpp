@@ -1,26 +1,32 @@
 #include "PhysicalPlanner.h"
 #include <iostream>
 
-std::unique_ptr<PhysicalPlanNode> PhysicalPlanner::build(LogicalPlanNode* logicalPlan) {
+using namespace std;
+
+unique_ptr<PhysicalPlanNode> PhysicalPlanner::build(LogicalPlanNode* logicalPlan) {
     if (!logicalPlan) return nullptr;
     logicalPlan->accept(this);
-    return std::move(currentPhysicalNode);
+    return move(currentPhysicalNode);
 }
 
 void PhysicalPlanner::visitNodeScan(NodeScanNode* node) {
-    currentPhysicalNode = std::make_unique<PhysicalNodeScan>(node->label, node->variable);
+    if (node->label.empty()) {
+        currentPhysicalNode = make_unique<PhysicalFullScan>(node->variable);
+    } else {
+        currentPhysicalNode = make_unique<PhysicalIndexScan>(node->label, node->variable);
+    }
 }
 
 void PhysicalPlanner::visitEdgeScan(EdgeScanNode* node) {
-    currentPhysicalNode = std::make_unique<PhysicalEdgeScan>(node->label, node->variable, node->direction);
+    currentPhysicalNode = make_unique<PhysicalEdgeScan>(node->label, node->variable, node->direction);
 }
 
 void PhysicalPlanner::visitFilter(FilterNode* node) {
     // 1. Visit child (source of data)
-    std::unique_ptr<PhysicalPlanNode> childPlan = nullptr;
+    unique_ptr<PhysicalPlanNode> childPlan = nullptr;
     if (!node->children.empty()) {
         node->children[0]->accept(this);
-        childPlan = std::move(currentPhysicalNode);
+        childPlan = move(currentPhysicalNode);
     }
 
     // 2. Process condition
@@ -28,32 +34,32 @@ void PhysicalPlanner::visitFilter(FilterNode* node) {
     if (node->condition) {
         node->condition->accept(this);
     }
-    std::string condition = currentExpressionString;
+    string condition = currentExpressionString;
 
     // 3. Create Physical Filter
-    auto filter = std::make_unique<PhysicalFilter>(condition);
+    auto filter = make_unique<PhysicalFilter>(condition);
     if (childPlan) {
-        filter->children.push_back(std::move(childPlan)); // Single child
+        filter->children.push_back(move(childPlan)); // Single child
     }
-    currentPhysicalNode = std::move(filter);
+    currentPhysicalNode = move(filter);
 }
 
 void PhysicalPlanner::visitProject(ProjectNode* node) {
     // 1. Visit child
-    std::unique_ptr<PhysicalPlanNode> childPlan = nullptr;
+    unique_ptr<PhysicalPlanNode> childPlan = nullptr;
     if (!node->children.empty()) {
         node->children[0]->accept(this);
-        childPlan = std::move(currentPhysicalNode);
+        childPlan = move(currentPhysicalNode);
     }
 
     // 2. Create Project
-    std::vector<std::string> projectFields;
+    vector<string> projectFields;
     // Iterate over expressions to potentially get field names
     for (size_t i = 0; i < node->expressions.size(); ++i) {
         currentExpressionString = "";
         node->expressions[i]->accept(this);
         
-        std::string fieldName = "";
+        string fieldName = "";
         if (i < node->fields.size()) {
             fieldName = node->fields[i]; // Use alias if available
         }
@@ -69,26 +75,26 @@ void PhysicalPlanner::visitProject(ProjectNode* node) {
         projectFields = node->fields;
     }
 
-    auto project = std::make_unique<PhysicalProject>(projectFields);
+    auto project = make_unique<PhysicalProject>(projectFields);
     if (childPlan) {
-        project->children.push_back(std::move(childPlan)); // Single child
+        project->children.push_back(move(childPlan)); // Single child
     }
-    currentPhysicalNode = std::move(project);
+    currentPhysicalNode = move(project);
 }
 
 void PhysicalPlanner::visitJoin(JoinNode* node) {
     // Join has 2 children: Left and Right sources
     
-    std::unique_ptr<PhysicalPlanNode> leftPlan = nullptr;
-    std::unique_ptr<PhysicalPlanNode> rightPlan = nullptr;
+    unique_ptr<PhysicalPlanNode> leftPlan = nullptr;
+    unique_ptr<PhysicalPlanNode> rightPlan = nullptr;
 
     if (node->children.size() > 0) {
         node->children[0]->accept(this);
-        leftPlan = std::move(currentPhysicalNode);
+        leftPlan = move(currentPhysicalNode);
     }
     if (node->children.size() > 1) {
         node->children[1]->accept(this);
-        rightPlan = std::move(currentPhysicalNode);
+        rightPlan = move(currentPhysicalNode);
     }
 
     // Process condition
@@ -96,25 +102,25 @@ void PhysicalPlanner::visitJoin(JoinNode* node) {
     if (node->condition) {
         node->condition->accept(this);
     }
-    std::string condition = currentExpressionString;
+    string condition = currentExpressionString;
 
     // Default to NestedLoopJoin for now
-    auto join = std::make_unique<PhysicalNestedLoopJoin>(node->joinType, condition);
-    if (leftPlan) join->children.push_back(std::move(leftPlan));
-    if (rightPlan) join->children.push_back(std::move(rightPlan));
+    auto join = make_unique<PhysicalNestedLoopJoin>(node->joinType, condition);
+    if (leftPlan) join->children.push_back(move(leftPlan));
+    if (rightPlan) join->children.push_back(move(rightPlan));
 
-    currentPhysicalNode = std::move(join);
+    currentPhysicalNode = move(join);
 }
 
 void PhysicalPlanner::visitAggregate(AggregateNode* node) {
-    std::unique_ptr<PhysicalPlanNode> childPlan = nullptr;
+    unique_ptr<PhysicalPlanNode> childPlan = nullptr;
     if (!node->children.empty()) {
         node->children[0]->accept(this);
-        childPlan = std::move(currentPhysicalNode);
+        childPlan = move(currentPhysicalNode);
     }
 
     // Build groupings string
-    std::vector<std::string> groups;
+    vector<string> groups;
     for (size_t i=0; i < node->groupingExpressions.size(); ++i) {
         currentExpressionString = "";
         node->groupingExpressions[i]->accept(this);
@@ -122,121 +128,121 @@ void PhysicalPlanner::visitAggregate(AggregateNode* node) {
     }
 
     // Build measures
-    std::vector<std::string> measures;
+    vector<string> measures;
     for (const auto& item : node->aggregateItems) {
         currentExpressionString = "";
         if (item.expression) item.expression->accept(this);
-        std::string measure = item.functionName + "(" + (item.distinct ? "DISTINCT " : "") + currentExpressionString + ")";
+        string measure = item.functionName + "(" + (item.distinct ? "DISTINCT " : "") + currentExpressionString + ")";
         if (!item.alias.empty()) measure += " AS " + item.alias;
         measures.push_back(measure);
     }
 
-    auto agg = std::make_unique<PhysicalAggregate>(groups, measures);
-    if (childPlan) agg->children.push_back(std::move(childPlan));
-    currentPhysicalNode = std::move(agg);
+    auto agg = make_unique<PhysicalAggregate>(groups, measures);
+    if (childPlan) agg->children.push_back(move(childPlan));
+    currentPhysicalNode = move(agg);
 }
 
 void PhysicalPlanner::visitSort(SortNode* node) {
-    std::unique_ptr<PhysicalPlanNode> childPlan = nullptr;
+    unique_ptr<PhysicalPlanNode> childPlan = nullptr;
     if (!node->children.empty()) {
         node->children[0]->accept(this);
-        childPlan = std::move(currentPhysicalNode);
+        childPlan = move(currentPhysicalNode);
     }
 
-    std::vector<PhysicalSort::SortItem> items;
+    vector<PhysicalSort::SortItem> items;
     for (const auto& f : node->sortFields) {
         items.push_back({f.field, (f.direction == "ASC")});
     }
 
-    auto sort = std::make_unique<PhysicalSort>(items);
-    if (childPlan) sort->children.push_back(std::move(childPlan));
-    currentPhysicalNode = std::move(sort);
+    auto sort = make_unique<PhysicalSort>(items);
+    if (childPlan) sort->children.push_back(move(childPlan));
+    currentPhysicalNode = move(sort);
 }
 
 void PhysicalPlanner::visitLimit(LimitNode* node) {
-    std::unique_ptr<PhysicalPlanNode> childPlan = nullptr;
+    unique_ptr<PhysicalPlanNode> childPlan = nullptr;
     if (!node->children.empty()) {
         node->children[0]->accept(this);
-        childPlan = std::move(currentPhysicalNode);
+        childPlan = move(currentPhysicalNode);
     }
 
-    auto limit = std::make_unique<PhysicalLimit>(node->limit);
-    if (childPlan) limit->children.push_back(std::move(childPlan));
-    currentPhysicalNode = std::move(limit);
+    auto limit = make_unique<PhysicalLimit>(node->limit);
+    if (childPlan) limit->children.push_back(move(childPlan));
+    currentPhysicalNode = move(limit);
 }
 
 void PhysicalPlanner::visitOffset(OffsetNode* node) {
-    std::unique_ptr<PhysicalPlanNode> childPlan = nullptr;
+    unique_ptr<PhysicalPlanNode> childPlan = nullptr;
     if (!node->children.empty()) {
         node->children[0]->accept(this);
-        childPlan = std::move(currentPhysicalNode);
+        childPlan = move(currentPhysicalNode);
     }
     
-    auto offset = std::make_unique<PhysicalOffset>(node->offset);
-    if (childPlan) offset->children.push_back(std::move(childPlan));
-    currentPhysicalNode = std::move(offset);
+    auto offset = make_unique<PhysicalOffset>(node->offset);
+    if (childPlan) offset->children.push_back(move(childPlan));
+    currentPhysicalNode = move(offset);
 }
 
 void PhysicalPlanner::visitUnion(UnionNode* node) {
-    std::unique_ptr<PhysicalPlanNode> leftPlan = nullptr;
-    std::unique_ptr<PhysicalPlanNode> rightPlan = nullptr;
+    unique_ptr<PhysicalPlanNode> leftPlan = nullptr;
+    unique_ptr<PhysicalPlanNode> rightPlan = nullptr;
 
     if (node->children.size() > 0) {
         node->children[0]->accept(this);
-        leftPlan = std::move(currentPhysicalNode);
+        leftPlan = move(currentPhysicalNode);
     }
     if (node->children.size() > 1) {
         node->children[1]->accept(this);
-        rightPlan = std::move(currentPhysicalNode);
+        rightPlan = move(currentPhysicalNode);
     }
 
-    auto unionOp = std::make_unique<PhysicalUnion>(node->distinct);
-    if (leftPlan) unionOp->children.push_back(std::move(leftPlan));
-    if (rightPlan) unionOp->children.push_back(std::move(rightPlan));
-    currentPhysicalNode = std::move(unionOp);
+    auto unionOp = make_unique<PhysicalUnion>(node->distinct);
+    if (leftPlan) unionOp->children.push_back(move(leftPlan));
+    if (rightPlan) unionOp->children.push_back(move(rightPlan));
+    currentPhysicalNode = move(unionOp);
 }
 
 void PhysicalPlanner::visitDeleteOp(DeleteOpNode* node) {
-     std::unique_ptr<PhysicalPlanNode> childPlan = nullptr;
+     unique_ptr<PhysicalPlanNode> childPlan = nullptr;
     if (!node->children.empty()) {
         node->children[0]->accept(this);
-        childPlan = std::move(currentPhysicalNode);
+        childPlan = move(currentPhysicalNode);
     }
 
-    auto deleteOp = std::make_unique<PhysicalDelete>(node->variables, node->detach);
-    if (childPlan) deleteOp->children.push_back(std::move(childPlan));
-    currentPhysicalNode = std::move(deleteOp);
+    auto deleteOp = make_unique<PhysicalDelete>(node->variables, node->detach);
+    if (childPlan) deleteOp->children.push_back(move(childPlan));
+    currentPhysicalNode = move(deleteOp);
 }
 
 void PhysicalPlanner::visitInsertOp(InsertOpNode* node) {
-    auto insertOp = std::make_unique<PhysicalInsert>("(Insert Content Placeholder)");
-    currentPhysicalNode = std::move(insertOp);
+    auto insertOp = make_unique<PhysicalInsert>("(Insert Content Placeholder)");
+    currentPhysicalNode = move(insertOp);
 }
 
 void PhysicalPlanner::visitUpdateOp(UpdateOpNode* node) {
-     std::unique_ptr<PhysicalPlanNode> childPlan = nullptr;
+     unique_ptr<PhysicalPlanNode> childPlan = nullptr;
     if (!node->children.empty()) {
         node->children[0]->accept(this);
-        childPlan = std::move(currentPhysicalNode);
+        childPlan = move(currentPhysicalNode);
     }
     
-    std::string desc;
+    string desc;
     for (const auto& item : node->items) {
         desc += item.variable + "." + item.key + " ";
     }
     
-    auto update = std::make_unique<PhysicalUpdate>(desc);
-    if (childPlan) update->children.push_back(std::move(childPlan));
-    currentPhysicalNode = std::move(update);
+    auto update = make_unique<PhysicalUpdate>(desc);
+    if (childPlan) update->children.push_back(move(childPlan));
+    currentPhysicalNode = move(update);
 }
 
 // --- Expressions ---
 void PhysicalPlanner::visitBinaryExpression(BinaryExpressionNode* node) {
     if (node->left) node->left->accept(this);
-    std::string left = currentExpressionString;
+    string left = currentExpressionString;
     
     if (node->right) node->right->accept(this);
-    std::string right = currentExpressionString;
+    string right = currentExpressionString;
     
     currentExpressionString = "(" + left + " " + node->op + " " + right + ")"; 
 }

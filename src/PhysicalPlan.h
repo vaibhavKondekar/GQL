@@ -5,42 +5,45 @@
 #include <iostream>
 #include <map>
 
+using namespace std;
+
 // Logical Plan Nodes for reference (if needed directly in physical plan, though ideally decoupled)
 // For now we'll just use strings/simple structures or forward declare if we need to keep a reference.
 // But for a pure physical plan, we usually copy strict necessary info.
 
 enum class PhysicalOperatorType {
-    SCAN_NODE,
-    SCAN_EDGE,
-    FILTER,
-    PROJECT,
-    NESTED_LOOP_JOIN,
-    HASH_JOIN,
-    SORT,
-    LIMIT,
-    OFFSET,
-    AGGREGATE,
-    UNION,
-    DELETE,
-    INSERT,
-    UPDATE,
-    VALUES // For literals/constants (e.g. "RETURN 1")
+    MEM_SCAN_FULL,
+    MEM_SCAN_INDEX,
+    MEM_SCAN_EDGE,
+    MEM_FILTER,
+    MEM_PROJECT,
+    MEM_NESTED_LOOP_JOIN,
+    MEM_HASH_JOIN,
+    MEM_SORT,
+    MEM_LIMIT,
+    MEM_OFFSET,
+    MEM_AGGREGATE,
+    MEM_UNION,
+    MEM_DELETE,
+    MEM_INSERT,
+    MEM_UPDATE,
+    MEM_VALUES
 };
 
 class PhysicalPlanNode {
 public:
     PhysicalOperatorType type;
-    std::vector<std::unique_ptr<PhysicalPlanNode>> children;
+    vector<unique_ptr<PhysicalPlanNode>> children;
 
     PhysicalPlanNode(PhysicalOperatorType t) : type(t) {}
     virtual ~PhysicalPlanNode() = default;
 
     // Helper for printing the tree
-    virtual std::string toString() const = 0;
+    virtual string toString() const = 0;
 
     void print(int indent = 0) const {
-        std::string indentation(indent * 2, ' ');
-        std::cout << indentation << toString() << std::endl;
+        string indentation(indent * 2, ' ');
+        cout << indentation << toString() << endl;
         for (const auto& child : children) {
             child->print(indent + 1);
         }
@@ -49,30 +52,42 @@ public:
 
 // --- Scans ---
 
-class PhysicalNodeScan : public PhysicalPlanNode {
+class PhysicalFullScan : public PhysicalPlanNode {
 public:
-    std::string label;
-    std::string variable;
+    string variable;
 
-    PhysicalNodeScan(std::string l, std::string v) 
-        : PhysicalPlanNode(PhysicalOperatorType::SCAN_NODE), label(l), variable(v) {}
+    PhysicalFullScan(string v) 
+        : PhysicalPlanNode(PhysicalOperatorType::MEM_SCAN_FULL), variable(v) {}
 
-    std::string toString() const override {
-        return "NodeScan(label: " + label + ", variable: " + variable + ")";
+    string toString() const override {
+        return "MemFullScan(variable: " + variable + ")";
+    }
+};
+
+class PhysicalIndexScan : public PhysicalPlanNode {
+public:
+    string label;
+    string variable;
+
+    PhysicalIndexScan(string l, string v) 
+        : PhysicalPlanNode(PhysicalOperatorType::MEM_SCAN_INDEX), label(l), variable(v) {}
+
+    string toString() const override {
+        return "MemIndexScan(label: " + label + ", variable: " + variable + ")";
     }
 };
 
 class PhysicalEdgeScan : public PhysicalPlanNode {
 public:
-    std::string label;
-    std::string variable;
-    std::string direction; // "OUT", "IN", "BOTH" - simplified
+    string label;
+    string variable;
+    string direction; // "OUT", "IN", "BOTH" - simplified
 
-    PhysicalEdgeScan(std::string l, std::string v, std::string dir) 
-        : PhysicalPlanNode(PhysicalOperatorType::SCAN_EDGE), label(l), variable(v), direction(dir) {}
+    PhysicalEdgeScan(string l, string v, string dir) 
+        : PhysicalPlanNode(PhysicalOperatorType::MEM_SCAN_EDGE), label(l), variable(v), direction(dir) {}
 
-    std::string toString() const override {
-        return "EdgeScan(label: " + label + ", variable: " + variable + ", direction: " + direction + ")";
+    string toString() const override {
+        return "MemEdgeScan(label: " + label + ", variable: " + variable + ", direction: " + direction + ")";
     }
 };
 
@@ -80,25 +95,25 @@ public:
 
 class PhysicalFilter : public PhysicalPlanNode {
 public:
-    std::string conditionDescription; // Simplified for now, just the string representation of condition
+    string conditionDescription; // Simplified for now, just the string representation of condition
 
-    PhysicalFilter(std::string condDesc) 
-        : PhysicalPlanNode(PhysicalOperatorType::FILTER), conditionDescription(condDesc) {}
+    PhysicalFilter(string condDesc) 
+        : PhysicalPlanNode(PhysicalOperatorType::MEM_FILTER), conditionDescription(condDesc) {}
 
-    std::string toString() const override {
-        return "Filter(condition: " + conditionDescription + ")";
+    string toString() const override {
+        return "MemFilter(condition: " + conditionDescription + ")";
     }
 };
 
 class PhysicalProject : public PhysicalPlanNode {
 public:
-    std::vector<std::string> fields;
+    vector<string> fields;
 
-    PhysicalProject(std::vector<std::string> f) 
-        : PhysicalPlanNode(PhysicalOperatorType::PROJECT), fields(f) {}
+    PhysicalProject(vector<string> f) 
+        : PhysicalPlanNode(PhysicalOperatorType::MEM_PROJECT), fields(f) {}
 
-    std::string toString() const override {
-        std::string s = "Project([";
+    string toString() const override {
+        string s = "MemProject([";
         for (size_t i = 0; i < fields.size(); ++i) {
             s += fields[i];
             if (i < fields.size() - 1) s += ", ";
@@ -112,14 +127,14 @@ public:
 
 class PhysicalNestedLoopJoin : public PhysicalPlanNode {
 public:
-    std::string joinType; // INNER, LEFT, etc.
-    std::string condition; 
+    string joinType; // INNER, LEFT, etc.
+    string condition; 
 
-    PhysicalNestedLoopJoin(std::string type, std::string cond) 
-        : PhysicalPlanNode(PhysicalOperatorType::NESTED_LOOP_JOIN), joinType(type), condition(cond) {}
+    PhysicalNestedLoopJoin(string type, string cond) 
+        : PhysicalPlanNode(PhysicalOperatorType::MEM_NESTED_LOOP_JOIN), joinType(type), condition(cond) {}
 
-    std::string toString() const override {
-        return "NestedLoopJoin(type: " + joinType + ", condition: " + condition + ")";
+    string toString() const override {
+        return "MemNestedLoopJoin(type: " + joinType + ", condition: " + condition + ")";
     }
 };
 
@@ -128,16 +143,16 @@ public:
 class PhysicalSort : public PhysicalPlanNode {
 public:
     struct SortItem {
-        std::string field;
+        string field;
         bool ascending;
     };
-    std::vector<SortItem> items;
+    vector<SortItem> items;
 
-    PhysicalSort(std::vector<SortItem> i) 
-        : PhysicalPlanNode(PhysicalOperatorType::SORT), items(i) {}
+    PhysicalSort(vector<SortItem> i) 
+        : PhysicalPlanNode(PhysicalOperatorType::MEM_SORT), items(i) {}
 
-    std::string toString() const override {
-        std::string s = "Sort([";
+    string toString() const override {
+        string s = "MemSort([";
         for (size_t i = 0; i < items.size(); ++i) {
             s += items[i].field + (items[i].ascending ? " ASC" : " DESC");
             if (i < items.size() - 1) s += ", ";
@@ -150,27 +165,27 @@ public:
 class PhysicalLimit : public PhysicalPlanNode {
 public:
     int limit;
-    PhysicalLimit(int l) : PhysicalPlanNode(PhysicalOperatorType::LIMIT), limit(l) {}
-    std::string toString() const override { return "Limit(" + std::to_string(limit) + ")"; }
+    PhysicalLimit(int l) : PhysicalPlanNode(PhysicalOperatorType::MEM_LIMIT), limit(l) {}
+    string toString() const override { return "MemLimit(" + to_string(limit) + ")"; }
 };
 
 class PhysicalOffset : public PhysicalPlanNode {
 public:
     int offset;
-    PhysicalOffset(int o) : PhysicalPlanNode(PhysicalOperatorType::OFFSET), offset(o) {}
-    std::string toString() const override { return "Offset(" + std::to_string(offset) + ")"; }
+    PhysicalOffset(int o) : PhysicalPlanNode(PhysicalOperatorType::MEM_OFFSET), offset(o) {}
+    string toString() const override { return "MemOffset(" + to_string(offset) + ")"; }
 };
 
 class PhysicalAggregate : public PhysicalPlanNode {
 public:
-    std::vector<std::string> groupings;
-    std::vector<std::string> measures; // e.g. "COUNT(p)", "SUM(age)"
+    vector<string> groupings;
+    vector<string> measures; // e.g. "COUNT(p)", "SUM(age)"
 
-    PhysicalAggregate(std::vector<std::string> g, std::vector<std::string> m)
-        : PhysicalPlanNode(PhysicalOperatorType::AGGREGATE), groupings(g), measures(m) {}
+    PhysicalAggregate(vector<string> g, vector<string> m)
+        : PhysicalPlanNode(PhysicalOperatorType::MEM_AGGREGATE), groupings(g), measures(m) {}
 
-    std::string toString() const override {
-        std::string s = "Aggregate(GroupBy: [";
+    string toString() const override {
+        string s = "MemAggregate(GroupBy: [";
         for (size_t i = 0; i < groupings.size(); ++i) {
             s += groupings[i];
             if (i < groupings.size() - 1) s += ", ";
@@ -187,50 +202,49 @@ public:
 
 class PhysicalValues : public PhysicalPlanNode {
 public:
-    std::vector<std::string> values;
+    vector<string> values;
 
-    PhysicalValues(std::vector<std::string> v)
-        : PhysicalPlanNode(PhysicalOperatorType::VALUES), values(v) {}
+    PhysicalValues(vector<string> v)
+        : PhysicalPlanNode(PhysicalOperatorType::MEM_VALUES), values(v) {}
     
-    std::string toString() const override {
-        return "Values(...)";
+    string toString() const override {
+        return "MemValues(...)";
     }
 };
 
 // --- Modification ---
 class PhysicalInsert : public PhysicalPlanNode {
 public:
-    std::string details;
-    PhysicalInsert(std::string d) : PhysicalPlanNode(PhysicalOperatorType::INSERT), details(d) {}
-    std::string toString() const override { return "Insert(" + details + ")"; }
+    string details;
+    PhysicalInsert(string d) : PhysicalPlanNode(PhysicalOperatorType::MEM_INSERT), details(d) {}
+    string toString() const override { return "MemInsert(" + details + ")"; }
 };
 
 class PhysicalDelete : public PhysicalPlanNode {
 public:
-    std::vector<std::string> variables;
+    vector<string> variables;
     bool detach;
-    PhysicalDelete(std::vector<std::string> vars, bool d) 
-        : PhysicalPlanNode(PhysicalOperatorType::DELETE), variables(vars), detach(d) {}
-    std::string toString() const override { 
-        std::string s = "Delete(vars: [";
+    PhysicalDelete(vector<string> vars, bool d) 
+        : PhysicalPlanNode(PhysicalOperatorType::MEM_DELETE), variables(vars), detach(d) {}
+    string toString() const override { 
+        string s = "MemDelete(vars: [";
         for(auto& v : variables) s += v + " ";
-        s += "], detach: " + std::to_string(detach) + ")";
+        s += "], detach: " + to_string(detach) + ")";
         return s;
     }
 };
 
 class PhysicalUpdate : public PhysicalPlanNode {
 public: 
-    std::string updateOps;
-    PhysicalUpdate(std::string ops) 
-        : PhysicalPlanNode(PhysicalOperatorType::UPDATE), updateOps(ops) {}
-    std::string toString() const override { return "Update(" + updateOps + ")"; }
+    string updateOps;
+    PhysicalUpdate(string ops) 
+        : PhysicalPlanNode(PhysicalOperatorType::MEM_UPDATE), updateOps(ops) {}
+    string toString() const override { return "MemUpdate(" + updateOps + ")"; }
 };
 
 class PhysicalUnion : public PhysicalPlanNode {
 public:
     bool distinct;
-    PhysicalUnion(bool d) : PhysicalPlanNode(PhysicalOperatorType::UNION), distinct(d) {}
-    std::string toString() const override { return distinct ? "UnionDistinct" : "UnionAll"; }
+    PhysicalUnion(bool d) : PhysicalPlanNode(PhysicalOperatorType::MEM_UNION), distinct(d) {}
+    string toString() const override { return distinct ? "MemUnionDistinct" : "MemUnionAll"; }
 };
-

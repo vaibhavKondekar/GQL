@@ -4,15 +4,6 @@
 #include "LogicalPlanNodes.h"
 #include <memory>
 
-/**
- * LogicalPlanBuilder: Converts AST → Logical Plan
- * 
- * This visitor traverses the AST and builds a logical plan tree.
- * 
- * Example conversion:
- *   AST: MatchStatement → NodePattern → WhereClause → ReturnStatement
- *   Logical Plan: Project → Filter → NodeScan
- */
 class LogicalPlanBuilder : public ASTVisitor {
 private:
     std::unique_ptr<LogicalPlanNode> currentPlan; // Current plan being built
