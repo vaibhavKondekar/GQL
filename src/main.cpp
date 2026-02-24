@@ -8,6 +8,10 @@
 #include "LogicalPlanBuilder.h"
 #include "LogicalPlanPrinter.h"
 #include "PhysicalPlanner.h"
+#include "Value.h"
+#include "Graph.h"
+#include "PhysicalOperator.h"
+#include "ExecutionBuilder.h"
 
 using namespace antlr4;
 using namespace std;
@@ -128,6 +132,100 @@ int main(int argc, const char* argv[]) {
             auto phyPlan = phyPlanner.build(logicalPlan.get());
             if (phyPlan) {
                 phyPlan->print();
+
+                // ✅ EXECUTION ENGINE
+                cout << "\n==================== EXECUTION RESULTS ====================\n";
+                
+                // 1. Init Graph with Sample Data
+                Graph graph;
+                
+                // Alice (25)
+                graph.createNode({"Person"}, {
+                    {"name", Value("Alice")},
+                    {"age", Value(25)},
+                    {"city", Value("New York")}
+                });
+                
+                // Bob (35)
+                graph.createNode({"Person"}, {
+                    {"name", Value("Bob")},
+                    {"age", Value(35)},
+                    {"city", Value("San Francisco")}
+                });
+                
+                // Charlie (40)
+                graph.createNode({"Person"}, {
+                    {"name", Value("Charlie")},
+                    {"age", Value(40)},
+                    {"city", Value("London")}
+                });
+
+                // David (30)
+                graph.createNode({"Person"}, {
+                    {"name", Value("David")},
+                    {"age", Value(30)},
+                    {"city", Value("Berlin")}
+                });
+
+                // Eve (22)
+                graph.createNode({"Person"}, {
+                    {"name", Value("Eve")},
+                    {"age", Value(22)},
+                    {"city", Value("Paris")}
+                });
+
+                // Frank (50)
+                graph.createNode({"Person"}, {
+                    {"name", Value("Frank")},
+                    {"age", Value(50)},
+                    {"city", Value("Tokyo")}
+                });
+
+                // Grace (28)
+                graph.createNode({"Person"}, {
+                    {"name", Value("Grace")},
+                    {"age", Value(28)},
+                    {"city", Value("Sydney")}
+                });
+
+                // Dave (Software, 35) - Test different label/properties
+                graph.createNode({"Software"}, {
+                    {"name", Value("GQE Engine")},
+                    {"version", Value(1.0)},
+                    {"developer", Value("Vaibhav")}
+                });
+
+                // Adding a Company node
+                graph.createNode({"Company"}, {
+                    {"name", Value("GraphCorp")},
+                    {"location", Value("Remote")}
+                });
+
+                // 2. Build Execution Tree
+                // ExecutionBuilder execBuilder(graph);
+                ExecutionBuilder execBuilder(graph);
+                unique_ptr<PhysicalOperator> rootOp = execBuilder.build(phyPlan.get());
+
+                // 3. Run Pipeline
+                if (rootOp) {
+                    rootOp->open();
+                    
+                    Row row;
+                    int rowCount = 0;
+                    while (rootOp->next(row)) {
+                        rowCount++;
+                        cout << "Row " << rowCount << ": { ";
+                        for (const auto& pair : row.values) {
+                            cout << pair.first << ": " << pair.second.toString() << ", ";
+                        }
+                        cout << "}" << endl;
+                    }
+                    
+                    rootOp->close();
+                } else {
+                    cout << "Failed to build execution tree." << endl;
+                }
+
             } else {
                 cout << "(No physical plan generated)\n";
             }
