@@ -1,0 +1,2 @@
+MATCH (p:Person)-[v:WORKS_AT]->(c:Company)
+RETURN p.name, c.name

@@ -37,12 +37,22 @@ public:
 
     // Indexes: Label -> [NodeId]
     unordered_map<string, vector<int>> labelIndex;
+    unordered_map<string, vector<int>> edgeLabelIndex;
+
+    // Adjacency: sourceId -> [EdgeId]
+    unordered_map<int, vector<int>> outEdges;
 
     void addNode(shared_ptr<Node> node) {
         nodes[node->id] = node;
         for (const auto& label : node->labels) {
             labelIndex[label].push_back(node->id);
         }
+    }
+
+    void addEdge(shared_ptr<Edge> edge) {
+        edges[edge->id] = edge;
+        edgeLabelIndex[edge->label].push_back(edge->id);
+        outEdges[edge->sourceId].push_back(edge->id);
     }
 
     shared_ptr<Node> createNode(vector<string> labels, unordered_map<string, Value> props) {
@@ -54,12 +64,33 @@ public:
         return node;
     }
 
+    shared_ptr<Edge> createEdge(int sourceId, int targetId, string label, unordered_map<string, Value> props) {
+        auto edge = make_shared<Edge>();
+        edge->id = nextEdgeId++;
+        edge->sourceId = sourceId;
+        edge->targetId = targetId;
+        edge->label = label;
+        edge->properties = props;
+        addEdge(edge);
+        return edge;
+    }
+
     // scans
     vector<shared_ptr<Node>> getNodesByLabel(const string& label) {
         vector<shared_ptr<Node>> result;
         if (labelIndex.find(label) != labelIndex.end()) {
             for (int id : labelIndex[label]) {
                 result.push_back(nodes[id]);
+            }
+        }
+        return result;
+    }
+
+    vector<shared_ptr<Edge>> getEdgesByLabel(const string& label) {
+        vector<shared_ptr<Edge>> result;
+        if (edgeLabelIndex.find(label) != edgeLabelIndex.end()) {
+            for (int id : edgeLabelIndex[label]) {
+                result.push_back(edges[id]);
             }
         }
         return result;

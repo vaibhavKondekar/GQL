@@ -124,10 +124,38 @@ void LogicalPlanBuilder::visitMatchStatement(MatchStatementNode* n) {
             auto join = make_unique<JoinNode>();
             join->joinType = "INNER";
             
+            // Try to find matching variables between left and right
+            // For now, if current is Edge, link it to previous Node
+            string leftVar, rightVar;
+            if (previousNode->type == LogicalPlanNode::NODE_SCAN) {
+                leftVar = static_cast<NodeScanNode*>(previousNode)->variable;
+            } else if (previousNode->type == LogicalPlanNode::EDGE_SCAN) {
+                leftVar = static_cast<EdgeScanNode*>(previousNode)->variable;
+            }
+
+            if (newScan->type == LogicalPlanNode::NODE_SCAN) {
+                rightVar = static_cast<NodeScanNode*>(newScan.get())->variable;
+            } else if (newScan->type == LogicalPlanNode::EDGE_SCAN) {
+                rightVar = static_cast<EdgeScanNode*>(newScan.get())->variable;
+            }
+
             auto binOp = make_unique<BinaryExpressionNode>();
             binOp->op = "=";
-            binOp->left = make_unique<VariableReferenceNode>("(left.id)");
-            binOp->right = make_unique<VariableReferenceNode>("(right.ref)");
+            
+            // Logic: if left is Node and right is Edge -> node.id = edge._source
+            // if left is Edge and right is Node -> edge._target = node.id
+            if (previousNode->type == LogicalPlanNode::NODE_SCAN && newScan->type == LogicalPlanNode::EDGE_SCAN) {
+                binOp->left = make_unique<PropertyAccessNode>(leftVar, "id");
+                binOp->right = make_unique<PropertyAccessNode>(rightVar, "_source");
+            } else if (previousNode->type == LogicalPlanNode::EDGE_SCAN && newScan->type == LogicalPlanNode::NODE_SCAN) {
+                binOp->left = make_unique<PropertyAccessNode>(leftVar, "_target");
+                binOp->right = make_unique<PropertyAccessNode>(rightVar, "id");
+            } else {
+                // Fallback placeholder
+                binOp->left = make_unique<VariableReferenceNode>("(left.id)");
+                binOp->right = make_unique<VariableReferenceNode>("(right.ref)");
+            }
+            
             join->condition = move(binOp);
             
             join->children.push_back(move(plan));

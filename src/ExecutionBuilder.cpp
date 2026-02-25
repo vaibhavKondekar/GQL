@@ -12,13 +12,16 @@ unique_ptr<PhysicalOperator> ExecutionBuilder::build(PhysicalPlanNode* plan) {
     
     switch (plan->type) {
         case PhysicalOperatorType::MEM_SCAN_INDEX: {
-            // Need to cast to specific node type to access fields
-            // Assuming PhysicalIndexScan is defined in PhysicalPlan.h
-            // But PhysicalPlanNode only has virtual toString. 
-            // We need to cast.
             auto scanNode = dynamic_cast<PhysicalIndexScan*>(plan);
             if (scanNode) {
                 return make_unique<MemoryIndexScan>(graph, scanNode->label, scanNode->variable);
+            }
+            break;
+        }
+        case PhysicalOperatorType::MEM_SCAN_EDGE: {
+            auto scanNode = dynamic_cast<PhysicalEdgeScan*>(plan);
+            if (scanNode) {
+                return make_unique<MemoryEdgeScan>(graph, scanNode->label, scanNode->variable);
             }
             break;
         }
@@ -33,6 +36,17 @@ unique_ptr<PhysicalOperator> ExecutionBuilder::build(PhysicalPlanNode* plan) {
             auto projectNode = dynamic_cast<PhysicalProject*>(plan);
             if (projectNode && childOp) {
                 return make_unique<MemoryProject>(move(childOp), projectNode->fields);
+            }
+            break;
+        }
+        case PhysicalOperatorType::MEM_NESTED_LOOP_JOIN: {
+            auto joinNode = dynamic_cast<PhysicalNestedLoopJoin*>(plan);
+            if (joinNode && plan->children.size() >= 2) {
+                auto left = build(plan->children[0].get());
+                auto right = build(plan->children[1].get());
+                if (left && right) {
+                    return make_unique<MemoryNestedLoopJoin>(move(left), move(right), joinNode->condition);
+                }
             }
             break;
         }

@@ -196,10 +196,24 @@ int main(int argc, const char* argv[]) {
                 });
 
                 // Adding a Company node
-                graph.createNode({"Company"}, {
-                    {"name", Value("GraphCorp")},
-                    {"location", Value("Remote")}
+                auto google = graph.createNode({"Company"}, {
+                    {"name", Value("Google")},
+                    {"location", Value("Mountain View")}
                 });
+
+                auto meta = graph.createNode({"Company"}, {
+                    {"name", Value("Meta")},
+                    {"location", Value("Menlo Park")}
+                });
+
+                // Get some person nodes to link
+                auto aliceNodes = graph.getNodesByLabel("Person"); // Alice is first
+                if (!aliceNodes.empty()) {
+                    graph.createEdge(aliceNodes[0]->id, google->id, "WORKS_AT", {{"since", Value(2020)}});
+                    if (aliceNodes.size() > 1) {
+                        graph.createEdge(aliceNodes[1]->id, meta->id, "WORKS_AT", {{"since", Value(2021)}});
+                    }
+                }
 
                 // 2. Build Execution Tree
                 // ExecutionBuilder execBuilder(graph);
