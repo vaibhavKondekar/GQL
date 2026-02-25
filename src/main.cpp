@@ -139,81 +139,38 @@ int main(int argc, const char* argv[]) {
                 // 1. Init Graph with Sample Data
                 Graph graph;
                 
-                // Alice (25)
+                // --- Sample Data for MATCH Demo ---
+                
+                // People in different cities
                 graph.createNode({"Person"}, {
                     {"name", Value("Alice")},
                     {"age", Value(25)},
-                    {"city", Value("New York")}
+                    {"city", Value("London")}
                 });
                 
-                // Bob (35)
                 graph.createNode({"Person"}, {
                     {"name", Value("Bob")},
                     {"age", Value(35)},
-                    {"city", Value("San Francisco")}
+                    {"city", Value("New York")}
                 });
                 
-                // Charlie (40)
                 graph.createNode({"Person"}, {
                     {"name", Value("Charlie")},
                     {"age", Value(40)},
                     {"city", Value("London")}
                 });
 
-                // David (30)
                 graph.createNode({"Person"}, {
                     {"name", Value("David")},
                     {"age", Value(30)},
-                    {"city", Value("Berlin")}
-                });
-
-                // Eve (22)
-                graph.createNode({"Person"}, {
-                    {"name", Value("Eve")},
-                    {"age", Value(22)},
                     {"city", Value("Paris")}
                 });
 
-                // Frank (50)
-                graph.createNode({"Person"}, {
-                    {"name", Value("Frank")},
-                    {"age", Value(50)},
-                    {"city", Value("Tokyo")}
+                // A different label to test label filtering
+                graph.createNode({"City"}, {
+                    {"name", Value("London")},
+                    {"population", Value(9000000)}
                 });
-
-                // Grace (28)
-                graph.createNode({"Person"}, {
-                    {"name", Value("Grace")},
-                    {"age", Value(28)},
-                    {"city", Value("Sydney")}
-                });
-
-                // Dave (Software, 35) - Test different label/properties
-                graph.createNode({"Software"}, {
-                    {"name", Value("GQE Engine")},
-                    {"version", Value(1.0)},
-                    {"developer", Value("Vaibhav")}
-                });
-
-                // Adding a Company node
-                auto google = graph.createNode({"Company"}, {
-                    {"name", Value("Google")},
-                    {"location", Value("Mountain View")}
-                });
-
-                auto meta = graph.createNode({"Company"}, {
-                    {"name", Value("Meta")},
-                    {"location", Value("Menlo Park")}
-                });
-
-                // Get all person nodes and link everyone to a company
-                auto allPeople = graph.getNodesByLabel("Person");
-                for (size_t i = 0; i < allPeople.size(); ++i) {
-                    shared_ptr<Node> person = allPeople[i];
-                    shared_ptr<Node> company = (i % 2 == 0) ? google : meta; // Even to Google, Odd to Meta
-                    int startYear = 2015 + (i % 8);
-                    graph.createEdge(person->id, company->id, "WORKS_AT", {{"since", Value(startYear)}});
-                }
 
                 // 2. Build Execution Tree
                 // ExecutionBuilder execBuilder(graph);
