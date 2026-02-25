@@ -1,0 +1,2 @@
+MATCH (p:Person), (c:Company)
+RETURN p.name, c.name

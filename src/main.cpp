@@ -206,13 +206,13 @@ int main(int argc, const char* argv[]) {
                     {"location", Value("Menlo Park")}
                 });
 
-                // Get some person nodes to link
-                auto aliceNodes = graph.getNodesByLabel("Person"); // Alice is first
-                if (!aliceNodes.empty()) {
-                    graph.createEdge(aliceNodes[0]->id, google->id, "WORKS_AT", {{"since", Value(2020)}});
-                    if (aliceNodes.size() > 1) {
-                        graph.createEdge(aliceNodes[1]->id, meta->id, "WORKS_AT", {{"since", Value(2021)}});
-                    }
+                // Get all person nodes and link everyone to a company
+                auto allPeople = graph.getNodesByLabel("Person");
+                for (size_t i = 0; i < allPeople.size(); ++i) {
+                    shared_ptr<Node> person = allPeople[i];
+                    shared_ptr<Node> company = (i % 2 == 0) ? google : meta; // Even to Google, Odd to Meta
+                    int startYear = 2015 + (i % 8);
+                    graph.createEdge(person->id, company->id, "WORKS_AT", {{"since", Value(startYear)}});
                 }
 
                 // 2. Build Execution Tree

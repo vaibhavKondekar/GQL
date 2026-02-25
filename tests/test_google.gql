@@ -1,0 +1,3 @@
+MATCH (p:Person)-[v:WORKS_AT]->(c:Company)
+WHERE c.name = "Google"
+RETURN p.name
